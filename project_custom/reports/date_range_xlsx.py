@@ -2,6 +2,7 @@ from odoo import models
 
 class DateRangeXlsx(models.AbstractModel):
     _name = 'report.project_task.project_task_xlsx'
+    _description = 'Project Task XLSX Report'
     _inherit = 'report.report_xlsx.abstract'
 
     def generate_xlsx_report(self, workbook, data, objects):

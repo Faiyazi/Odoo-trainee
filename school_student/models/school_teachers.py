@@ -19,7 +19,7 @@ class SchoolTeacher(models.Model):
     teacher_image = fields.Image(string="Teacher Image")
     teacher_department = fields.Char(string="Department")
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         existing_ele = self.env['school.teacher'].search([])
 
@@ -28,6 +28,14 @@ class SchoolTeacher(models.Model):
             raise ValidationError('its exists')
 
         return super().create(vals)
+    
+    def create(self,vals):
+        if vals.get('reference','New') == 'New' :
+            vals['reference'] = self.env['ir.sequence'].next_by_code('school.student.id') or 'New'
+
+        res = super(SchoolTeacher,self).create(vals)
+        return res
+
 
     @api.constrains('teacher_age')
     def constrains_age(self):
@@ -44,13 +52,3 @@ class SchoolTeacher(models.Model):
 
             if not rec.teacher_age:
                 raise MissingError('not exists')
-
-
-    @api.model
-
-    def create(self,vals):
-        if vals.get('reference','New') == 'New' :
-            vals['reference'] = self.env['ir.sequence'].next_by_code('school.student.id') or 'New'
-
-        res = super(SchoolTeacher,self).create(vals)
-        return res

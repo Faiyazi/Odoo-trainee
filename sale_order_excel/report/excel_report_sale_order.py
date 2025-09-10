@@ -2,6 +2,7 @@ from odoo import models
 
 class ExcelSale(models.AbstractModel):
     _name = 'report.sale_order_excel.excel_sale_order_xlsx'
+    _description = 'Excel Sale Order Report'
     _inherit = 'report.report_xlsx.abstract'
 
     def generate_xlsx_report(self, workbook, data, objects):

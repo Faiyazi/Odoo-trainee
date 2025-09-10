@@ -9,4 +9,6 @@
     'data':[
         'views/view_restricted_partner.xml',
     ],
+    'license': 'LGPL-3',
+
 }

@@ -9,7 +9,11 @@ class ProjectTaskChecklist(models.Model):
     _description = 'Project Task Checklist'
     _inherits = {'project.task': 'task_id'}
 
-    task_id = fields.Many2one("project.task", string="Task")
+    task_id = fields.Many2one('project.task', required=True, ondelete='cascade')
+
+    _sql_constraints = [
+    ('project_task_checklist_unique_email', 'unique(email)', 'Email must be unique!')
+        ]
 
 
 
@@ -20,7 +24,5 @@ class ProjectTaskChecklist(models.Model):
             if rec.email and not re.match((r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$'),rec.email):
                 raise ValidationError("email don't matches ")
 
-    _sql_constraints = [(
-        'unique_email','unique[email]','Email must be unique!'
-    )]
+    
 

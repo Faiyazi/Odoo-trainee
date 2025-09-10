@@ -22,6 +22,12 @@ class SaleExcelWizard(models.TransientModel):
         for _,row in excel_file1.iterrows():
             product_name = row[0]
             qty = row[1]
+            price = row[2]
+
+
+
+            qty = float(qty) if pd.notna(qty) else 0.0
+            price = float(price) if pd.notna(price) else 0.0
             print("\n\n\n\n==============aaaaaaaaaaa",row)
 
 
@@ -35,7 +41,7 @@ class SaleExcelWizard(models.TransientModel):
                 product_tmpl = self.env['product.template'].create({
                     'name': product_name,
                     'type': 'consu',
-                    'list_price': '1',
+                    # 'list_price': price,
                 })
                 product = product_tmpl.product_variant_id
 
@@ -43,12 +49,16 @@ class SaleExcelWizard(models.TransientModel):
             line = sale_order.order_line.filtered(lambda l: l.product_id == product)
 
             if line:
-                line.product_uom_qty += qty
+                line.write({
+                'product_uom_qty': line.product_uom_qty + qty,
+                'price_unit': price or line.price_unit,
+            })
+
 
             else:
                 self.env['sale.order.line'].create({
                     'order_id': sale_order.id,
                     'product_id': product.id,
-                    'product_uom_qty': qty,
-                    'price_unit': '1',
+                    'product_uom_qty': qty or 1,
+                    'price_unit': price or product.list_price,
                 })

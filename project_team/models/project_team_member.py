@@ -46,7 +46,7 @@ class TeamMember(models.Model):
         store=True
     )
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
 
         if not vals.get('user_id') and vals.get('email'):

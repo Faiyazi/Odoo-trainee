@@ -1,8 +1,0 @@
-<odoo>
-    <!-- New Menu under Contacts -->
-    <menuitem id="menu_customer_pdf_report"
-              name="Customer PDF Report"
-              parent="contacts.menu_contacts"
-              action="customer_list_report.action_customer_pdf_report"
-              sequence="8"/>
-</odoo>

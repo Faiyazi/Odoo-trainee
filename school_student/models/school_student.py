@@ -18,7 +18,7 @@ class SchoolStudent(models.Model):
     _name = 'school.student'
     _description = 'School Student'
 
-    teacher_id = fields.Many2one('school.teacher', string="Teacher")
+    teacher_id = fields.Many2one('school.teachers', string="Teacher")
     student_id = fields.Char(string='Student ID:', required=True)
 
     student_name = fields.Char(string='Student Name:', required=True)
@@ -109,7 +109,7 @@ class SchoolStudent(models.Model):
             }
         }
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         existing_student = request.env['school.student'].search([])
         print(existing_student)

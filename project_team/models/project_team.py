@@ -16,7 +16,7 @@ class ProjectTeam(models.Model):
     is_active = fields.Boolean(string='Active')
     date = fields.Date.today()
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         # 1. Generate sequence for team_id
         if vals.get('team_id', 'New') == 'New':

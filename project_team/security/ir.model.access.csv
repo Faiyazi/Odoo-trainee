@@ -7,9 +7,6 @@ access_add_team,access_add_team,model_add_team,,1,1,1,1
 access_res_state_city,access_res_state_city,model_res_state_city,,1,1,1,1
 access_project_project,access_project_project,model_project_project,,1,1,1,1
 access_project_task,access_project_task,model_project_task,,1,1,1,1
-
-
 access_project_team_administrator,access_project_team_administrator,model_project_project,res_group_project_team_administrator,1,1,1,1
 access_project_team_project_manager,access_project_team_project_manager,model_project_project,res_group_project_team_project_manager,1,1,1,1
-
 access_project_team_user,access_project_team_user,model_project_project,res_group_project_team_user,1,1,0,1

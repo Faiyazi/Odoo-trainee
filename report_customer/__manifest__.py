@@ -5,11 +5,13 @@
     'author': 'Annoynse',
     'sequence': '1',
     'application': True,
-    'depends': ['base', 'mail'],
+    'depends': ['base','mail'],
     'data': [
         'report/resport_customer_pdf.xml',
         'views/view_report_customer.xml',
     ],
+    'license': 'LGPL-3',
+
 
     # 'assets': {
     #     'web.report_assets_pdf': [
