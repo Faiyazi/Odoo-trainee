@@ -1,0 +1,82 @@
+<odoo>
+    <template id="crm_leads_template" name="Contact Us Page">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h1 class="mb-4">CRM Lead</h1>
+
+                <form action="/lead/submit" method="post" class="mt-3">
+
+                    <div class="row">
+                        <!-- Name -->
+                        <div class="col-md-6 mb-3">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" required="True"/>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-md-6 mb-3">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" required="True"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Partner Id -->
+                        <div class="col-md-6 mb-3">
+                            <label>Partner Id</label>
+                            <select name="partner_id" class="form-control">
+                                <option>--Select Partner--</option>
+                                <t t-foreach="details" t-as="p">
+                                    <option t-att-value="p.id">
+                                        <t t-esc="p.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="col-md-6 mb-3">
+                            <label>Phone no</label>
+                            <input type="text" name="phone" class="form-control" required="True"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Probability -->
+                        <div class="col-md-6 mb-3">
+                            <label>Probability</label>
+                            <input type="text" name="probability" class="form-control" required="True"/>
+                        </div>
+
+                        <!--  Expected Revenue -->
+                        <div class="col-md-6 mb-3">
+                            <label>Expected Revenue</label>
+                            <input type="text" name="expected_revenue" class="form-control" required="True"/>
+                        </div>
+                    </div>
+
+
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="lead_created_template" name="Lead Created">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <h3>Thank you! 🎉</h3>
+                <p>Your lead
+                    <t t-foreach="lead" t-as="lead">
+                        <strong>
+                            <t t-esc="lead.name"/>
+                        </strong>
+                        has been created successfully.
+                    </t>
+                </p>
+            </div>
+        </t>
+    </template>
+
+</odoo>

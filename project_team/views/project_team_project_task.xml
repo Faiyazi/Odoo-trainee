@@ -1,0 +1,40 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+
+<!--<odoo>-->
+
+<!--    <record id="view_task_search_form_inherit_priority" model="ir.ui.view">-->
+<!--        <field name="name">project.task.search.form.inherit.priority</field>-->
+<!--        <field name="model">project.task</field>-->
+<!--        <field name="inherit_id" ref="project.view_task_search_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <filter name="my_task" position="attributes">-->
+<!--                <filter string="my_task" name="my_task" domain="[('effective_hours','<','5')]"/>-->
+<!--            </filter>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+<!--    <record id="project_task_server_action" model="ir.actions.server">-->
+<!--        <field name="name">High Priority</field>-->
+<!--        <field name="model_id" ref="model_project_task"/>-->
+<!--        <field name="binding_model_id" ref="model_project_task"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--            records.write({'priority':'1'})-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+<!--    <record id="view_task_form_inherit_priority" model="ir.ui.view">-->
+<!--        <field name="name">project.task.form.inherit.priority</field>-->
+<!--        <field name="model">project.task</field>-->
+<!--        <field name="inherit_id" ref="project.view_task_form2"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='parent_id']" position="before">-->
+<!--                <field name="date_assign"-->
+<!--                       attrs="{'invisible': [('stage_id.name','=','Done'))]}"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--</odoo>-->

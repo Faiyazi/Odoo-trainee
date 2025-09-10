@@ -1,0 +1,31 @@
+{
+    'name': 'project_team',
+    'description': 'Project Team',
+    'sequence': '1',
+    'application': True,
+    'installable': True,
+    'license': 'LGPL-3',
+    'depends': ['base', 'project', 'account', 'mail','project_custom','report_xlsx'],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'data/sequence.xml',
+        'demo/demo_date.xml',
+        'data/data_res_state_city.xml',
+        'data/data_records_team_member.xml',
+        'reports/date_range.xml',
+        'wizard/project_team_wizard.xml',
+        'views/project_team_view.xml',
+        'views/team_members_view.xml',
+        'views/project_team_member_views.xml',
+        'views/project_team_member_menu.xml',
+    ],
+    'image': [
+        'static/description/icon.png'
+    ],
+    'assets': {
+        'web.assets_backend': [
+            'project_team/static/src/css/custom_project_team.css',
+        ],
+    },
+}

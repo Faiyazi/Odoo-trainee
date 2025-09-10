@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="data_school_student" model="school.teachers">
+        <field name="teacher_name">Faiyaz</field>
+        <field name="teacher_contact">9537653896</field>
+        <field name="teacher_email">ibjifaiyazz@gmail.com</field>
+    </record>
+</odoo>

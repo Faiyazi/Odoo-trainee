@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="template_school_student" model="mail.template">
+    <field name="name">School Student Template</field>
+    <field name="model_id" ref="school_student.model_school_teachers"/>
+        <field name="email_from">ibjifaiyaz@gmail.com</field>
+        <field name="email_to">Payalp@xyz.com</field>
+    <field name="subject">Welcome, ${object.name}!</field>
+    <field name="body_html"><![CDATA[
+        <p>Hello ${object.name},</p>
+        <p>Welcome to our school!</p>
+    ]]></field>
+</record>
+</odoo>

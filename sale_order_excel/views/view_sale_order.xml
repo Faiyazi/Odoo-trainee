@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_excel_inherit" model="ir.ui.view">
+        <field name="name">res.sale.excel.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="%(action_sale_excel_wizard)d"
+                        type="action"
+                        string="Excel"
+                        class="btn-primary"/>
+            </header>
+        </field>
+    </record>
+
+
+
+<!--    <record id="action_open_sale_excel_wizard" model="ir.actions.server">-->
+<!--        <field name="name">Open Sale Excel Wizard</field>-->
+<!--        <field name="model_id" ref="sale_order_excel.model_sale_order"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--            action = {-->
+<!--            "name": "Sale Excel Wizard",-->
+<!--            "type": "ir.actions.act_window",-->
+<!--            "res_model": "sale.excel.wizard",-->
+<!--            "view_mode": "form",-->
+<!--            "target": "new",-->
+<!--            }-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+<!--    <menuitem id="menu_report_customer7"-->
+<!--              name="Excel"-->
+<!--              parent="contacts.menu_contacts"-->
+<!--              action="sale_order_excel"-->
+<!--    />-->
+</odoo>
