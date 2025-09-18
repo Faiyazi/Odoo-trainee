@@ -5,8 +5,8 @@ class StartendMixin(models.AbstractModel):
     _name = 'startend_mixin'
     _description = 'Startend Mixin'
 
-    start_date = fields.DateTime(string="Start Date")
-    end_date = fields.DateTime(string="End Date")
+    start_date = fields.Date(string="Start Date")
+    end_date = fields.Date(string="End Date")
 
     @api.constrains('start_date', 'end_date')
     def _check_start_date(self):

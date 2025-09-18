@@ -10,7 +10,7 @@ Long description of module's purpose
 
     'author': "My Company",
     'website': "https://www.yourcompany.com",
-
+    'license': 'LGPL-3',
 
     'category': 'Uncategorized',
     'version': '0.1',
