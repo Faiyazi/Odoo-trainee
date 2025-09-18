@@ -33,11 +33,3 @@ class TimesheetTask(models.Model):
 
 
 
-   #cron job example :
-        #         done_stage = self.env['project.task.type'].search([('name', '=', 'In Progress')], limit=1)
-        # if not done_stage:
-        #     return  
-
-        # tasks = self.search([('stage_id.name', '=', 'New')])
-        # for task in tasks:
-        #     task.stage_id = done_stage.id
