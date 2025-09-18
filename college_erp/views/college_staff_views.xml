@@ -1,0 +1,90 @@
+<odoo>
+        <record id="college_staff_views_form" model="ir.ui.view">
+        <field name="name" >college.staff.form</field>
+        <field name="model" >college.staff</field>
+        <field name="arch" type="xml">
+            <form string="College Staff">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="dob"/>
+                        <field name="role"/>
+                        <field name="staff_code"/>
+                        <field name="joining_date"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+   <record id="college_staff_views_list" model="ir.ui.view">
+        <field name="name">college.staff.list</field>
+        <field name="model">college.staff</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="College Staff">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="dob"/>
+                <field name="role"/>
+                <field name="staff_code"/>
+                <field name="joining_date"/>
+
+            </list>
+        </field>
+   </record>
+
+    <record id="college_staff_views_kanban" model="ir.ui.view">
+        <field name="name">college.staff.kanban</field>
+        <field name="model">college.staff</field>
+        <field name="type">kanban</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card">
+                            <strong>Name: <field name="name"/></strong><br/>
+                            <small>Email: <field name="email"/></small><br/>
+                            <small>Phone: <field name="phone"/></small><br/>
+                            <small>Date Of Birth: <field name="dob"/></small><br/>
+                            <small>Role: <field name="role"/></small><br/>
+                            <small>Staff Code: <field name="staff_code"/></small><br/>
+                            <small>Joning Date: <field name="joining_date"/></small>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="college_staff_views_calendar" model="ir.ui.view">
+        <field name="name">college.staff.calendar</field>
+        <field name="model">college.staff</field>
+        <field name="type">calendar</field>
+        <field name="arch" type="xml">
+            <calendar string="Staff calendar"
+                  date_start="joining_date"
+                  color="role">
+                <field name="name"/>
+                <field name="role"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="college_staff_views_search" model="ir.ui.view">
+        <field name="name">college.staff.search</field>
+        <field name="model">college.staff</field>
+        <field name="arch" type="xml">
+            <search string="Search Staff">
+                <!-- Quick search fields -->
+                <field name="name" string="Name"/>
+                <!-- Filters -->
+                <filter name="joined_recently" string="Joined Recently" domain="[('joining_date','>=', context_today())]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

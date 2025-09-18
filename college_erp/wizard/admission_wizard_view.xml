@@ -1,0 +1,29 @@
+<odoo>
+    <!-- Wizard Form View -->
+    <record id="admission_wizard_view_form" model="ir.ui.view">
+        <field name="name">Admission Wizard Form</field>
+        <field name="model">admission.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Admission Wizard">
+                <group>
+                    <field name="student_name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="admission_date"/>
+                </group>
+                <footer>
+                    <button string="Confirm" type="object" name="action_confirm_admission" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard Action -->
+    <record id="action_admission_wizard" model="ir.actions.act_window">
+        <field name="name">Admission Wizard</field>
+        <field name="res_model">admission.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
