@@ -1,0 +1,40 @@
+<odoo>
+  <template id="search_template" name="Hotel Search">
+    <t t-call="website.layout">
+      <div class="container">
+        <h1>Search Rooms</h1>
+        <form action="/hotel/book" method="post">
+          <div class="row">
+            <div class="col-6">
+              <label>Name</label>
+              <input class="form-control" type="text" name="name" required="1"/>
+            </div>
+            <div class="col-6">
+              <label>Email</label>
+              <input class="form-control" type="email" name="email"/>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-3">
+              <label>Check-in</label>
+              <input class="form-control" type="datetime-local" name="checkin" required="1"/>
+            </div>
+            <div class="col-3">
+              <label>Check-out</label>
+              <input class="form-control" type="datetime-local" name="checkout" required="1"/>
+            </div>
+            <div class="col-3">
+              <label>Adults</label>
+              <input class="form-control" type="number" name="adults" value="1" min="1"/>
+            </div>
+            <div class="col-3">
+              <label>Children</label>
+              <input class="form-control" type="number" name="children" value="0" min="0"/>
+            </div>
+          </div>
+          <button class="btn btn-primary mt-3" type="submit">Book</button>
+        </form>
+      </div>
+    </t>
+  </template>
+</odoo>

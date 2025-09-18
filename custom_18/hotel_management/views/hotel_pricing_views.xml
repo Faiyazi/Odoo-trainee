@@ -1,0 +1,67 @@
+<odoo>
+  <record id="view_hotel_rate_plan_tree" model="ir.ui.view">
+    <field name="name">hotel.rate.plan.list</field>
+    <field name="model">hotel.rate.plan</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="room_type_id"/>
+        <field name="season_id"/>
+        <field name="base_price"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_hotel_rate_plan_form" model="ir.ui.view">
+    <field name="name">hotel.rate.plan.form</field>
+    <field name="model">hotel.rate.plan</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="room_type_id"/>
+            <field name="season_id"/>
+            <field name="base_price"/>
+            <field name="extra_adult_price"/>
+            <field name="child_price"/>
+            <field name="min_stay"/>
+            <field name="max_stay"/>
+          </group>
+          <chatter/>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_hotel_season_tree" model="ir.ui.view">
+    <field name="name">hotel.season.list</field>
+    <field name="model">hotel.season</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="date_start"/>
+        <field name="date_end"/>
+        <field name="pricing_factor"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_hotel_season_form" model="ir.ui.view">
+    <field name="name">hotel.season.form</field>
+    <field name="model">hotel.season</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+            <field name="pricing_factor"/>
+          </group>
+          <chatter/>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

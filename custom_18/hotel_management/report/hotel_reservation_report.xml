@@ -1,0 +1,16 @@
+<odoo>
+  <template id="report_reservation_confirm">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="o">
+        <div class="page">
+          <h2>Reservation <t t-esc="o.name"/></h2>
+          <p>Guest: <t t-esc="o.partner_id.name"/></p>
+          <p>Room: <t t-esc="o.room_id.name"/></p>
+          <p>Check-in: <t t-esc="o.checkin"/></p>
+          <p>Check-out: <t t-esc="o.checkout"/></p>
+          <p>Total: <t t-esc="o.price_total"/></p>
+        </div>
+      </t>
+    </t>
+  </template>
+</odoo>

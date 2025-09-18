@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_form_credit_mang" model="ir.ui.view">
+        <field name="name">res.partner.form.credit.mang</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//button[@name='open_action_followup']/div/span[2]"
+            position="replace">
+                 <span class="o_stat_text">Open Balance</span>
+            </xpath> -->
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="total_due_custom" widget="monetary" />
+                <field name="total_credit_limit" widget="monetary" />
+                <field name="current_credit_limit" widget="monetary" />
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="open_account_value" widget="monetary" />
+                <field name="total_over_due" widget="monetary" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

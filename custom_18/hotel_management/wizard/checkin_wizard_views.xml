@@ -1,0 +1,24 @@
+<odoo>
+  <record id="view_hotel_checkin_wizard_form" model="ir.ui.view">
+    <field name="name">hotel.checkin.wizard.form</field>
+    <field name="model">hotel.checkin.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Check In">
+        <group>
+          <field name="reservation_id"/>
+          <field name="deposit_amount"/>
+        </group>
+        <footer>
+          <button string="Check In" type="object" name="action_checkin" class="btn-primary"/>
+          <button string="Cancel" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+  <record id="action_hotel_checkin_wizard" model="ir.actions.act_window">
+    <field name="name">Check In</field>
+    <field name="res_model">hotel.checkin.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
+</odoo>

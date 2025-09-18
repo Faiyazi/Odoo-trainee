@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_report_customer" model="ir.actions.act_window">
+        <field name="name">Task wizard</field>
+        <field name="res_model">report.customer</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_date_range"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

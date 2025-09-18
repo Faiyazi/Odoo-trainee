@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_export_task"
+        name="Print"
+        parent="project.menu_main_pm"    
+        action ="action_export_task_wizard"
+        sequence="3" />
+
+</odoo>
