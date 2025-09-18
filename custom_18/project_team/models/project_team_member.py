@@ -4,6 +4,7 @@ class ProjectTeamMember(models.Model):
     _name = 'project.team.member'
     _description = 'Project Team Member'
     _rec_name = 'name'
+    _order = 'name'
 
     name = fields.Char(string="Name", help="Enter the full name.", translate=True)
     address = fields.Text(string='Address')

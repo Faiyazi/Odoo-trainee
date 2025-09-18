@@ -7,7 +7,7 @@
     'website': '',
     'license': 'LGPL-3',
     'category': '',
-    'depends': ['base', 'crm', 'website'],
+    'depends': ['base'],
     'data': [
         'views/crm_lead_inherit_view.xml',
     ],
