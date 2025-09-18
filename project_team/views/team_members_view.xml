@@ -14,6 +14,7 @@
         </field>
     </record>
 
+
     <!-- List view -->
     <record id="team_members_list_view" model="ir.ui.view">
         <field name="name">team.members.list.view</field>
@@ -74,7 +75,7 @@
                         <group>
                             <field name="display_name"/>
                             <field name="user_id"
-                                   domain="[('employee_id','!=',False)]"
+                                   domain="[('user_id','!=',False)]"
                                    context="{'search_default_employee': 1}"/>
                             <field name="name"/>
                             <field name="email"/>
@@ -121,7 +122,7 @@
                                     <field name="name"/>
                                     <field name="team_leader"/>
                                     <templates>
-                                        <t t-name="kanban-box">
+                                        <t t-name="card">
                                             <div class="oe_kanban_record">
                                                 <div>
                                                     <strong>
@@ -134,7 +135,29 @@
                                             </div>
                                         </t>
                                     </templates>
+                                   </div>
+                                            </div>
+                                        </t>
+                                    </templates>
                                 </kanban>
+                            </field>
+                        </page>
+                        <page string="Description">
+                            <group>
+                            <field name="description" index="1" placeholder="Commit..." />
+                            </group>
+                        </pag                    </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                        <page string="Description">
+                            <group>
+                            <field name="description" index="1" placeholder="Commit..." />
+                            </group>
+                        </pag                 </kanban>
                             </field>
                         </page>
                         <page string="Description">

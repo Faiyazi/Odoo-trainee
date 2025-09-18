@@ -16,7 +16,7 @@ class ProjectTeam(models.Model):
     is_active = fields.Boolean(string='Active')
     date = fields.Date.today()
 
-    @api.model_create_multi
+    @api.model
     def create(self, vals):
         # 1. Generate sequence for team_id
         if vals.get('team_id', 'New') == 'New':
@@ -24,7 +24,7 @@ class ProjectTeam(models.Model):
             seq = self.env['ir.sequence'].next_by_code('project.team') or 'New'
             vals['team_id'] = f"{seq}/{team_name}/{self.date}"
 
-        res = super(Project_team, self).create(vals)
+        res = super(ProjectTeam, self).create(vals)
 
         return res
 

@@ -6,7 +6,7 @@ class TeamMember(models.Model):
     _name = 'project.team.member'
     _description = 'Project Team Member'
 
-    user_id = fields.Many2one('res.users', string='User', context="{'search_default_employee': 1}")
+    user_id = fields.Many2one('res.users', string='User')
     name = fields.Char(string='Name')
     email = fields.Char(string='Email', related='user_id.email',readonly=False,store=True)
     address = fields.Char(string='Address')
@@ -46,14 +46,14 @@ class TeamMember(models.Model):
         store=True
     )
 
-    @api.model_create_multi
-    def create(self, vals):
-
-        if not vals.get('user_id') and vals.get('email'):
-            new_user = self.env['res.users'].create({
-                'name': vals.get('name'),
-                'login': vals.get('email'),
-                'email': vals.get('email'),
+    @api.model
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get('user_id') and vals.get('email'):
+                new_user = self.env['res.users'].create({
+                    'name': vals.get('name'),
+                    'login': vals.get('email'),
+                    'email': vals.get('email'),
             })
             vals['user_id'] = new_user.id
 

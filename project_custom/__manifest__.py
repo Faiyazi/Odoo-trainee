@@ -8,7 +8,7 @@
     'data':[
         'security/ir.model.access.csv',
         'wizard/date_range_wizard.xml',
-        'reports/date_range.xml',
+        # 'reports/date_range.xml',
         'view/project_date_range.xml'
     ],
     'installable': True,
