@@ -7,9 +7,9 @@ class ProjectTask(models.Model):
     _inherit = ['project.task', 'start.end.mixin']
     _order = "name asc"
 
-    @api.model
-    def unlink(self):
-        for task in self:
-            if task.stage_id.name.lower != 'in progress':
-                raise UserError('You are in progress')
-        return super().unlink()
+    # @api.model
+    # def unlink(self):
+    #     for task in self:
+    #         if task.stage_id.name.lower != 'in progress':
+    #             raise UserError('You are in progress')
+    #     return super().unlink()

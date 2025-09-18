@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
     <!-- Search view -->
@@ -7,9 +7,10 @@
         <field name="model">project.team.member</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"/>
-                <filter name="filter_gender_male" string="Male" domain="[('gender','=','male')]"/>
-                <filter name="filter_gender_female" string="Female" domain="[('gender','=','female')]"/>
+                <field name="name" />
+                <filter name="filter_gender_male" string="Male" domain="[('gender','=','male')]" />
+                <filter name="filter_gender_female" string="Female"
+                    domain="[('gender','=','female')]" />
             </search>
         </field>
     </record>
@@ -23,10 +24,10 @@
             <list>
                 <field name="image" widget="image" class="my_avatar" options="{'size': (48, 48)}"
                 />
-                <field name="name"/>
-                <field name="mobile"/>
-                <field name="email"/>
-                <field name="gender"/>
+                <field name="name" />
+                <field name="mobile" />
+                <field name="email" />
+                <field name="gender" />
             </list>
         </field>
     </record>
@@ -37,21 +38,22 @@
         <field name="model">project.team.member</field>
         <field name="arch" type="xml">
             <kanban>
-                <field name="image"/>
-                <field name="name"/>
-                <field name="dob"/>
-                <field name="gender"/>
+                <field name="image" />
+                <field name="name" />
+                <field name="dob" />
+                <field name="gender" />
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div class="oe_kanban_global_click">
                             <div class="oe_kanban_image">
-                                <img t-att-src="kanban_image('project.team.member', 'image', record.id.value)"
-                                     class="img img-fluid rounded"/>
+                                <img
+                                    t-att-src="kanban_image('project.team.member', 'image', record.id.value)"
+                                    class="img img-fluid rounded" />
                             </div>
                             <div class="oe_kanban_details">
-                                <field name="name"/>
-                                <field name="dob"/>
-                                <field name="gender"/>
+                                <field name="name" />
+                                <field name="dob" />
+                                <field name="gender" />
                             </div>
                         </div>
                     </t>
@@ -69,106 +71,93 @@
                 <sheet>
                     <div>
                         <field name="image" widget="image" class="oe_avatar m-0"
-                               options="{'zoom': true, 'preview_image':'avatar_128'}"/>
+                            options="{'zoom': true, 'preview_image':'avatar_128'}" />
                     </div>
                     <group>
                         <group>
-                            <field name="display_name"/>
+                            <field name="display_name" />
                             <field name="user_id"
-                                   domain="[('user_id','!=',False)]"
-                                   context="{'search_default_employee': 1}"/>
-                            <field name="name"/>
-                            <field name="email"/>
-                            <field name="mobile"/>
+                                domain="[('user_id','!=',False)]"
+                                context="{'search_default_employee': 1}" />
+                            <field name="name" />
+                            <field name="email" />
+                            <field name="mobile" />
                         </group>
                         <group>
-                            <field name="gender"/>
-                            <field name="dob"/>
-                            <field name="bio_data"/>
-                            <field name="is_active"/>
+                            <field name="gender" />
+                            <field name="dob" />
+                            <field name="bio_data" />
+                            <field name="is_active" />
                         </group>
                     </group>
 
                     <notebook>
                         <page string="Address">
                             <group>
-                                <field name="house_no" placeholder="House No"/>
-                                <field name="country_id" placeholder="Country"/>
-                                <field name="state_id" placeholder="State"/>
-                                <field name="city" placeholder="City" domain="[('state_id','=',state_id)]"/>
-                                <field name="street" placeholder="Street"/>
-                                <field name="street2" placeholder="Street-2"/>
-                                <field name="zip_code" placeholder="Zip Code"/>
+                                <field name="house_no" placeholder="House No" />
+                                <field name="country_id" placeholder="Country" />
+                                <field name="state_id" placeholder="State" />
+                                <field name="city" placeholder="City"
+                                    domain="[('state_id','=',state_id)]" />
+                                <field name="street" placeholder="Street" />
+                                <field name="street2" placeholder="Street-2" />
+                                <field name="zip_code" placeholder="Zip Code" />
                             </group>
                         </page>
 
                         <page string="Time Sheet">
                             <field name="timesheet_ids">
                                 <list editable="bottom">
-                                    <field name="date"/>
-                                    <field name="user_id"/>
+                                    <field name="date" />
+                                    <field name="user_id" />
                                 </list>
                             </field>
 
                         </page>
 
                         <page string="Team Members">
-                            <field name="member_ids"/>
+                            <field name="member_ids" />
                         </page>
 
                         <page string="Kanban">
                             <field name="member_ids" mode="kanban">
                                 <kanban>
-                                    <field name="name"/>
-                                    <field name="team_leader"/>
+                                    <field name="name" />
+                                    <field name="team_leader" />
                                     <templates>
                                         <t t-name="card">
                                             <div class="oe_kanban_record">
                                                 <div>
                                                     <strong>
-                                                        <field name="name"/>
+                                                        <field name="name" />
                                                     </strong>
                                                     <div>
-                                                        <field name="team_leader"/>
+                                                        <field name="team_leader" />
                                                     </div>
                                                 </div>
                                             </div>
                                         </t>
                                     </templates>
-                                   </div>
-                                            </div>
-                                        </t>
-                                    </templates>
+
+
                                 </kanban>
                             </field>
                         </page>
+
+
                         <page string="Description">
                             <group>
-                            <field name="description" index="1" placeholder="Commit..." />
-                            </group>
-                        </pag                    </div>
-                                            </div>
-                                        </t>
-                                    </templates>
-                                </kanban>
-                            </field>
-                        </page>
-                        <page string="Description">
-                            <group>
-                            <field name="description" index="1" placeholder="Commit..." />
-                            </group>
-                        </pag                 </kanban>
-                            </field>
-                        </page>
-                        <page string="Description">
-                            <group>
-                            <field name="description" index="1" placeholder="Commit..." />
+                                <field name="description" index="1" placeholder="Commit..." />
                             </group>
                         </page>
+
+
+
+
+                       
                     </notebook>
                 </sheet>
             </form>
         </field>
     </record>
-
 </odoo>

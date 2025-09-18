@@ -6,6 +6,7 @@ class ProjectTeam(models.Model):
     _description = "Project Team"
     _order = 'name'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name="name"
 
 
     team_id = fields.Char(string='Team ID', copy=False, readonly=True, required=True, default='New')

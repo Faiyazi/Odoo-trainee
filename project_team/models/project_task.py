@@ -25,12 +25,12 @@ class ProjectTask(models.Model):
 
         return super(ProjectTask, self).write(vals)
 
-    def unlink(self):
-        for task in self:
-            if  task.stage_id.name != 'Done' :
-                raise ValidationError('Task is not done yet')
+    # def unlink(self):
+    #     for task in self:
+    #         if  task.stage_id.name != 'Done' :
+    #             raise ValidationError('Task is not done yet')
 
-        return super(ProjectTask, self).unlink()
+    #     return super(ProjectTask, self).unlink()
 
 
 

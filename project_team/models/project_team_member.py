@@ -5,9 +5,9 @@ from odoo.exceptions import ValidationError
 class TeamMember(models.Model):
     _name = 'project.team.member'
     _description = 'Project Team Member'
-    _rec_name= 'name'
 
-    user_id = fields.Many2one('res.users', string='User')
+    user_id = fields.Many2one('res.users', string='User',context="{'search_default_employee': 1}",
+                              )
     name = fields.Char(string='Name')
     email = fields.Char(string='Email', related='user_id.email',readonly=False,store=True)
     address = fields.Char(string='Address')
@@ -20,7 +20,6 @@ class TeamMember(models.Model):
     city = fields.Many2one('res.state.city', string='City')
     zip_code = fields.Char(string='Zip Code')
     mobile = fields.Char(string='Mobile No')
-
     member_ids = fields.Many2many('project.team','team_id',string="Team")
     gender = fields.Selection([
         ('male', 'Male'),
@@ -29,7 +28,7 @@ class TeamMember(models.Model):
         default=''
     )
     dob = fields.Date(string='Birth Day')
-    image= fields.Binary(string="Image")
+    image= fields.Binary(string="Image" ,store=True)
     bio_data = fields.Html(string='Bio data')
     description = fields.Text(string='Description' , index=True)
     # Index help to search and filter the data for database
@@ -40,7 +39,7 @@ class TeamMember(models.Model):
         string="Timesheets"
     )
 
-    is_active = fields.Boolean(string='Active')
+    is_active = fields.Boolean(string='Active', default=True)
     display_name = fields.Char(
         compute='_compute_display_name',
         string='Display Name',
@@ -48,13 +47,13 @@ class TeamMember(models.Model):
     )
 
     @api.model
-    def create(self, vals_list):
-        for vals in vals_list:
-            if not vals.get('user_id') and vals.get('email'):
-                new_user = self.env['res.users'].create({
-                    'name': vals.get('name'),
-                    'login': vals.get('email'),
-                    'email': vals.get('email'),
+    def create(self, vals):
+
+        if not vals.get('user_id') and vals.get('email'):
+            new_user = self.env['res.users'].create({
+                'name': vals.get('name'),
+                'login': vals.get('email'),
+                'email': vals.get('email'),
             })
             vals['user_id'] = new_user.id
 
