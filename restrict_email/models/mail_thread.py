@@ -4,6 +4,7 @@ from odoo.exceptions import ValidationError, UserError
 
 class MailThread(models.AbstractModel):
     _inherit = 'mail.thread'
+    
 
     @api.model
 
