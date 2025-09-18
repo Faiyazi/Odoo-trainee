@@ -5,6 +5,7 @@ from odoo.exceptions import ValidationError
 class TeamMember(models.Model):
     _name = 'project.team.member'
     _description = 'Project Team Member'
+    _rec_name= 'name'
 
     user_id = fields.Many2one('res.users', string='User')
     name = fields.Char(string='Name')
