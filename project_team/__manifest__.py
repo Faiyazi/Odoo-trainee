@@ -17,7 +17,7 @@
         'views/project_team_view.xml',
         'views/team_members_view.xml',
         'views/timesheet.xml',
-        'views/project_team_project_task.xml',
+        'views/project_project_inherit.xml',
         'views/project_team_member_views.xml',
         'views/project_team_member_menu.xml',
     ],
