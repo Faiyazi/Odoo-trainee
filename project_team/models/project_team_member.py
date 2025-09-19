@@ -6,19 +6,14 @@ class TeamMember(models.Model):
     _name = 'project.team.member'
     _description = 'Project Team Member'
 
+
+   
     user_id = fields.Many2one('res.users', string='User',context="{'search_default_employee': 1}",
                               )
-    name = fields.Char(string='Name')
+    
+    # User details
+    name = fields.Char(string='Name',required=True , help='Enter your name')
     email = fields.Char(string='Email', related='user_id.email',readonly=False,store=True)
-    address = fields.Char(string='Address')
-    house_no = fields.Char(string='House No')
-    street = fields.Char(string='Street')
-    street2 = fields.Char(string='Street2')
-    country_id = fields.Many2one('res.country',
-                                 string='Country')
-    state_id = fields.Many2one('res.country.state', string='State')
-    city = fields.Many2one('res.state.city', string='City')
-    zip_code = fields.Char(string='Zip Code')
     mobile = fields.Char(string='Mobile No')
     member_ids = fields.Many2many('project.team','team_id',string="Team")
     gender = fields.Selection([
@@ -28,7 +23,20 @@ class TeamMember(models.Model):
         default=''
     )
     dob = fields.Date(string='Birth Day')
-    image= fields.Binary(string="Image" ,store=True)
+    image_128= fields.Binary(string="Image" ,store=True)
+
+
+    # user address
+    address = fields.Char(string='Address')
+    house_no = fields.Char(string='House No')
+    street = fields.Char(string='Street')
+    street2 = fields.Char(string='Street2')
+    country_id = fields.Many2one('res.country',
+                                 string='Country')
+    state_id = fields.Many2one('res.country.state', string='State')
+    city = fields.Many2one('res.state.city', string='City')
+    zip_code = fields.Char(string='Zip Code')
+    
     bio_data = fields.Html(string='Bio data')
     description = fields.Text(string='Description' , index=True)
     # Index help to search and filter the data for database
@@ -57,7 +65,7 @@ class TeamMember(models.Model):
             })
             vals['user_id'] = new_user.id
 
-        # 3. Call super to create Team Member
+        # Call super to create Team Member
         res = super(TeamMember, self).create(vals)
         return res
 

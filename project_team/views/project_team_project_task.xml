@@ -1,40 +1,44 @@
-<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
 
-<!--<odoo>-->
+    <record id="form_kanban_project" model="ir.ui.view">
+        <field name="name">Project kanban inherit </field>
+        <field name='model'>project.project</field>
+        <field name="inherit_id" ref='project.edit_project' />
+        <field name='arch' type='xml'>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="team_id"></field>
+            </xpath>
 
-<!--    <record id="view_task_search_form_inherit_priority" model="ir.ui.view">-->
-<!--        <field name="name">project.task.search.form.inherit.priority</field>-->
-<!--        <field name="model">project.task</field>-->
-<!--        <field name="inherit_id" ref="project.view_task_search_form"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <filter name="my_task" position="attributes">-->
-<!--                <filter string="my_task" name="my_task" domain="[('effective_hours','<','5')]"/>-->
-<!--            </filter>-->
-<!--        </field>-->
-<!--    </record>-->
+            <xpath expr="//page[@name='description']" position="after">
+                <page name='Team Member'>
+
+                    <kanban>
+                        <field name="team_member_id" widget="kanban">
+                            <kanban>
+                                <templates>
+                                    <t t-name="card" class="flex-row">
+                                        <div class="oe_kanban_card">
+                                            <strong>
+                                                <field name="name" />
+                                            </strong>
+                                            <br />
+                                            <field name="user_id" />
+                                            <br />
+                                            <field name="mobile" />
+                                            <br />
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </kanban>
+
+                </page>
+            </xpath>
 
 
-<!--    <record id="project_task_server_action" model="ir.actions.server">-->
-<!--        <field name="name">High Priority</field>-->
-<!--        <field name="model_id" ref="model_project_task"/>-->
-<!--        <field name="binding_model_id" ref="model_project_task"/>-->
-<!--        <field name="state">code</field>-->
-<!--        <field name="code">-->
-<!--            records.write({'priority':'1'})-->
-<!--        </field>-->
-<!--    </record>-->
+        </field>
+    </record>
 
-
-<!--    <record id="view_task_form_inherit_priority" model="ir.ui.view">-->
-<!--        <field name="name">project.task.form.inherit.priority</field>-->
-<!--        <field name="model">project.task</field>-->
-<!--        <field name="inherit_id" ref="project.view_task_form2"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <xpath expr="//field[@name='parent_id']" position="before">-->
-<!--                <field name="date_assign"-->
-<!--                       attrs="{'invisible': [('stage_id.name','=','Done'))]}"/>-->
-<!--            </xpath>-->
-<!--        </field>-->
-<!--    </record>-->
-
-<!--</odoo>-->
+</odoo>

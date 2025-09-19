@@ -22,7 +22,7 @@
         <field name="model">project.team.member</field>
         <field name="arch" type="xml">
             <list>
-                <field name="image" widget="image" class="my_avatar" options="{'size': (48, 48)}"
+                <field name="image_128" widget="image" class="my_avatar" options="{'size': (48, 48)}"
                 />
                 <field name="name" />
                 <field name="mobile" />
@@ -38,23 +38,35 @@
         <field name="model">project.team.member</field>
         <field name="arch" type="xml">
             <kanban>
-                <field name="image" />
+                <field name="image_128" />
                 <field name="name" />
                 <field name="dob" />
                 <field name="gender" />
+                <field name='email'/>
                 <templates>
                     <t t-name="card">
                         <div class="oe_kanban_global_click">
                             <div class="oe_kanban_image">
-                                <img
-                                    t-att-src="kanban_image('project.team.member', 'image', record.id.value)"
-                                    class="img img-fluid rounded" />
+                                <t>
+                                <field name="image_128" class="w-100" widget="image"
+                                    options="{'img_class': 'object-fit-contain w-20 h-20'}" />
+                            </t>
+
                             </div>
-                            <div class="oe_kanban_details">
-                                <field name="name" />
-                                <field name="dob" />
-                                <field name="gender" />
+                            <main class="ps-2 ps-md-0">
+                            <div class="mb-1">
+                                <field name="name" class="mb-0 fw-bold fs-5" />
+                                <br />
+                                <field class="text-muted" name="dob" />
+                                <br />
+                                <field class="text-muted" name="gender" />
+                                
                             </div>
+                            <field name="email" class="text-truncate" />
+                            <footer>
+                                <div />
+                            </footer>
+                        </main>
                         </div>
                     </t>
                 </templates>
@@ -70,7 +82,7 @@
             <form>
                 <sheet>
                     <div>
-                        <field name="image" widget="image" class="oe_avatar m-0"
+                        <field name="image_128" widget="image" class="oe_avatar m-0"
                             options="{'zoom': true, 'preview_image':'avatar_128'}" />
                     </div>
                     <group>
@@ -115,35 +127,6 @@
 
                         </page>
 
-                        <page string="Team Members">
-                            <field name="member_ids" />
-                        </page>
-
-                        <page string="Kanban">
-                            <field name="member_ids" mode="kanban">
-                                <kanban>
-                                    <field name="name" />
-                                    <field name="team_leader" />
-                                    <templates>
-                                        <t t-name="card">
-                                            <div class="oe_kanban_record">
-                                                <div>
-                                                    <strong>
-                                                        <field name="name" />
-                                                    </strong>
-                                                    <div>
-                                                        <field name="team_leader" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </t>
-                                    </templates>
-
-
-                                </kanban>
-                            </field>
-                        </page>
-
 
                         <page string="Description">
                             <group>
@@ -151,10 +134,6 @@
                             </group>
                         </page>
 
-
-
-
-                       
                     </notebook>
                 </sheet>
             </form>
