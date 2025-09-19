@@ -7,21 +7,13 @@ class ProjectTask(models.Model):
 
 
     assign_date = fields.Datetime(string='Assign date')
-
-    @api.model
-    def create(self, vals):
-        vals['assign_date'] = fields.Datetime.now()
-
-        if "assign_date" in vals:
-            if vals['assign_date'] < fields.Datetime.now():
-                raise ValidationError('past date not allow')
-
-        return super(ProjectTask, self).create(vals)
-
+    
+    @api.model_create_multi
     def write(self, vals):
-        if "assign_date" in vals:
-            if vals['assign_date'] < fields.Datetime.now():
-                raise ValidationError('past date not allow')
+        now = fields.Datetime.now()
+
+        if vals['assign_date'] <  now:
+            raise ValidationError('past date not allow')
 
         return super(ProjectTask, self).write(vals)
 
