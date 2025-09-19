@@ -21,7 +21,7 @@ class SchoolStudent(models.Model):
     teacher_id = fields.Many2one('school.teachers', string="Teacher")
     student_id = fields.Char(string='Student ID:', required=True)
 
-    student_name = fields.Char(string='Student Name:', required=True)
+    student_name = fields.Many2one('res.partner',string='Student Name:')
     image_128 = fields.Image(string="Student Image", required=True)
     student_email = fields.Char(string='Student Email:', required=True)
     dob = fields.Date(string="Birth Date", required=True)
@@ -52,16 +52,16 @@ class SchoolStudent(models.Model):
         student = self.env.ref("school_student.view_school_student_form")
         print("studentid=", student)
 
-        # student_b = self.env["school.student"].browse(1)
-        # print("student_b=", student_b.id)
+        student_b = self.env["school.student"].browse(1)
+        print("student_b=", student_b.id)
+        
+        if student_b.exists():
+            print('yes its exists')
+        
+        else:
+            student_r = student_b.read(['student_name'])
+            print('search_read',student_r)
         #
-        # if student_b.exists():
-        #     print('yes its exists')
-        #
-        # else:
-        # student_r = student_b.read(['student_name'])
-        # print(student_r)
-        # #
         # student_s_r = self.env['school.student'].search_read(domain=[('student_marks', '>=', '60')],
         #                                                      fields=['student_name', 'student_marks'])
         # print((student_s_r))
@@ -132,3 +132,10 @@ class SchoolStudent(models.Model):
             rec.student_total_marks = sum(sub.student_marks for sub in rec.subject_ids)
 
 
+    @api.onchange('student_name')
+    def _onchange_partner_id(self):
+        if self.student_name: 
+            self.student_phone_no = self.student_name.phone
+        else:
+            self.student_phone_no = False
+            print('hello')

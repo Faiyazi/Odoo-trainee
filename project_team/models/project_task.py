@@ -8,7 +8,7 @@ class ProjectTask(models.Model):
 
     assign_date = fields.Datetime(string='Assign date')
 
-    @api.model_create_multi
+    @api.model
     def create(self, vals):
         vals['assign_date'] = fields.Datetime.now()
 
