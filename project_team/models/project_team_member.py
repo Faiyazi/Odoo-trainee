@@ -8,7 +8,7 @@ class TeamMember(models.Model):
 
 
    
-    user_id = fields.Many2one('res.users', string='User',context="{'search_default_employee': 1}",
+    user_id = fields.Many2one('res.users', string='User',context={'search_default_employee': 1},
                               )
     
     # User details
