@@ -44,7 +44,7 @@
                 <field name="student_gender"/>
                 <field name="image_128"/>
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div class="oe_kanban_global_click o_kanban_record">
                             <div class="o_kanban_image">
                                 <img t-att-src="kanban_image('school.student', 'image_128', record.id.value)"

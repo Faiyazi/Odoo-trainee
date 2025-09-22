@@ -27,3 +27,7 @@ class AccountTimeSheet(models.Model):
             vals['name'] = "Timesheet Entry"   # 👈 Default fallback
 
         return super().create(vals)
+    
+
+
+    

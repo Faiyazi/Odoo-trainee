@@ -22,7 +22,8 @@
         <field name="model">project.team.member</field>
         <field name="arch" type="xml">
             <list>
-                <field name="image_128" widget="image" class="my_avatar" options="{'size': (48, 48)}"
+                <field name="image_128" widget="image" class="my_avatar"
+                    options="{'size': (48, 48)}"
                 />
                 <field name="name" />
                 <field name="mobile" />
@@ -42,31 +43,31 @@
                 <field name="name" />
                 <field name="dob" />
                 <field name="gender" />
-                <field name='email'/>
+                <field name='email' />
                 <templates>
                     <t t-name="card">
                         <div class="oe_kanban_global_click">
                             <div class="oe_kanban_image">
                                 <t>
-                                <field name="image_128" class="w-100" widget="image"
-                                    options="{'img_class': 'object-fit-contain w-20 h-20'}" />
-                            </t>
+                                    <field name="image_128" class="w-100" widget="image"
+                                        options="{'img_class': 'object-fit-contain w-20 h-20'}" />
+                                </t>
 
                             </div>
                             <main class="ps-2 ps-md-0">
-                            <div class="mb-1">
-                                <field name="name" class="mb-0 fw-bold fs-5" />
-                                <br />
-                                <field class="text-muted" name="dob" />
-                                <br />
-                                <field class="text-muted" name="gender" />
-                                
-                            </div>
-                            <field name="email" class="text-truncate" />
-                            <footer>
-                                <div />
-                            </footer>
-                        </main>
+                                <div class="mb-1">
+                                    <field name="name" class="mb-0 fw-bold fs-5" />
+                                    <br />
+                                    <field class="text-muted" name="dob" />
+                                    <br />
+                                    <field class="text-muted" name="gender" />
+
+                                </div>
+                                <field name="email" class="text-truncate" />
+                                <footer>
+                                    <div />
+                                </footer>
+                            </main>
                         </div>
                     </t>
                 </templates>
@@ -106,14 +107,24 @@
                     <notebook>
                         <page string="Address">
                             <group>
-                                <field name="house_no" placeholder="House No" />
-                                <field name="country_id" placeholder="Country" />
-                                <field name="state_id" placeholder="State" />
-                                <field name="city" placeholder="City"
-                                    domain="[('state_id','=',state_id)]" />
-                                <field name="street" placeholder="Street" />
-                                <field name="street2" placeholder="Street-2" />
-                                <field name="zip_code" placeholder="Zip Code" />
+                                <group>
+                                    <group>
+                                        <field name="house_no" placeholder="House No" />
+                                        <field name="country_id" placeholder="Country" />
+                                        <field name="state_id" placeholder="State" />
+                                        <field name="city" placeholder="City"
+                                            domain="[('state_id','=',state_id)]" />
+                                    </group>
+                                    <group>
+
+                                        <field name="street" placeholder="Street" />
+                                        <field name="street2" placeholder="Street-2" />
+                                        <field name="zip_code" placeholder="Zip Code" />
+
+                                    </group>
+
+                                </group>
+
                             </group>
                         </page>
 

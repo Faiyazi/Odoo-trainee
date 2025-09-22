@@ -62,7 +62,7 @@
                 <field name="name" />
                 <field name="team_leader" />
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div class="container p-2">
                             <div class="row align-items-center">
 

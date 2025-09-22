@@ -11,12 +11,7 @@
               action="team_member_view"
               sequence="1"
               />
-    <menuitem id="team_member_project"
-              name="City"
-              parent="team_member"
-              sequence="2"
-              action="City_view"
-              />
+
 
     <menuitem id="project_team"
               name="Project Team"

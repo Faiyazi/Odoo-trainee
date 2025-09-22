@@ -69,7 +69,7 @@ class TeamMember(models.Model):
         res = super(TeamMember, self).create(vals)
         return res
 
-    def copy(self, default=None):
+    def copy(self):
         raise ValidationError("This model can't be copied")
 
     @api.depends('name', 'user_id','email')
@@ -85,8 +85,8 @@ class TeamMember(models.Model):
 
     def contact(self):
         for rec in self:
-            if len(rec.mobile) != 10  :
-                raise ValidationError('Its length should be 10')
+            # if len(rec.mobile) != 10  :
+            #     raise ValidationError('Its length should be 10')
 
             if not rec.mobile.isdigit() :
                 raise ValidationError('Its should be Number ')

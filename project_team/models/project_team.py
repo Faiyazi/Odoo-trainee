@@ -35,8 +35,8 @@ class ProjectTeam(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'name': 'Team Members',
-            'res_model': 'project.team.member',
-            'view_mode': 'list',
+            'res_model': 'projectproject.team.member',
+            'view_mode': 'form',
             'domain': [('name', '=', self.team_member)],
             'target': 'current',
         }
