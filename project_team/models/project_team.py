@@ -18,15 +18,15 @@ class ProjectTeam(models.Model):
     date = fields.Date.today()
 
 
-    @api.model
-    def create(self, vals):
-        # 1. Generate sequence for team_id
-        if vals.get('team_id', 'New') == 'New':
-            team_name = vals.get('name', '')
-            seq = self.env['ir.sequence'].next_by_code('project.team') or 'New'
-            vals['team_id'] = f"{seq}/{team_name}/{self.date}"
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('team_id', 'New') == 'New':
+                team_name = vals.get('name', '')
+                seq = self.env['ir.sequence'].next_by_code('project.team') or 'New'
+                vals['team_id'] = f"{seq}/{team_name}/{self.date}"
 
-        res = super(ProjectTeam, self).create(vals)
+            res = super(ProjectTeam, self).create(vals)
 
         return res
 
@@ -35,7 +35,7 @@ class ProjectTeam(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'name': 'Team Members',
-            'res_model': 'projectproject.team.member',
+            'res_model': 'project.team.member',
             'view_mode': 'form',
             'domain': [('name', '=', self.team_member)],
             'target': 'current',

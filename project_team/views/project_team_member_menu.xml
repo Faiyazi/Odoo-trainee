@@ -11,7 +11,7 @@
               action="team_member_view"
               sequence="1"
               />
-
+   
 
     <menuitem id="project_team"
               name="Project Team"

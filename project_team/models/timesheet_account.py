@@ -7,27 +7,21 @@ class AccountTimeSheet(models.Model):
     time_sheet_id = fields.Many2one(
         'project.team.member',
         string="Team Member",
-        ondelete="set null",   # good practice: avoid blocking deletes
+        ondelete="set null",
         help="Team member linked to this timesheet line."
     )
 
+  
+    def create(self, vals_list):
+        for vals in vals_list:
 
-
-    @api.model
-    def create(self, vals):
-        if vals.get('task_id'):
-            task = self.env['project.task'].search([('id', '=', vals['task_id'])], limit=1)
-            # you can do something with `task` here if needed
-        return super().create(vals)
+            if vals.get('task_id'):
+                task = self.env['project.task'].search([('id', '=', vals['task_id'])], limit=1)
     
-    @api.model
-    def create(self, vals):
-        # Ensure description is always set
-        if not vals.get('name'):
-            vals['name'] = "Timesheet Entry"   # 👈 Default fallback
+            elif not vals.get('name'):
+                vals['name'] = "Timesheet Entry"   
 
         return super().create(vals)
     
-
 
     

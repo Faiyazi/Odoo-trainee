@@ -8,6 +8,5 @@
     'data':[
         'security/ir.model.access.csv',
         'wizard/sale_order_excel.xml',
-      
     ]
 }
