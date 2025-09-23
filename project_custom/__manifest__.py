@@ -4,7 +4,7 @@
     'sequence':2,
     'license': 'LGPL-3',
     'application': True,
-    'depends':['project','hr_timesheet'],
+    'depends':['project','hr_timesheet','report_xlsx',],
     'data':[
         'security/ir.model.access.csv',
         'wizard/date_range_wizard.xml',

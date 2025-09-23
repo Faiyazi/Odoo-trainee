@@ -38,6 +38,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Phone</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,6 +50,10 @@
                                         </td>
                                         <td>
                                             <t t-out="detail.email"/>
+                                        </td>
+
+                                        <td>
+                                            <t t-out="detail.phone"/>
                                         </td>
                                     </tr>
                                 </t>

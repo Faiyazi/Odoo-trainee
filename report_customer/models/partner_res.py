@@ -3,13 +3,11 @@ from odoo import models
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+    _order = 'name'
 
     def action_print_report_pdf(self):
         print('hello')
         customers = self.env['res.partner'].search([])
         print(customers)
 
-        company = self.env['res.company'].browse(1) 
-
-        print(company.logo)
         return self.env.ref('report_customer.report_customer_action').report_action(customers)

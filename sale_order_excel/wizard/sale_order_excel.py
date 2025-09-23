@@ -20,9 +20,9 @@ class SaleExcelWizard(models.TransientModel):
         print("\n\n\n\n\n-------->sale",sale_order)
 
         for _,row in excel_file1.iterrows():
-            product_name = row[0]
-            qty = row[1]
-            price = row[2]
+            product_name = row.iloc[0]
+            qty = row.iloc[1]
+            price = row.iloc[2]
 
 
 

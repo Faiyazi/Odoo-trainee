@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-<!--    <report-->
-<!--            id="report_data_range_excel"-->
-<!--            model="project.task"-->
-<!--            string="Project task report"-->
-<!--            report_type='qweb-pdf'-->
-<!--            name="project_custom.project_task_template"-->
-<!--            file="project_custom.project_task_template"-->
-<!--    />-->
+    <!--    <report-->
+    <!--            id="report_data_range_excel"-->
+    <!--            model="project.task"-->
+    <!--            string="Project task report"-->
+    <!--            report_type='qweb-pdf'-->
+    <!--            name="project_custom.project_task_template"-->
+    <!--            file="project_custom.project_task_template"-->
+    <!--    />-->
 
     <record id="project_task_report" model="ir.actions.report">
         <field name="name">Project Task Report</field>
@@ -30,43 +30,28 @@
 
     <template id="project_task_template">
         <t t-call="web.html_container">
-        <t t-call="web.external_layout">
-           
+            <t t-call="web.external_layout">
 
-            <t t-foreach="docs" t-as="task">
-                <div class="page">
-                <t t-if="task.project_id"><h1>
-                Project Name:-
-                    <t t-esc="task.project_id.name"/>   
-                    </h1>
-              </t>
-                    <h1>Project Task:-
-                        <t t-esc="task.name"/>
-                    </h1>
 
-                    <h2>Date Assign:-
-                        <t t-esc="task.date_start" />
-                    </h2>
-                     <h2>Date Deadline:-
-                        <t t-esc="task.date_end" />
-                    </h2>
-
-                    <h2>Description:-
-                        <t t-esc="task.description" />
-                    </h2>
-                    <h2>Timesheet Entries:-
-                        <t t-foreach="task.timesheet_ids" t-as="line">
-                            <div>
-                                <t t-esc="line.name"/>:
-                                <t t-esc="line.unit_amount"/>
-                                hours
-                            </div>
+                <t t-foreach="docs" t-as="task">
+                    <div class="page">
+                        <t t-if="task.project_id">
+                            <h1> Project Name:- <t t-esc="task.project_id.name" />
+                            </h1>
                         </t>
-                    </h2>
-                </div>
-                
+                        <h1>Project Task:- <t t-esc="task.name" />
+                        </h1>
+
+                        <h2>Date Assign:- <t t-esc="task.date_start" />
+                        </h2>
+                        <h2>Date Deadline:- <t t-esc="task.date_end" />
+                        </h2>
+
+
+                    </div>
+
+                </t>
             </t>
-</t>
         </t>
     </template>
 </odoo>
