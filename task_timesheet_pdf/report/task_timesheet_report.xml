@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="task_timesheet_report" model="ir.actions.report">
+        <field name="name">Task Report</field>
+        <field name="model">project.task</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">task_timesheet_pdf.task_time_sheet_template</field>
+        <field name="report_file">task_timesheet_pdf.task_time_sheet_template</field>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <template id="task_time_sheet_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="task">
+                    <div class="page">
+                        <t t-if="task.project_id">
+                            <h1>Project Name: <t t-esc="task.project_id.name" /></h1>
+                        </t>
+
+                        <h3>Task: <t t-esc="task.name" /></h3>
+
+                        <table class="table table-sm table-bordered"
+                            style="width:100%; border-collapse:collapse; margin-bottom:15px;">
+                            <thead>
+                                <tr style="background-color:#f2f2f2;">
+                                    <th>Date</th>
+                                    <th>Employee</th>
+                                    <th>Description</th>
+                                    <th style="text-align:right;">Hours</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="task.timesheet_ids" t-as="ts">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="ts.date" />
+                                        </td>
+                                        <td>
+                                            <t t-esc="ts.employee_id.name" />
+                                        </td>
+                                        <td>
+                                            <t t-esc="ts.name" />
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <t t-esc="ts.unit_amount" />
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>
