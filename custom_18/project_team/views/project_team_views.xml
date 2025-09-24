@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="project_team_views_form" model="ir.ui.view">
+        <field name="name">Project Team Views Form</field>
+        <field name="model">project.team</field>
+        <field name="arch" type="xml">
+            <form string="Project Team Views Form">
+                <sheet>
+                         <header>
+                             <button name="action_open_team_members"
+                                     type="object"
+                                     class="oe_stat_button">
+                                     <field name="member_count" widget="statinfo"  string=" Members"/>
+                             </button>
+                         </header>
+                    <group>
+                        <field name="team_members"/>
+                        <field name="name"/>
+                        <field name="team_leader"/>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                    </group>
+                </sheet>
+                <chatter/>
+             </form>
+        </field>
+    </record>
+
+    <record id="project_team_views_list" model="ir.ui.view">
+        <field name="name">Project Team Views List</field>
+        <field name="model">project.team</field>
+        <field name="arch" type="xml">
+            <list string="Project Team Views List">
+                <field name="team_members"/>
+                <field name="name"/>
+                <field name="team_leader"/>
+                <field name="active"/>
+                <field name="sequence"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="project_team_views_kanban" model="ir.ui.view">
+        <field name="name">Project Team Views Kanban</field>
+        <field name="model">project.team</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="active"/>
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <main class="w-100 ps-2 pt-1">
+                            <div>
+                                <div t-if="record.active" class="text-success float-end mb4">
+                                    <i class="fa fa-circle" role="img" aria-label="Ok" title="Ok"/>
+                                </div>
+                                <div t-else="" class="text-danger float-end mb4">
+                                    <i class="fa fa-circle" role="img" aria-label="Inactive" title="Inactive"/>
+                                </div>
+                                <field class="fw-bold" name="name"/>
+                            </div>
+                            <div>
+                                <span class="mb4 text-truncate" title="Team Leader">
+                                    <i class="fa fa-user me-1" role="img" aria-label="Leader"/>
+                                    <field name="team_leader"/>
+                                </span>
+                                <field class="badge rounded-pill float-end" name="sequence"/>
+                            </div>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="project_team_view_activity" model="ir.ui.view">
+        <field name="name">Project Team Activity</field>
+        <field name="model">project.team</field>
+        <field name="arch" type="xml">
+            <activity string="Project Team">
+                <templates>
+                    <div t-name="activity-box" class="d-block">
+                        <div class="d-flex justify-content-between">
+                            <field name="name" display="full" class="o_text_block o_text_bold"/>
+                            <div class="m-1"/>
+                            <field name="team_leader"/>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <field name="sequence" muted="1" display="full" class="o_text_block"/>
+                            <div class="m-1"/>
+                         </div>
+                    </div>
+                </templates>
+            </activity>
+        </field>
+    </record>
+
+
+
+     <!--Server Actions -->
+    <record id="action_add_member" model="ir.actions.server">
+        <field name="name">Add Member</field>
+        <field name="model_id" ref="project_team.model_project_team"/>
+        <field name="binding_model_id" ref="project_team.model_project_team"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+action = {
+'type': 'ir.actions.act_window',
+'res_model': 'add.member.wizard',
+'view_mode': 'form',
+'target': 'new',
+'context': {'active_ids': records.ids},
+}
+action
+      </field>
+    </record>
+
+        <!--Form View Action
+    <record id="action_project_team_views_form" model="ir.actions.act_window">
+        <field name="name">Team Member</field>
+        <field name="res_model">project.team</field>
+        <field name="view_mode">list,form,kanban,activity</field>
+    </record>-->
+
+
+
+
+
+
+
+
+
+</odoo>

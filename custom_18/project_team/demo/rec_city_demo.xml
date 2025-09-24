@@ -1,0 +1,57 @@
+<odoo>
+    <data noupdate="1">
+
+        <!-- Example cities in Gujarat -->
+        <record id="res_city_ahmedabad" model="res.state.city">
+            <field name="name">Ahmedabad</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+         </record>
+
+        <record id="res_city_surat" model="res.state.city">
+            <field name="name">Surat</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+         </record>
+
+        <record id="res_city_vadodara" model="res.state.city">
+            <field name="name">Vadodara</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+         </record>
+
+        <record id="res_city_rajkot" model="res.state.city">
+            <field name="name">Rajkot</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+         </record>
+
+        <record id="res_city_bhavnagar" model="res.state.city">
+            <field name="name">Bhavnagar</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+         </record>
+
+        <record id="res_city_jamnagar" model="res.state.city">
+            <field name="name">Jamnagar</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+        </record>
+
+        <record id="res_city_gandhinagar" model="res.state.city">
+            <field name="name">Gandhinagar</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+        </record>
+
+        <record id="res_city_anand" model="res.state.city">
+            <field name="name">Anand</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+        </record>
+
+        <record id="res_city_junagadh" model="res.state.city">
+            <field name="name">Junagadh</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+         </record>
+
+        <record id="res_city_morbi" model="res.state.city">
+            <field name="name">Morbi</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+        </record>
+
+
+    </data>
+</odoo>
