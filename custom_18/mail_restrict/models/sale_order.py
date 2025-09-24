@@ -26,7 +26,3 @@ class SaleOrder(models.Model):
                     data.append(record)
                     
         return data
-
-
-
-
