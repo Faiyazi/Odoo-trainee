@@ -57,17 +57,24 @@ class TeamMember(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
+            existing_user = False   # always initialize
+
             if not vals.get('user_id') and vals.get('email'):
-                existing_user = self.env['res.users'].search([('login', '=', vals.get('email'))], limit=1)
-            if existing_user:
-                vals['user_id'] = existing_user.id
-            else:
+                existing_user = self.env['res.users'].search(
+                    [('login', '=', vals.get('email'))],
+                    limit=1
+            )
+
+            # if existing_user:
+            #     vals['user_id'] = existing_user.id
+            if not vals['user_id']:
                 new_user = self.env['res.users'].create({
                     'name': vals.get('name'),
                     'login': vals.get('email'),
                     'email': vals.get('email'),
                 })
                 vals['user_id'] = new_user.id
+
         return super().create(vals_list)
 
 
