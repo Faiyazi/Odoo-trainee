@@ -9,18 +9,18 @@ class PurchaseOrder(models.Model):
         ('second_approval','Second Approval')
     ])
 
-    def action_conform(self):
+    def button_confirm(self):
         get_limit_settings = float(self.env['ir.config_parameter'].sudo().get_param('credit_limit'))
-        print(get_limit_settings,"+++++++++++++++++++++++++++++++++++++++++++")
+        print("__________________________",get_limit_settings)
         for order in self:
             get_contact_limit = float(order.partner_id.partner_credit_limit)
-            print(get_contact_limit,"++++++++++++++++++++++++++++++++++++++")
+            print("________________________________",get_contact_limit,)
             if get_contact_limit > get_limit_settings :
                 order.state = 'first_approval'
-            else:
-                 order.state = 'second_approval'
+            # else:
+            #      order.state = 'second_approval'
 
-        return super(PurchaseOrder, self).action_conform()
+        return super(PurchaseOrder, self).button_confirm()
 
     def action_first_approval(self):
         for order in self:
