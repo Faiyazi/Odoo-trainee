@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
 
@@ -9,27 +9,41 @@
         <field name="arch" type="xml">
             <search>
                 <!-- Field to search -->
-                <field name="student_gender" string="Student Gender"/>
-                <field name="class_id" string="Classes"/>
+                <field name="student_gender" string="Student Gender" />
+                <field name="class_id" string="Classes" />
 
                 <filter name="filter_by_gender" string="Male"
-                        domain="[('student_gender', '=', 'male')]"/>
+                    domain="[('student_gender', '=', 'male')]" />
 
                 <filter name="filter_by_gender" string="Female"
-                        domain="[('student_gender', '=', 'female')]"/>
+                    domain="[('student_gender', '=', 'female')]" />
 
                 <filter name="filter_by_class" string="Class"
-                        domain="[('class_id','=','Class 1')]"/>
+                    domain="[('class_id','=','Class 1')]" />
 
                 <filter name="filter_by_class" string="Class"
-                        domain="[('class_id','=','Class 2')]"/>
+                    domain="[('class_id','=','Class 2')]" />
 
                 <filter name="filter_by_class" string="Class"
-                        domain="[('class_id','=','Class 3')]"/>
+                    domain="[('class_id','=','Class 3')]" />
 
                 <filter name="filter_by_group" string="Gender"
-                        context="{'group_by':'student_gender'}"/>
+                    context="{'group_by':'student_gender'}" />
             </search>
+        </field>
+    </record>
+
+
+    <record id="quick_create_student_form" model="ir.ui.view">
+        <field name="name">school.student.quick.create.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form string="Quick Student">
+                <group>
+                    <field name="student_name" />
+                    <field name="student_gender" />
+                </group>
+            </form>
         </field>
     </record>
 
@@ -39,24 +53,24 @@
         <field name="name">view.school.student.kanban</field>
         <field name="model">school.student</field>
         <field name="arch" type="xml">
-            <kanban>
-                <field name="student_name"/>
-                <field name="student_gender"/>
-                <field name="image_128"/>
+            <kanban default_group_by="student_name" quick_create_view="school_student.quick_create_student_form"  on_create="quick_create">
+                <field name="student_name" />
+                <field name="student_gender" />
+                <field name="image_128" />
                 <templates>
                     <t t-name="card">
                         <div class="oe_kanban_global_click o_kanban_record">
-                            <div class="o_kanban_image">
+                            <!-- <div class="o_kanban_image">
                                 <img t-att-src="kanban_image('school.student', 'image_128', record.id.value)"
                                      class="img img-fluid rounded"/>
-                            </div>
+                            </div> -->
                             <div class="o_kanban_details">
                                 <strong>
-                                    <field name="student_name"/>
+                                    <field name="student_name" />
                                 </strong>
-                                <br/>
+                                <br />
                                 <span>
-                                    <field name="student_gender"/>
+                                    <field name="student_gender" />
                                 </span>
                             </div>
                         </div>
@@ -67,7 +81,6 @@
     </record>
 
 
-
     <!-- Pivot view for School Student -->
     <record id="view_school_student_pivot" model="ir.ui.view">
         <field name="name">school.student.pivot</field>
@@ -75,10 +88,10 @@
         <field name="arch" type="xml">
             <pivot string="School Students">
                 <!-- Groupable field -->
-                <field name="student_gender" type="row"/>
-                <field name="class_id" type="col"/>
+                <field name="student_gender" type="row" />
+                <field name="class_id" type="col" />
 
-                <field name="city"/>
+                <field name="city" />
             </pivot>
         </field>
     </record>
@@ -90,7 +103,7 @@
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <calendar string="Student Calendar" date_start="dob" color="student_gender">
-                <field name="student_name"/>
+                <field name="student_name" />
             </calendar>
         </field>
     </record>
@@ -105,8 +118,8 @@
 
 
             <graph type="pie">
-                <field name="class_id" type="row"/>
-                <field name="subject_ids" type="col"/>
+                <field name="class_id" type="row" />
+                <field name="subject_ids" type="col" />
             </graph>
 
         </field>
@@ -119,7 +132,7 @@
         <field name="arch" type="xml">
 
             <graph type="bar">
-                <field name="student_gender" type="row"/>
+                <field name="student_gender" type="row" />
                 <!--                <field name="student_marks" type="measure"/>-->
             </graph>
 
@@ -149,10 +162,10 @@
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <list>
-                <field name="student_id"/>
-                <field name="student_name"/>
-                <field name="student_gender" widget="badge"/>
-                <field name="class_id"/>
+                <field name="student_id" />
+                <field name="student_name" />
+                <field name="student_gender" widget="badge" />
+                <field name="class_id" />
             </list>
         </field>
     </record>
@@ -164,31 +177,31 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button type="object" string="Click" class="oe_highlight" name="click_button"/>
-                    <button type="object" string="Show" class="oe_highlight" name="show_rainbow"/>
+                    <button type="object" string="Click" class="oe_highlight" name="click_button" />
+                    <button type="object" string="Show" class="oe_highlight" name="show_rainbow" />
                 </header>
                 <sheet>
                     <group>
-                        <field name="image_128" widgit="image"/>
+                        <field name="image_128" widgit="image" />
                         <group>
-                            <field name="student_id"/>
-                            <field name="student_name"/>
-                            <field name="student_email"/>
-                            <field name="dob"/>
-                            <field name="class_id"/>
+                            <field name="student_id" />
+                            <field name="student_name" />
+                            <field name="student_email" />
+                            <field name="dob" />
+                            <field name="class_id" />
                             <field name="subject_ids">
                                 <list editable="bottom">
-                                    <field name="name"/>
-                                    <field name="subject_code"/>
-                                    <field name="student_marks"/>
+                                    <field name="name" />
+                                    <field name="subject_code" />
+                                    <field name="student_marks" />
                                 </list>
                             </field>
 
                         </group>
 
                         <group>
-                            <field name="student_phone_no"/>
-                            <field name="student_gender"/>
+                            <field name="student_phone_no" />
+                            <field name="student_gender" />
                             <field name="student_total_marks" class="o_bold" readonly="1" />
 
                         </group>
@@ -196,15 +209,15 @@
                         <notebook>
                             <page string="Contact">
                                 <group>
-                                    <field name="street_name"/>
-                                    <field name="state"/>
-                                    <field name="city"/>
+                                    <field name="street_name" />
+                                    <field name="state" />
+                                    <field name="city" />
                                 </group>
                             </page>
                             <page string="parent's">
                                 <group col="2">
-                                    <field name="parent_name"/>
-                                    <field name="parent_phone"/>
+                                    <field name="parent_name" />
+                                    <field name="parent_phone" />
                                 </group>
                             </page>
                         </notebook>
@@ -222,7 +235,7 @@
         <field name="model">student.class</field>
         <field name="arch" type="xml">
             <list>
-                <field name="class_name"/>
+                <field name="class_name" />
             </list>
         </field>
     </record>
@@ -236,8 +249,8 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="class_name"/>
-                        <field name="class_total"/>
+                        <field name="class_name" />
+                        <field name="class_total" />
 
                     </group>
                 </sheet>
@@ -253,9 +266,9 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="subject_code"/>
-                        <field name="student_marks"/>
+                        <field name="name" />
+                        <field name="subject_code" />
+                        <field name="student_marks" />
                     </group>
                 </sheet>
             </form>
@@ -269,8 +282,8 @@
         <field name="model">student.subject</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="subject_code"/>
+                <field name="name" />
+                <field name="subject_code" />
             </list>
         </field>
     </record>
