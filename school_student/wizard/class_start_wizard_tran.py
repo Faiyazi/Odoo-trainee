@@ -5,5 +5,5 @@ class TranClassStartWizard(models.TransientModel):
     _inherit = 'abs_class_start.wizard'
     _description = 'Transient Class Start'
 
-    name=fields.Char(string="Student Name")
+    name=fields.Many2one('school.student',string="Student Name")
 

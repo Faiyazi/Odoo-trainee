@@ -53,17 +53,39 @@
         <field name="name">view.school.student.kanban</field>
         <field name="model">school.student</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="student_name" quick_create_view="school_student.quick_create_student_form"  on_create="quick_create">
+            <kanban default_group_by="status"
+                quick_create_view="school_student.quick_create_student_form"
+                on_create="quick_create">
+
+               
                 <field name="student_name" />
                 <field name="student_gender" />
                 <field name="image_128" />
+                
+                 <progressbar field='status' colors='{
+                "new": "success",
+                "present": "warning",
+                "absent": "danger"
+        }' />
+
+      
+
+
+               
                 <templates>
+                <field name="status" />
+
+                
                     <t t-name="card">
                         <div class="oe_kanban_global_click o_kanban_record">
-                            <!-- <div class="o_kanban_image">
-                                <img t-att-src="kanban_image('school.student', 'image_128', record.id.value)"
-                                     class="img img-fluid rounded"/>
-                            </div> -->
+                             <aside class='o_kanban_aside_full'>
+
+                                <div class="o_kanban_image_fill position-relative w-100">
+                                <field name="image_128"  class='h-100' widget='image' />
+                            </div>
+
+                             </aside>
+                            
                             <div class="o_kanban_details">
                                 <strong>
                                     <field name="student_name" />
@@ -182,13 +204,15 @@
                 </header>
                 <sheet>
                     <group>
-                        <field name="image_128" widgit="image" />
+                        <field name="image_128" widget="image" class="oe_avatar" />
                         <group>
                             <field name="student_id" />
                             <field name="student_name" />
                             <field name="student_email" />
                             <field name="dob" />
                             <field name="class_id" />
+                            <field name="status" />
+
                             <field name="subject_ids">
                                 <list editable="bottom">
                                     <field name="name" />
