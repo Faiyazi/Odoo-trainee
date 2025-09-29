@@ -5,12 +5,11 @@ from odoo.exceptions import ValidationError
 class TeamMember(models.Model):
     _name = 'project.team.member'
     _description = 'Project Team Member'
+    _rec_name = 'name'
 
-
-   
     user_id = fields.Many2one('res.users', string='User',context={'search_default_employee': 1},
                               )
-    
+    seq = fields.Integer(string='sequence',default='10')
     # User details
     name = fields.Char(string='Name',required=True , help='Enter your name')
     email = fields.Char(string='Email', related='user_id.email',readonly=False,store=True)
@@ -69,9 +68,9 @@ class TeamMember(models.Model):
             #     vals['user_id'] = existing_user.id
             if not vals['user_id']:
                 new_user = self.env['res.users'].create({
-                    'name': vals.get('name'),
-                    'login': vals.get('email'),
-                    'email': vals.get('email'),
+                    'name': vals['name'],
+                    'login': vals['email'],
+                    'email': vals['email'],
                 })
                 vals['user_id'] = new_user.id
 
