@@ -104,7 +104,6 @@
                     </div>
                     <group>
                         <group>
-                            <field name="display_name" />
                             <field name="user_id"
                                 domain="[('user_id','!=',False)]"
                                 context="{'search_default_employee': 1}" />

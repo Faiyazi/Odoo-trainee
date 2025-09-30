@@ -48,7 +48,7 @@ class TeamMember(models.Model):
     )
 
     is_active = fields.Boolean(string="Active", default=True)
-    display_name = fields.Char(string="Display Name", store=True)
+  
 
     @api.model_create_multi
     def create(self, vals_list):
