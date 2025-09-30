@@ -11,6 +11,10 @@
                 <filter name="filter_gender_male" string="Male" domain="[('gender','=','male')]" />
                 <filter name="filter_gender_female" string="Female"
                     domain="[('gender','=','female')]" />
+
+                <searchpanel>
+                    <field name="gender" select='multi' enable_counters='1' />
+                </searchpanel>
             </search>
         </field>
     </record>
@@ -121,7 +125,7 @@
                             <group>
                                 <group>
                                     <group>
-                                        <field name="house_no" placeholder="House No" />
+                                        <field name="house_no" placeholder="House No" widget='badge' />
                                         <field name="country_id" placeholder="Country" />
                                         <field name="state_id" placeholder="State" />
                                         <field name="city" placeholder="City"
