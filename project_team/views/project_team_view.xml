@@ -20,7 +20,7 @@
                     <group>
 
                         <field name="team_id" readonly="1" />
-                        <field name="team_member" />
+                        <field name="team_member" widget='many2many_tags' />
                         <field name="name" />
                         <field name="team_leader" />
                         <field name="is_active" />
