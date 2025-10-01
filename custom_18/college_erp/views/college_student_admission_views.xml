@@ -1,0 +1,219 @@
+<odoo>
+    <record id="college_student_admission_views_form" model="ir.ui.view">
+        <field name="name">College Student Admission Form</field>
+        <field name="model">college.student.admission</field>
+        <field name="arch" type="xml">
+            <form string="College Student Admission Form">
+                <sheet>
+                    <header>
+                        <button name="%(action_admission_wizard)d"
+                                string="Open Admission Wizard(action)"
+                                type="action"
+                                class="btn-primary"/>
+
+
+                        <button name="action_open_admission_wizard"
+                                string="Open Admission Wizard(object)"
+                                type="object"
+                                class="btn-primary"/>
+
+                        <button name="action_open_website"
+                                string="Go to Odoo(URL Action)"
+                                type="object"
+                                class="btn-primary"/>
+
+                        <button name="action_send_mail"
+                                string="Send Mail"
+                                type="object"
+                                class="btn-primary"/>
+
+                        <button name="client_action"
+                                string="client action"
+                                type="object"
+                                class="btn-primary"/>
+
+
+                    </header>
+
+                    <group>
+
+                        <field name="user_id"/> <!-- Add this -->
+                        <field name="name"/> <!-- Add Student id this -->
+                        <field name="student_name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="age" readonly="1"/>
+                        <field name="height"/>
+                        <field name="dob"/>
+                        <field name="admission_datetime"/>
+                        <field name="active"/>
+                        <field name="photo" widget="image" class="oe_avatar"/>
+                        <field name="documents"/>
+                        <field name="description"/>
+                        <field name="state"/>
+                        <field name="category"/>
+                            <field name="fees_paid"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="college_student_admission_views_list" model="ir.ui.view">
+        <field name="name">college.student.admission.list</field>
+        <field name="model">college.student.admission</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="College Student Admission Form">
+                <field name="user_id"/> <!-- Add this -->
+                <field name="name"/> <!-- Add this -->
+                <field name="student_name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="age"/>
+                <field name="height"/>
+                <field name="dob"/>
+                <field name="admission_datetime"/>
+                <field name="active"/>
+                <field name="photo" widget="image" options="{'size': [50, 50]}"/>
+                <field name="documents"/>
+                <field name="description"/>
+                <field name="state"/>
+                <field name="category"/>
+                <field name="fees_paid"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="college_student_admission_views_kanban" model="ir.ui.view">
+        <field name="name">college.student.admission.kanban</field>
+        <field name="model">college.student.admission</field>
+        <field name="type">kanban</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <strong>Admission ID:
+                                <field name="name"/>
+                            </strong>
+                            <small>User ID:
+                                <field name="user_id"/>
+                            </small>
+                            <br/>
+                            <small>Student Name:
+                                <field name="student_name"/>
+                            </small>
+                            <br/>
+                            <small>Email:
+                                <field name="email"/>
+                            </small>
+                            <br/>
+                            <small>Phone:
+                                <field name="phone"/>
+                            </small>
+                            <br/>
+                            <small>Age:
+                                <field name="age"/>
+                            </small>
+                            <br/>
+                            <small>Height:
+                                <field name="height"/>
+                            </small>
+                            <br/>
+                            <small>Date of Birth:
+                                <field name="dob"/>
+                            </small>
+                            <br/>
+                            <small>Admission Date-time:
+                                <field name="admission_datetime"/>
+                            </small>
+                            <br/>
+                            <small>Active :
+                                <field name="active"/>
+                            </small>
+                            <br/>
+                            <field name="photo" widget="image" class="my_small_image"/>
+                            <small>Uploaded Documents:
+                                <field name="documents"/>
+                            </small>
+                            <br/>
+                            <small>Description:
+                                <field name="description"/>
+                            </small>
+                            <br/>
+                            <small>Status:
+                                <field name="state"/>
+                            </small>
+                            <br/>
+                            <small>Fees:
+                                <field name="fees_paid"/>
+                            </small>
+                            <br/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="college_student_admission_views_calendar" model="ir.ui.view">
+        <field name="name">college.student.calendar</field>
+        <field name="model">college.student.admission</field>
+        <field name="type">calendar</field>
+        <field name="arch" type="xml">
+            <calendar string="Student Admission Calendar"
+                      date_start="admission_datetime"
+                      color="state">
+                <field name="student_name"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="college_student_admission_views_graph" model="ir.ui.view">
+        <field name="name">college.student.graph</field>
+        <field name="model">college.student.admission</field>
+        <field name="arch" type="xml">
+            <graph string="Student Fees Analysis" type="bar">
+                <field name="fees_paid" type="measure"/>
+                <field name="state" type="row"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="college_student_admission_views_pivot" model="ir.ui.view">
+        <field name="name">college.student.pivot</field>
+        <field name="model">college.student.admission</field>
+        <field name="arch" type="xml">
+            <pivot string="Student Fees Analysis">
+                <!-- Measures: Numeric fields -->
+                <field name="fees_paid" type="measure"/>
+                <field name="height" type="measure"/>
+
+                <!-- Row grouping: categorical fields -->
+                <field name="state" type="row"/>
+                <field name="currency_id" type="row"/>
+
+                <!-- Column grouping: datetime fields -->
+                <field name="admission_datetime" type="col" interval="month"/>
+
+            </pivot>
+        </field>
+    </record>
+
+    <record id="college_student_admission_views_search" model="ir.ui.view">
+        <field name="name">college.student.admission.search</field>
+        <field name="model">college.student.admission</field>
+        <field name="arch" type="xml">
+            <search string="Search Students">
+                <!-- Quick search fields -->
+                <field name="student_name" string="Full Name"/>
+                <!-- Filters -->
+                <filter name="active_students" string="Active Students" domain="[('active','=',True)]"/>
+                <filter name="inactive_students" string="Inactive Students" domain="[('active','=',False)]"/>
+
+            </search>
+        </field>
+    </record>
+</odoo>

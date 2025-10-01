@@ -1,0 +1,15 @@
+<odoo>
+
+    <!-- College Teacher -->
+    <record id="group_college_teacher" model="res.groups">
+        <field name="name">College Teacher</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <!-- College Student -->
+    <record id="group_college_student" model="res.groups">
+        <field name="name">College Student</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+</odoo>
