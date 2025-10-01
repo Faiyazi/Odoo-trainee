@@ -1,0 +1,10 @@
+<odoo>
+  <report
+      id="action_report_reservation_confirm"
+      model="hotel.reservation"
+      string="Reservation Confirmation"
+      report_type="qweb-pdf"
+      name="hotel_management.report_reservation_confirm"
+      file="hotel_management.report_reservation_confirm"
+      print_report_name="'Reservation - %s' % (object.name)"/>
+</odoo>

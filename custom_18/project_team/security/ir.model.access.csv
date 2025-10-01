@@ -1,7 +1,15 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+<<<<<<< HEAD
 project_team.access_project_team_member,access_project_team_member,model_project_team_member,base.group_system,1,1,1,1
 project_team.access_res_state_city,access_res_state_city,model_res_state_city,base.group_system,1,1,1,1
 project_team.access_project_team,access_project_team,model_project_team,base.group_system,1,1,1,1
 project_team.access_add_member_wizard,access_add_member_wizard,model_add_member_wizard,base.group_system,1,1,1,1
 project_team.access_account_analytic_line,access_account_analytic_line,model_account_analytic_line,base.group_system,1,1,1,1
 project_team.access_add_priority_wizard,access_add_priority_wizard,project_team.model_add_priority_wizard,base.group_system,1,1,1,1
+=======
+project_team.access_project_team_member,access_project_team_member,project_team.model_project_team_member,base.group_user,1,1,1,1
+project_team.access_res_state_city,access_res_state_city,project_team.model_res_state_city,base.group_user,1,1,1,1
+project_team.access_project_team,access_project_team,project_team.model_project_team,base.group_user,1,1,1,1
+project_team.access_add_member_wizard,access_add_member_wizard,project_team.model_add_member_wizard,base.group_user,1,1,1,1
+project_team.access_set_task_priority,access_set_task_priority,project_team.model_set_task_priority,base.group_user,1,1,1,1
+>>>>>>> ronak

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="set_task_priority_view_form" model="ir.ui.view">
+        <field name="name">set.task.priority.view.form</field>
+        <field name="model">set.task.priority</field>
+        <field name="arch" type="xml">
+            <form string="Add Priority of Task">
+                <sheet>
+                    <group>
+                        <field name="priority" />
+                    </group>
+                    <footer>
+                        <button string="Add Priority" type="object" class="btn-primary"
+                            name="action_add_priority" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_add_priority_wizard" model="ir.actions.act_window">
+        <field name="name">Add priority</field>
+        <field name="res_model">set.task.priority</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

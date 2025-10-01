@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="ahmedabad" model="res.state.city">
+        <field name="name" >Ahmedabad</field>
+        <field name="state_id" ref="base.state_in_gj"/>
+    </record>
+
+    <record id="gandhinagar" model="res.state.city">
+        <field name="name" >Gandhinagar</field>
+        <field name="state_id" ref="base.state_in_gj"></field>
+    </record>
+
+    <record id="jamnagar" model="res.state.city">
+        <field name="name" >Jamnagar</field>
+        <field name="state_id" ref="base.state_in_gj"></field>
+    </record>
+
+    <record id="surat" model="res.state.city">
+        <field name="name" >Surat</field>
+        <field name="state_id" ref="base.state_in_gj"></field>
+    </record>
+
+    <record id="anand" model="res.state.city">
+        <field name="name">Anand</field>
+        <field name="state_id" ref="base.state_in_gj"></field>
+    </record>
+
+    <record id="vadodara" model="res.state.city">
+        <field name="name">Vadodara</field>
+        <field name="state_id" ref="base.state_in_gj"></field>
+    </record>
+
+    <record id="mehsana" model="res.state.city">
+        <field name="name">Mehsana</field>
+        <field name="state_id" ref="base.state_in_gj"></field>
+    </record>
+
+    <record id="unja" model="res.state.city">
+        <field name="name">Unja</field>
+        <field name="state_id" ref="base.state_in_gj"></field>
+    </record>
+
+    <record id="idar" model="res.state.city">
+        <field name="name" >Idar</field>
+        <field name="state_id" ref="base.state_in_gj"></field>
+    </record>
+
+    <record id="rajkot" model="res.state.city">
+        <field name="name" >Rajkot</field>
+        <field name="state_id" ref="base.state_in_gj"></field>
+    </record>
+    
+</odoo>

@@ -6,7 +6,11 @@
     "author": "ACSONE SA/NV," "Creu Blanca," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/reporting-engine",
     "category": "Reporting",
+<<<<<<< HEAD
     "version": "18.0.1.0.1",
+=======
+    "version": "18.0.1.0.0",
+>>>>>>> ronak
     "development_status": "Mature",
     "license": "AGPL-3",
     "external_dependencies": {"python": ["xlsxwriter", "xlrd"]},

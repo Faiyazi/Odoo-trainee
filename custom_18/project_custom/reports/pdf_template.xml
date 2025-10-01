@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="pdf_task_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Task PDF Report</h2>
+                    </div>
+
+                    <div class="oe_structure"></div>
+                    <table class="o_has_total_table table o_main_table table-borderless">
+                    <thead style="display: table-row-group">
+                        <tr>
+                            <th name="th_tasks">Tasks</th>
+                            <th name="th_start">Start</th>
+                            <th name="th_end">End</th>
+                        </tr>
+                    </thead>
+                    <tbody class="project_tbody">
+                        <t t-set="tasks"
+                            t-value="env['project.task'].search([
+                        ('date_assign', '&lt;=', o.date_end),
+                        ('date_deadline', '&gt;=', o.date_start)])" />
+
+                        <t t-foreach="tasks" t-as="task">
+                            <tr>
+                                <td>
+                                    <t t-esc="task.name" />
+                                </td>
+                                <td>
+                                    <t t-esc="task.date_assign" />
+                                </td>
+                                <td>
+                                    <t t-esc="task.date_deadline" />
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>
