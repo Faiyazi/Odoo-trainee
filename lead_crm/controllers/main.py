@@ -1,18 +1,15 @@
-from pickle import FALSE
 
-from odoo import http,fields,models
+from odoo import http
 from odoo.http import request
 
 
 class Practice(http.Controller):
 
-
-
     @http.route('/lead', type="http",website=True, auth="public")
     def practice_task(self, **kw):
         details = request.env['res.partner'].sudo().search([])
 
-        return request.render('task_remainder.crm_leads_template',{
+        return request.render('lead_crm.crm_leads_template',{
             'details':details
         })
 

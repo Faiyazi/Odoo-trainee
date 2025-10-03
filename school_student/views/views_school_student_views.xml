@@ -57,7 +57,7 @@
                 quick_create_view="school_student.quick_create_student_form"
                 on_create="quick_create">
 
-               
+               <field name="status" />
                 <field name="student_name" />
                 <field name="student_gender" />
                 <field name="image_128" />

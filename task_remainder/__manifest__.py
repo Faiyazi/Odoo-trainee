@@ -15,9 +15,9 @@
         'website',
     ],
     'data': [
-        'views/website_menu.xml',
-        'views/templates.xml',  # your crm_leads_template qweb
         'views/task_remainder.xml',
         'data/data_task_remainder.xml',
+        'data/email_remainder.xml',
+        
     ],
 }

@@ -5,7 +5,7 @@ from odoo import models, fields, api
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
-    active = fields.Boolean(string='Active')
+    is_active = fields.Boolean(string='Active')
 
     @api.model
     def send_daily_remainders(self):

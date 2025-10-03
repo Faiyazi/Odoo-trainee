@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <!-- Add fields under the task form -->
             <xpath expr="//field[@name='tag_ids']" position="after">
-                <field name="active"/>
+                <field name="is_active"/>
             </xpath>
         </field>
     </record>
