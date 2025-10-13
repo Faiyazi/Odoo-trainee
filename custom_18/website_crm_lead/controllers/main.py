@@ -34,7 +34,7 @@ class WebsiteCrmLead(http.Controller):
         #     })
         
 
-        # second way in this way use same field name which are in crm.lead e.g. email_from
+        # # second way in this way use same field name which are in crm.lead e.g. email_from
 
         # request.env['crm.lead'].sudo().create(kw)
 
