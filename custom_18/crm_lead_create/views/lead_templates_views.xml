@@ -65,7 +65,7 @@
                                                         <span class="s_website_form_label_content">Partner Id</span>
                                                     </label>
                                                     <input id="contact4" type="text"
-                                                           class="form-control s_website_form_input" name="company"
+                                                           class="form-control s_website_form_input" name="partner_id"
                                                            />
                                                 </div>
                                                 <div class="mb-3 col-12 s_website_form_field s_website_form_required s_website_form_model_required"
@@ -77,7 +77,7 @@
                                                         <span class="s_website_form_mark">*</span>
                                                     </label>
                                                     <input id="contact5" type="text"
-                                                           class="form-control s_website_form_input" name="subject"
+                                                           class="form-control s_website_form_input" name="excepted_revenue"
                                                            required=""/>
                                                 </div>
                                                 <div class="mb-3 col-12 s_website_form_field s_website_form_custom s_website_form_required"
@@ -88,7 +88,7 @@
                                                         <span class="s_website_form_mark">*</span>
                                                     </label>
                                                      <input id="contact6" type="text"
-                                                           class="form-control s_website_form_input" name="subject"
+                                                           class="form-control s_website_form_input" name="probability"
                                                            required=""/>
 
                                                 </div>
