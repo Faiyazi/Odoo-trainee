@@ -1,6 +1,6 @@
 {
     'name':'Email Validation',
-    'version':'18.0.1.0',
+    'version':'1.0',
     'summary':'Email Validation on res.partner and uniqueness',
     'sequence':50,
     'depends':['base', 'mail', 'sale_management'],

@@ -27,7 +27,7 @@
 =======
 {
     'name':'Project Custom',
-    'version':'18.0.1.0',
+    'version':'1.0',
     'summary':'project custom module',
     'sequence':45,
     'depends':['base','project', 'startend_mixin', 'report_xlsx'],

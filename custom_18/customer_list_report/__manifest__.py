@@ -1,6 +1,6 @@
 {
     'name': 'Customer PDF Report',
-    'version': '18.0.1.0',
+    'version': '1.0',
     'summary': 'Generate a simple PDF that lists customers.',
     'license': 'LGPL-3',
     'depends': ['base', 'contacts'],

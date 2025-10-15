@@ -30,7 +30,7 @@
 }
 =======
     'name':'Project Team Member',
-    'version': '18.0.1.0',
+    'version': '1.0',
     'summary':'Project team',
     'sequence': 50,
     'depends':['base','hr_timesheet','mail','project'],

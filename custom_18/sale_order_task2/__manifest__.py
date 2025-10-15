@@ -1,6 +1,6 @@
 {
     'name': 'Sale Order Report',
-    'version': '18.0.1.0',
+    'version': '1.0',
     'summary': 'Inherit Sale.order report',
     'license': 'LGPL-3',
     'depends': ['base', 'sale_management'],
