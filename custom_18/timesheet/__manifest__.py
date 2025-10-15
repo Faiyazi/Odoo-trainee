@@ -1,6 +1,6 @@
 {
     'name': 'Timesheet',
-    'version': '18.0.1.0',
+    'version': '1.0',
     'summary': 'Custom Timesheet Management',
     'description': 'Simple custom module to understand Odoo module structure',
 

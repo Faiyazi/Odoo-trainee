@@ -1,6 +1,6 @@
 {
     'name': 'Project Custom Task',
-    'version': '18.0.1.0',
+    'version': '1.0',
     'summary': 'Project Task Progress Tracking with Validation',
     'category': 'Project',
     'depends': ['base', 'project'],

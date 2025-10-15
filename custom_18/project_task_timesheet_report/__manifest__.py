@@ -1,6 +1,6 @@
 {
     'name': 'Project Task Timesheet Reports',
-    'version': '18.0.1.0',
+    'version': '1.0',
     'summary': 'Create a complex grouped PDF report for project.task with timesheets also for selected dates.',
     'depends': ['base', 'project'],
     'data': [

@@ -1,6 +1,6 @@
 {
     'name': 'Email Restriction',
-    'version': '18.0.1.0',
+    'version': '1.0',
     'description': 'Email restriction in chatter',
     'license': 'LGPL-3',
     'depends': ['base', 'mail', 'sale_management'],

@@ -1,6 +1,6 @@
 {
     'name': 'Sale Order Wizard',
-    'version': '18.0.1.0',
+    'version': '1.0',
     'description': '',
     'summary': 'Sale Order Import Wizard with Excel Upload.',
     'depends': ['base', 'sale_management'],

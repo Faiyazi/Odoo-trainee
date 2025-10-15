@@ -1,6 +1,6 @@
 {
     'name':'Deadline Reminder',
-    'version':'18.0.1.0',
+    'version':'1.0',
     'summary':'Send Emails to Reminder Deadlines',
     'sequence':51,
     'depends':['base', 'sale', 'mail','project','hr_timesheet'],

@@ -1,6 +1,6 @@
 {
     "name": "Hotel Management",
-    "version": "18.0.1.0",
+    "version": "1.0",
     "summary": "Rooms, Reservations, Housekeeping, Pricing, Folios, Website & Portal",
     "category": "Services/Hotel",
     "author": "Your Company",

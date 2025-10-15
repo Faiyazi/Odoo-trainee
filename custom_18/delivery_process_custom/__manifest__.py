@@ -13,7 +13,7 @@
     'author': 'Caret IT Solutions Pvt. Ltd.',
     'website': 'http://www.caretit.com',
     'category': 'Inventory',
-    'version': '18.0.1.0',
+    'version': '1.0',
     'depends': ['base', 'sale_management', 'stock', 'session_company'],
     'data': [
         'security/ir.model.access.csv',

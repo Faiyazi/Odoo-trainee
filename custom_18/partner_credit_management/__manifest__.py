@@ -1,6 +1,6 @@
 {
     'name': 'Contact Credit Management',
-    'version': '18.0.1.0',
+    'version': '1.0',
     'category': 'contacts',
     'summary': 'Contact Credit Management',
     'description': """
