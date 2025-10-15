@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_task_timesheet_pdf_user,access_task_timesheet_pdf_user,model_tasktimesheet_wizard,base.group_user,1,1,1,1

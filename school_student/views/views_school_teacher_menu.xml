@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_school_teacher"
+              name="Teacher"
+              parent="menu_school_student_root"
+              sequence="3"
+              action="action_school_teacher"
+    />
+
+     <menuitem id="menu_school_teacher_teacher"
+              name="Teacher"
+              parent="menu_school_teacher"
+              sequence="1"
+              action="action_school_teacher"
+    />
+
+    <menuitem id="menu_school_teacher_wizard"
+              name="Start"
+              parent="menu_school_teacher"
+              sequence="2"
+              action="action_class_start"
+    />
+
+    <menuitem id="menu_school_teacher_wizard_trans"
+              name="Meeting"
+              parent="menu_school_teacher"
+              sequence="3"
+              action="action_class_start_trans"
+    />
+
+
+</odoo>

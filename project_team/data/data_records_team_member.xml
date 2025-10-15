@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="data_records_team_members" model="project.team.member">
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="name">Faiyaz</field>
+        <field name="mobile">9537653896</field>
+    </record>
+</odoo>

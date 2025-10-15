@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_task,access_project_task,model_project_task,,1,1,1,1
+access_start_end_mixin,access_start_end_mixin,model_start_end_mixin,,1,1,1,1
+access_datarange_wizard_mixin,access_datarange_wizard_mixin,model_datarange_wizard,,1,1,1,1
+access_project_task_checklist,access_project_task_checklist,model_project_task_checklist,base.group_user,1,1,1,1

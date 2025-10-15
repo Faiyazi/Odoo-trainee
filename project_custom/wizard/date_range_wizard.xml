@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="wizard_date_range" model="ir.ui.view">
+        <field name="name">Task</field>
+        <field name="model">datarange.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
+                    <footer>
+                        <button name="action_print_report_pdf" type="object" string="PDF" class="btn-primary"/>
+                        <button name="action_print_report_xlsx" type="object" string="Excel" class="btn-primary"/>
+                        <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_date_range" model="ir.actions.act_window">
+        <field name="name">Task wizard</field>
+        <field name="res_model">datarange.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_date_range"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="project_task_menu"
+              name="Project Task"
+              parent="project.menu_project_config"
+              action="action_date_range"
+    />
+
+</odoo>
