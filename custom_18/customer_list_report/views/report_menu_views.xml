@@ -1,0 +1,20 @@
+<odoo>
+
+    <record id="action_contact_report_pdf" model="ir.actions.report">
+        <field name="name">Customer Report PDF</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">customer_list_report.report_customer_list</field>
+        <field name="report_file">customer_list_report.report_customer_list</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_type">report</field>
+    </record>
+
+<menuitem
+    name="Customer PDF Reports"
+    id="customer_report_menu"
+    sequence="10"
+    parent="contacts.menu_contacts"
+    action="action_contact_report_pdf"/>
+
+</odoo>
