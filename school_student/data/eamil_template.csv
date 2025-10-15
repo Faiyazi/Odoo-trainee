@@ -1,0 +1,2 @@
+id,name,model_id:id,email_from,email_to,subject,body_html
+school_student_template,School Student Template,school_student.model_school_student,${(user.email_formatted or '')|safe},${object.email|safe},Welcome, ${object.name}!,<p>Hello ${object.name},</p><p>Welcome to our school!</p><p>Your class teacher is: ${object.teacher_id.name}</p>

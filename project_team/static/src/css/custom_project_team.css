@@ -1,0 +1,14 @@
+.my_avatar img {
+    border-radius: 50%;     /* circle */
+    width: 48px;            /* control size */
+    height: 48px;           /* force square */
+    object-fit: cover;      /* crop if not square */
+    border: 2px solid #ccc; /* optional border */
+}
+
+/* Hover effect example */
+.my_avatar img:hover {
+    border-color: #007bff;
+    transform: scale(1.05);
+    transition: 0.3s;
+}

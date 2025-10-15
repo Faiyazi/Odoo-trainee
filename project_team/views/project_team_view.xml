@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Form view for Team Members -->
+    <record id="project_team_form_view" model="ir.ui.view">
+        <field name="name">Project Team Form View</field>
+        <field name="model">project.team</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_open_team_member" type="object"
+                        class="oe_stat_button" icon="fa-users">
+                        <field name="team_member" widget="statinfo"
+                            string="Team Members" />
+                    </button>
+                </div>
+
+                <sheet>
+                    <group>
+
+                        <field name="team_id" readonly="1" />
+                        <field name="team_member" widget='many2many_tags' />
+                        <field name="name" />
+                        <field name="team_leader" />
+                        <field name="is_active" />
+
+                    </group>
+
+                    <!-- Chatter + Activities -->
+                </sheet>
+                <chatter />
+
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record model="ir.ui.view" id="project_team_list_view">
+        <field name="name">Project Team List View</field>
+        <field name="model">project.team</field>
+        <field name="arch" type="xml">
+            <list>
+
+                <field name="team_id" />
+                <field name="name" />
+                <field name="team_leader" />
+                <field name="is_active" />
+
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record model="ir.ui.view" id="project_team_kanban_view">
+        <field name="name">Project Team Kanban View</field>
+        <field name="model">project.team</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="team_id" />
+                <field name="name" />
+                <field name="team_leader" />
+                <templates>
+                    <t t-name="card">
+                        <div class="container p-2">
+                            <div class="row align-items-center">
+
+                                <!-- Team ID -->
+                                <div class="col-auto">
+                                    <div class="badge bg-primary text-white p-2 rounded">
+                                        <field name="team_id" />
+                                    </div>
+                                </div>
+
+                                <!-- Details -->
+                                <div class="col">
+                                    <div class="oe_kanban_details">
+                                        <strong>
+                                            <field name="name" />
+                                        </strong>
+                                        <br />
+                                        Leader: <field name="team_leader" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Activity View -->
+    <record id="view_project_team_activity" model="ir.ui.view">
+        <field name="name">project.team.activity</field>
+        <field name="model">project.team</field>
+        <field name="arch" type="xml">
+            <activity string="Project Team Activities" />
+        </field>
+    </record>
+
+
+    <!--    project_project form view-->
+
+    <!--    <record id="project_project_form_view" model="ir.ui.view">-->
+    <!--        <field name="name">Project project Form View</field>-->
+    <!--        <field name="model">project.project</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form>-->
+    <!--                <sheet>-->
+    <!--                    <group>-->
+
+    <!--                        <field name="team_member" />-->
+    <!--                        <field name="team_id" />-->
+
+    <!--                    </group>-->
+    <!--                </sheet>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <!--    <record id="view_task_form_inherit_priority" model="ir.ui.view">-->
+    <!--        <field name="name">project.task.form.inherit.priority</field>-->
+    <!--        <field name="model">project.task</field>-->
+    <!--        <field name="inherit_id" ref="project.view_task_form2"/>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <xpath expr="//field[@name='parent_id']" position="before">-->
+    <!--                <field name="date_assign"-->
+    <!--                       attrs="{'invisible': [('stage_id','=','Done'))]}"/>-->
+    <!--            </xpath>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+
+    <record id="view_task_search_form_inherit_priority" model="ir.ui.view">
+        <field name="name">project.task.search.form.inherit.priority</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="date_assign" invisible="[('stage_id','=','Done')]" />
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="project_task_server_action" model="ir.actions.server">
+        <field name="name">High Priority</field>
+        <field name="model_id" ref="model_project_task" />
+        <field name="binding_model_id" ref="model_project_task" />
+        <field name="state">code</field>
+        <field name="code">
+            records.write({'priority':'1'})
+        </field>
+    </record>
+
+</odoo>

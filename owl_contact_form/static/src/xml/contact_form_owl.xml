@@ -1,0 +1,7 @@
+<templates>
+    <t t-name='contact_form_view_owl.ContactForm'>
+      <button class='btn btn-primary' t-on-click='setbtn'>Say Hello</button>
+      
+    </t>
+    
+</templates>

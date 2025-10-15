@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="sequence_school_student" model="ir.sequence">
+            <field name="name">School Student Sequence</field>
+            <field name="code">school.student.id</field>
+            <field name="prefix">TECH</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>
