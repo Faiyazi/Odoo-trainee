@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="contact_form_view_inherit_owl" model="ir.ui.view">
+        <field name="name">res.partner.inherit.contact.form</field>
+        <field name='model'>res.partner</field>
+        <field name='inherit_id' ref='base.view_partner_form' />
+        <field name='arch' type='xml'>
+            <xpath expr="//field[@name='company_type']" position="after">
+                <group class='m-2'>
+                    <field name="type2" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
