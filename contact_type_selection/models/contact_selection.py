@@ -38,7 +38,7 @@ class ContactSelectin(models.Model):
             return "contact_type_selection/static/img/cim.png"
         
         
-            
+
             
         return super()._avatar_get_placeholder_path()
   
