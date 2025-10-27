@@ -1,5 +1,3 @@
-
-
 from odoo import models, fields, api
 
 class ResPartnerInherit(models.Model):
@@ -8,43 +6,82 @@ class ResPartnerInherit(models.Model):
     new_object_id = fields.Many2one('new.object', string="New Object")
 
     @api.model
+    def load(self, fields_list, data_list):
+        print("\n [LOAD] === CUSTOM load() CALLED ===")
+
+        if 'new_object_id' in fields_list:
+            idx = fields_list.index('new_object_id')
+            print(f"[LOAD] Found 'new_object_id' column at index {idx}")
+
+            for row in data_list:
+                val = row[idx]
+                print(f"\n[LOAD] Processing row value: {val} ({type(val)})")
+
+                # Skip empty or numeric IDs
+                if not val or isinstance(val, int):
+                    print("[LOAD] Skipped (empty or ID)")
+                    continue
+
+                if isinstance(val, str):
+                    name_upper = val.strip().upper()
+                    print(f"[LOAD] Checking for existing New Object: '{name_upper}'")
+
+                    obj = self.env['new.object'].search([('name', '=', name_upper)], limit=1)
+                    if not obj:
+                        obj = self.env['new.object'].create({'name': name_upper})
+                        print(f"[LOAD] Created New Object: {obj.name}")
+                    else:
+                        print(f"[LOAD] Found Existing New Object: {obj.name}")
+
+                    # Replace text with record ID
+                    row[idx] = obj.id
+
+        return super().load(fields_list, data_list)
+
+    @api.model
     def create(self, vals):
-        vals = self._normalize_new_object(vals)
+        print("\n [CREATE] === CREATE CALLED ===")
+        print(f"[CREATE] Incoming vals: {vals}")
 
-        partner_name = vals.get('name')
-        if partner_name:
-            # Check if partner exists
-            existing_partner = self.env['res.partner'].search([('name', '=', partner_name)], limit=1)
+        # Handle new_object_id (string)
+        if vals.get('new_object_id') and isinstance(vals['new_object_id'], str):
+            name = vals['new_object_id'].strip().upper()
+            print(f"[CREATE] Processing New Object: {name}")
+            obj = self.env['new.object'].search([('name', '=', name)], limit=1)
+            if not obj:
+                obj = self.env['new.object'].create({'name': name})
+                print(f"[CREATE] Created new New Object: {obj.name}")
+            else:
+                print(f"[CREATE] Found existing New Object: {obj.name}")
+            vals['new_object_id'] = obj.id
+
+        # Check existing partner
+        if vals.get('name'):
+            name = vals['name'].strip()
+            existing_partner = self.env['res.partner'].search([('name', '=', name)], limit=1)
             if existing_partner:
-                # Update existing partner safely
-                existing_partner.write(vals)
+                print(f"[CREATE] Partner '{name}' already exists.")
+                if vals.get('new_object_id'):
+                    existing_partner.write({'new_object_id': vals['new_object_id']})
+                    print(f"[CREATE] Updated New Object for existing partner: {existing_partner.name}")
                 return existing_partner
-
-        # Otherwise, create a new partner
         return super().create(vals)
 
     def write(self, vals):
-        vals = self._normalize_new_object(vals)
-        return super().write(vals)
+        print("\n [WRITE] === WRITE CALLED ===")
+        print(f"[WRITE] Incoming vals: {vals}")
 
-    def _normalize_new_object(self, vals):
-        """Handle Many2one from import or manual entry safely."""
-        new_obj_val = vals.get('new_object_id')
+        if 'new_object_id' in vals and isinstance(vals['new_object_id'], str):
+            name = vals['new_object_id'].strip().upper()
+            print(f"[WRITE] Processing New Object: {name}")
+            obj = self.env['new.object'].search([('name', '=', name)], limit=1)
+            if not obj:
+                obj = self.env['new.object'].create({'name': name})
+                print(f"[WRITE] Created new New Object: {obj.name}")
+            else:
+                print(f"[WRITE] Found existing New Object: {obj.name}")
+            vals['new_object_id'] = obj.id
 
-        # If it's a list (from import), take the first valid element
-        if isinstance(new_obj_val, list):
-            new_obj_val = next((x for x in new_obj_val if x), None)
-
-        # If it's a string, normalize to uppercase and create/find object
-        if isinstance(new_obj_val, str) and new_obj_val.strip():
-            new_obj_val = new_obj_val.upper()
-            existing_obj = self.env['new.object'].search([('name', '=', new_obj_val)], limit=1)
-            if not existing_obj:
-                existing_obj = self.env['new.object'].create({'name': new_obj_val})
-            vals['new_object_id'] = existing_obj.id
-        else:
-            # Remove key if invalid to avoid errors
-            vals.pop('new_object_id', None)
-
-        return vals
+        result = super().write(vals)
+        return result
 
