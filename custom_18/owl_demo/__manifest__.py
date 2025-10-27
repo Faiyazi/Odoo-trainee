@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     'name': 'OWL Demo',
     'summary': 'Basic OWL Component Example',
     'category': 'Learning',
@@ -17,6 +18,8 @@
     'installable': True,
     'application': False,   
 =======
+=======
+>>>>>>> chirag
     "name": "Owl Demo",
     "version": "1.0",
     "summary": "Simple Hello World using Owl JS in Odoo 18",
@@ -32,5 +35,8 @@
     },
     "license": "LGPL-3",
     "installable": True
+<<<<<<< HEAD
+>>>>>>> chirag
+=======
 >>>>>>> chirag
 }

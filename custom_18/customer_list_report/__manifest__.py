@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 {
     'name': 'Customer PDF Report',
     'version': '1.0',
@@ -15,6 +16,8 @@
     'installable':True
 }
 =======
+=======
+>>>>>>> chirag
 # -*- coding: utf-8 -*-
 {
     'name': "Customer List Report",
@@ -32,4 +35,7 @@
     'license': 'LGPL-3',
 }
 
+<<<<<<< HEAD
+>>>>>>> chirag
+=======
 >>>>>>> chirag

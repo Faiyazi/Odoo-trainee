@@ -1,0 +1,27 @@
+<odoo>
+    <record id="contacts_field_add_kanban" model="ir.ui.view">
+        <field name="name">contacts.kanban.inherit.contacts</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="type2"/>
+            </xpath>
+        </field>
+    </record>
+
+<!--     <record id="view_partner_kanban_inherit" model="ir.ui.view">-->
+<!--    <field name="name">res.partner.kanban.inherit</field>-->
+<!--    <field name="model">res.partner</field>-->
+<!--    <field name="inherit_id" ref="base.view_partner_kanban"/>-->
+<!--    <field name="arch" type="xml">-->
+<!--        <xpath expr="//kanban" position="inside">-->
+<!--            <field name="type2"/>-->
+<!--        </xpath>-->
+<!--    </field>-->
+<!--</record>-->
+
+
+
+
+ </odoo>

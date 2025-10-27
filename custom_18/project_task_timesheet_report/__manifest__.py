@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 {
     'name': 'Project Task Timesheet Reports',
     'version': '1.0',
@@ -17,6 +18,8 @@
     'license': 'LGPL-3',
 }
 =======
+=======
+>>>>>>> chirag
 # -*- coding: utf-8 -*-
 {
     'name': "Project Task Timesheet Report",
@@ -35,4 +38,7 @@
     'license':'LGPL-3',
 }
 
+<<<<<<< HEAD
+>>>>>>> chirag
+=======
 >>>>>>> chirag
