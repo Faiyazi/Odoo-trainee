@@ -1,7 +1,4 @@
 from odoo import models,fields,api
-from odoo.http import request
-
-
 
 class ResPartnerInherit(models.Model):
     _inherit = 'res.partner'
