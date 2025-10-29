@@ -14,8 +14,10 @@ class ContactName(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if 'name' in vals and vals['name']:
+            if 'name' in vals:
                 vals['name'] = vals['name'].upper()
+                
+            print('/n',vals)    
         return super(ContactName, self).create(vals_list)
 
     def write(self, vals):

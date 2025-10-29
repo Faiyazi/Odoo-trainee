@@ -18,9 +18,10 @@ export class ContactForm extends Component{
         const partner = await this.orm.searchRead(
                         "res.partner",[],["name"])
 
-        if (partner.length) {
-            this.state.name = partner[0].name;
+        if (partner) {
+            this.state.name = partner.name;
             alert(`"Hello  ${this.state.name}"`);
+
         }
         
         else {

@@ -58,6 +58,8 @@ class SchoolStudent(models.Model):
         student_b = self.env["school.student"].browse(1)
         print("student_b=", student_b.id)
         
+        
+        
         if student_b.exists():
             print('yes its exists')
         

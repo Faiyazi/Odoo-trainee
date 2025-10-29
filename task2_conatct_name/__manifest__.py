@@ -12,7 +12,7 @@
     "category": "Tools",
     "author": "Black box",
     "website": "https://odoo.com",
-    "depends": ["base","contacts","project"],
+    "depends": ["base","contacts"],
     "data": [
         "security/ir.model.access.csv",
         "views/contact_name_inherit.xml",
