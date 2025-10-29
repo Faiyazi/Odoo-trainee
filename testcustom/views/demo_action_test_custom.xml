@@ -1,0 +1,16 @@
+<odoo>
+    <record id="action_demo_component" model="ir.actions.client">
+        <field name="name">OWL Demo</field>
+        <field name="tag">demo_owl_page</field> <!-- just a custom tag -->
+    </record>
+
+    <template id="demo_owl_page" name="Demo OWL Page">
+        <t t-call="web.basic_layout">
+            <div class="o_demo_container">
+                <h1>Odoo 18 OWL Demo</h1>
+                <!-- THIS IS WHERE THE COMPONENT MOUNTS -->
+                <div id="owl-demo"></div>
+            </div>
+        </t>
+    </template>
+</odoo>
