@@ -7,7 +7,7 @@
     'license': 'LGPL-3',
     'depends': ['base', 'project', 'account', 'mail', 'hr_timesheet',],
     'data': [
-        'security/security.xml',
+        # 'security/security.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'data/data_records_team_member.xml',

@@ -15,13 +15,16 @@ export class ContactForm extends Component{
 
     async setbtn(){
 
-         const x = await this.orm.searchRead(
-                "res.partner",[],["name"]
-            )
-         if (x.length) {
-            this.state.name = x[0].name;
-            alert(`Partner Name: ${this.state.name}`);
-        } else {
+        const partner = await this.orm.searchRead(
+                        "res.partner",[],["name"])
+
+        if (partner) {
+            this.state.name = partner.name;
+            alert(`"Hello  ${this.state.name}"`);
+
+        }
+        
+        else {
             alert("No partner found!");
         }
     }
