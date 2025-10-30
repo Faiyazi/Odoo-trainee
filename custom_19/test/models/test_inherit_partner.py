@@ -7,8 +7,7 @@ class ResPartnerInherit(models.Model):
 
     credit_limit_status = fields.Float(
         string="Credit Limit Status",
-        store=False,
-    )
+     )
 
     # @api.depends('credit_limit')
     # def _compute_credit_limit_status(self):
@@ -17,4 +16,4 @@ class ResPartnerInherit(models.Model):
 
     @api.onchange('credit_limit')
     def _onchange_credit_limit(self):
-        self.credit_limit_status = self.credit_limit + 1
+        self.credit_limit_status = self.credit_limit * 1.1
