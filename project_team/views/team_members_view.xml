@@ -111,7 +111,8 @@
                             <field name="mobile" />
                         </group>
                         <group>
-                            <field name="gender" />
+                            <field name="gender" widget="radio" options="{'horizontal': true}"/>
+
                             <field name="dob" />
                             <field name="bio_data" />
                             <field name="is_active" />

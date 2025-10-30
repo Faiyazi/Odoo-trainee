@@ -37,7 +37,7 @@ from odoo.http import request
     #     return res
 
 
-# class Practice(http.Controller):
+# class Practice1(http.Controller):
 
 #     @http.route('/testcustom/hello', type="http", website=True, auth="public")
 #     def practice_task(self, **kw):
