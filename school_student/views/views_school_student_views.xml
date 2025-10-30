@@ -226,7 +226,7 @@
                         <group>
                             <field name="student_phone_no" />
                             <field name="student_gender" />
-                            <field name="student_total_marks" class="o_bold" readonly="1" />
+                            <field name="student_total_marks" widget='auto_field_color' options='{"color":"red"}' class="o_bold" readonly="1" />
 
                         </group>
 
