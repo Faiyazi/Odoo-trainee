@@ -6,7 +6,7 @@
     'category': 'Uncategorized',
     'version': '0.1',
     'license': 'LGPL-3',
-    'depends': ['base','contacts','auto_field_color'],
+    'depends': ['base','contacts','cit_auto_field_color'],
     'data': [
          'views/test_inherit_partner_views.xml',
      ],
