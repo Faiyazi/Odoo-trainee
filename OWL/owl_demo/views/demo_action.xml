@@ -1,0 +1,15 @@
+<odoo>
+    <!-- Backend action to open the OWL demo -->
+    <record id="action_owl_demo" model="ir.actions.client">
+        <field name="name">OWL Demo</field>
+        <field name="tag">owl_demo_action</field>
+    </record>
+
+    
+    <!-- Menu to access it -->
+    <menuitem id="menu_owl_demo_root" name="OWL Demo" sequence="10"/>
+    <menuitem id="menu_owl_demo" name="Demo Component"
+              parent="menu_owl_demo_root"
+              action="action_owl_demo"
+              sequence="1"/>
+</odoo>

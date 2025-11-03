@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="shopping_controller_template" name="Shopping Page">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h2 class="text-center mb-4">🛍️ Our Shop</h2>
+
+                <!-- ✅ Show message if available -->
+                <t t-if="message">
+                    <div class="alert alert-success" role="alert">
+                        <t t-out="message" />
+                    </div>
+                </t>
+
+                <div class="row">
+                    <t t-foreach="details" t-as="shop">
+                        <div class="col-md-3 mb-4">
+                            <div class="card text-center shadow-sm p-3">
+                                <img t-att-src="'data:image/png;base64,%s' % (shop.image_128 or '')"
+                                     class="card-img-top img-fluid mb-3"
+                                     style="max-height: 150px; object-fit: contain;" />
+
+                                <div class="card-body">
+                                    <h5 class="card-title"><t t-out="shop.name" /></h5>
+                                    <p class="card-text">💰 Price: ₹<t t-out="shop.price" /></p>
+                                    <p class="card-text">🎯 Discount: <t t-out="shop.discount" />%</p>
+                                    <p class="card-text fw-bold">Total: ₹<t t-out="shop.total" /></p>
+
+                                    <!-- 🛒 Buy button -->
+                                    <a t-attf-href="/buy/{{shop.id}}" class="btn btn-primary">
+                                        Buy
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

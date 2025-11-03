@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form view -->
+    <record id="test_controller_view" model="ir.ui.view">
+        <field name="name">test_controller_form_view</field>
+        <field name="model">test.controller</field>
+        <field name="arch" type="xml">
+            <form>
+              
+
+                <sheet>
+                    <field name="image_128" class="oe_avatar" widget="image" />
+                    <group>
+                        <field name="name" />
+                        <field name="price" />
+                        <field name="discount" />
+                        <field name="total" />
+                        <field name="is_published" />
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+    <!-- List view -->
+    <record id="test_controller_list_view" model="ir.ui.view">
+        <field name="name">test_controller_list_view</field>
+        <field name="model">test.controller</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="price" />
+                <field name="discount" />
+                <field name="total" />
+            </list>
+        </field>
+    </record>
+
+
+    <record id="product_buy_list_view" model="ir.ui.view">
+        <field name="name">product_buy_list_view</field>
+        <field name="model">test.purchase.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="product_name" />
+                <field name="price" />
+                <field name="date" />
+            </list>
+        </field>
+    </record>
+
+
+    <!-- Kanban view -->
+
+    <record id="test_controller_kanban_view" model="ir.ui.view">
+        <field name="name">test_controller_kanban_view</field>
+        <field name="model">test.controller</field>
+        <field name="arch" type="xml">
+
+
+            <kanban>
+                <field name="name" />
+                <field name="price" />
+                <field name="discount" />
+                <field name="total" />
+
+                <templates>
+                    <t t-name="card">
+                        <div
+                            class="o_kanban_record shadow-sm rounded-3 border p-3 bg-white d-flex align-items-start gap-3">
+
+                            <!-- Left: Image -->
+                            <aside class="o_kanban_aside_full flex-shrink-0">
+                                <field name="image_128" widget="image"
+                                    options="{'img_class': 'rounded-2 object-fit-cover w-1 h-1 border'}" />
+                            </aside>
+
+                            <!-- Right: Main info -->
+                            <main class="flex-grow-1">
+
+                                <!-- Header -->
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <field name="name" class="fw-semibold fs-5 text-primary" />
+                                    <field name="price" widget="badge"
+                                        class="fw-bold text-bg-success px-2 py-1 rounded-pill" />
+                                </div>
+
+                                <!-- Details -->
+                                <div class="text-muted small mb-1">
+                                    <span>Discount:</span>
+                                    <field name="discount" class="ms-1 fw-medium text-danger" />
+                                </div>
+
+                                <div class="text-muted small">
+                                    <span>Total:</span>
+                                    <field name="total" class="ms-1 fw-medium text-dark" />
+                                </div>
+
+                            </main>
+                        </div>
+                    </t>
+
+
+                </templates>
+            </kanban>
+
+        </field>
+    </record>
+
+</odoo>
