@@ -1,0 +1,129 @@
+<templates>
+    <t t-name='owl_text.Todolist' owl='1'>
+        <div class="todo-list-container">
+            <div class="row mx-2 mt-2">
+                <div class='col-lg-6'>
+                    <button class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" t-on-click="addtask">New</button>
+                </div>
+                <div class='col-lg-6'>
+                    <div class="input-group">
+                        <input type='text' class="form-control" placeholder='seacrh here'
+                            t-ref="search-input" />
+                        <button class="btn btn-outline-primary" t-on-click='searchtask'>Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2">
+                <h2>
+                    Owl Todo List
+                </h2>
+                <div class="col">
+                    <table class="table table-stripad table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Task Description</th>
+                                <th scope="col">Color</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="state.tasklist" t-as="task" t-key="task.id">
+
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            t-att-id="task.id"
+                                            t-att-checked="task.completed"
+                                            t-on-click="(e)=>this.toggletask(e,task)"
+                                        />
+                                        <label class="form-check-label" t-att-for="task.id"
+                                            t-attf-class="#{task.completed and 'text-decoration-line-through'}"
+                                        >
+                                            <span t-esc='task.name' />
+
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="color" class="form-control form-control-color"
+                                        id="exampleColorInput" t-att-value="task.color"
+                                        t-on-change="(e)=>this.updatecolortask(e,task)"
+                                        title="Choose your color" />
+                                </td>
+                                <td>
+                                    <button class="btn btn-success mx-2"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"
+                                        t-on-click="()=>this.edittask(task)">Edit</button>
+                                    <button class="btn btn-danger"
+                                        t-on-click="()=>this.deletetask(task)">Delete</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <CheckBox value="boolean" disabled="boolean" >
+                Some Text
+</CheckBox>
+
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add items</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3 row">
+                            <label for="name" class="col-sm-2 col-form-label">Task Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name"
+                                    t-model='state.task.name'
+                                    t-att-value='state.task.name'
+                                />
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="color" class="col-sm-2 col-form-label">Color</label>
+                            <div class="col-sm-10">
+                                <input type="color" class="form-control form-control-color"
+                                    id="color" t-model='state.task.color'
+                                    t-att-value='state.task.color' title="Choose your color" />
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="completed" class="col-sm-2 col-form-label">Completed</label>
+                            <div class="col-sm-10">
+                                <input class="form-check-input" type="checkbox"
+                                    t-model='state.task.completed'
+                                    t-att-value='state.task.completed'
+                                    id="completed" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close</button>
+                        <button type="button" class="btn btn-primary" t-on-click='this.savetask'>Save
+                            changes</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </t>
+</templates>

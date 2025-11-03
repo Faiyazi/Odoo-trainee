@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="owl_test.owl_test_git_actions" model="ir.actions.client">
+        <field name="name">OWL Test Action</field>
+        <field name="tag">test_owl</field>
+    </record>
+
+    <menuitem
+        id="owl_menu_root"
+        name="Owl Test"
+        action="owl_test.owl_test_git_actions"
+        sequence="1" />
+
+
+    <menuitem
+        id="owl_test_menu"
+        name="Test"
+        parent="owl_menu_root"
+        action="owl_test.owl_test_git_actions"
+        sequence="1"
+    />
+
+    <record id="owl_test.owl_test_actions" model="ir.actions.client">
+        <field name="name">OWL Test Action</field>
+        <field name="tag">owl_demo_action</field>
+    </record>
+
+    <record id="owl_test.owl_test_actions1" model="ir.actions.client">
+        <field name="name">OWL Test Action</field>
+        <field name="tag">owl_demo_action1</field>
+    </record>
+
+
+    <record id="action_owl_todo_list_js" model="ir.actions.client">
+        <field name="name">OWL Todo List</field>
+        <field name="tag">action_owl_todo_list_js</field>
+    </record>
+
+
+    <menuitem
+        id="owl_test_menu_test"
+        name="Open"
+        action="owl_test.owl_test_actions"
+        parent="owl_menu_root"
+        sequence="2" />
+
+    <menuitem
+        id="owl_test_menu_test1"
+        name="test"
+        parent="owl_menu_root"
+        action="owl_test.owl_test_actions1"
+        sequence="3" />
+
+
+
+    <menuitem
+        id='owl_todo_list'
+        name='Todo List'
+        parent='owl_menu_root'
+        action='owl_todo_list_form'
+        sequence='4'
+    />
+
+     <menuitem
+        id='owl_todo_list_owl'
+        name='Todo List Owl'
+        parent='owl_menu_root'
+        action='action_owl_todo_list_js'
+        sequence='5'
+    />
+
+
+
+   
+
+</odoo>

@@ -1,0 +1,23 @@
+<templates name="template_name">
+    <t t-name='child_view.Child'>
+        <t t-slot='default'/>
+        <h1> Hello world child</h1>
+        <p>
+            <h1> Counter : <t t-out='props.counter' />  </h1>
+            <t t-out="props.title" />
+        </p>
+
+        <ol>
+            <t t-foreach="props.list" t-as="list" t-key="list">
+                <li t-out='list' />
+
+            </t>
+
+        </ol>
+
+        <button class='btn btn-primary m-5' t-on-click='focusInput' >Focus Input</button>
+
+        <input class='form-input input m-5' t-ref="my-input"/>
+
+    </t>
+</templates>
