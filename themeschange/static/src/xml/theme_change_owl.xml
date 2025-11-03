@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <templates xml:space="preserve" t-name="ThemeChange.theme_change_template_owl">
+        <div>
+            <h1>Hello WOrld</h1>
+        </div>
+
+        <div>
+            hello
+            <ul t-foreach="state.tasklist" t-as="task" t-key='task.id'>
+                Hello <li t-esc="task.menubar"/>
+            </ul>
+        </div>
+    </templates>
+</odoo>

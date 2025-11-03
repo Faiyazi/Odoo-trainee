@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+   
+
+    <menuitem
+        id="theme_change_root"
+        name="Theme"
+        sequence="1"/>
+
+    <menuitem
+        id="theme_change_menu"
+        name="theme_change"
+        action="action_theme_change"
+        parent="theme_change_root"
+        sequence="1"/>    
+
+    <menuitem
+        id="theme_change_menu_owl"
+        name="Theme Change OWL"
+        action="themeschange.theme_change_action_owl"
+        parent="theme_change_root"
+        sequence="2"/>        
+
+</odoo>

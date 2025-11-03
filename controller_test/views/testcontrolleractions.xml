@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="test_controller_actions" model="ir.actions.act_window">
+        <field name="name">test_controller_actions</field>
+        <field name="res_model">test.controller</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+
+    
+    <record id="product_buy_actions" model="ir.actions.act_window">
+        <field name="name">Product Buy</field>
+        <field name="res_model">test.purchase.log</field>
+        <field name="view_mode">list</field>
+    </record>
+
+
+    <record id="test_controller_website_menu_root" model="website.menu">
+        <field name="name">Shopping Test</field>
+        <field name="url">/shopping</field>
+        <field name="parent_id" ref="website.main_menu" />
+        <field name="sequence" type="int">60</field>
+    </record>
+
+
+    <record id="test_controller_website_menu1" model="website.menu">
+        <field name="name">Add Test</field>
+        <field name="url">/test</field>
+        <field name="parent_id" ref="website.main_menu" />
+        <field name="sequence" type="int">61</field>
+    </record>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <templates xml:space="preserve" t-name="owl_test.DemoComponent">
+        <t >
+            <div class="box1">
+                <table>
+                    <tr>
+                        <td style="font-size: large; font-weight: bold;">My Fruits:</td>
+                        <td>
+                            <input style="background: transparent; border: none;"
+                                   placeholder="Enter text"
+                                   t-on-input="updateNewItem"
+                                   t-att-value="state.newItem"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-size: large; font-weight: bold;">Type:</td>
+                        <td>
+                            <select t-on-change="updateSelection">
+                                <t t-foreach="tyu.options" t-as="opt" t-key="opt">
+                                    <option t-att-value="opt"
+                                            t-att-selected="opt === tyu.selected ? true : undefined">
+                                        <t t-out="opt"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <button type="button" t-on-click="addItem">Click</button>
+                        </td>
+                    </tr>
+                </table>Increase
+            </div>  
+
+            <div>
+                <ul>
+                   <t t-foreach="state.items" t-as="item" t-key="item">
+                        <li><t t-out="item"/></li>
+                   </t>
+                </ul>
+            </div>
+        </t>
+
+
+    </templates>
+</odoo>

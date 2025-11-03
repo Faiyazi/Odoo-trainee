@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <templates xml:space="preserve" t-name="owl_text.HomeDemo">
+        <div class='box'>
+            <h1>Welcome to my Page</h1>
+
+         <p>Item: <t t-out="state.item"/></p>
+        <button t-on-click="increaseItem">Increase</button>
+        <button t-on-click="decrementItem">Decrement</button>
+        </div>
+    </templates>
+
+</odoo>

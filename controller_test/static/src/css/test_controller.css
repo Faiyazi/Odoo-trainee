@@ -1,0 +1,23 @@
+.box-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 15px;                /* Space between boxes */
+    padding: 20px;
+    max-width: 1000px;        /* Limit width for nice centering */
+    margin: 40px auto;        /* Center horizontally with top/bottom margin */
+}
+
+.box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.box:hover {
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
