@@ -13,20 +13,23 @@ export class ContactForm extends Component{
         })
     }
 
-    async setbtn(){
+   async setbtn() {
+    // get the current record ID
+    const recordId = this.props.record.resId;
 
-        const partner = await this.orm.searchRead(
-                        "res.partner",[],["name"])
+    // fetch only that specific partner
+    const partner = await this.orm.searchRead(
+        "res.partner",
+        [["id", "=", recordId]],
+        ["name"]
+    );
 
-        if (partner) {
-            this.state.name = partner.name;
-            alert(`"Hello  ${this.state.name}"`);
-
-        }
-        
-        else {
-            alert("No partner found!");
-        }
+    if (partner.length > 0) {
+        this.state.name = partner[0].name;
+        alert(`Hello ${this.state.name}!`);
+    } else {
+        alert("No partner found!");
     }
+}
 }
 registry.category("view_widgets").add('say_hello',{component:ContactForm})
