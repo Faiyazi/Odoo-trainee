@@ -13,7 +13,7 @@
                             <input type="text" name="name" class="form-control" required="True" />
                         </div>
 
-                        <!-- Email -->
+                        <!-- Price -->
                         <div class="col-md-6 mb-3">
                             <label>Price</label>
                             <input type="float" name="price" class="form-control" required="True" />
