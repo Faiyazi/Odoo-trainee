@@ -14,6 +14,7 @@ class ResConfigSettings(models.TransientModel):
         return [
             'color_brand',
             'color_primary',
+            'color_navbar',
         ]
         
     @property
@@ -44,6 +45,10 @@ class ResConfigSettings(models.TransientModel):
         string='Primary Light Color'
     )
 
+    color_navbar_light = fields.Char(
+        string="Navbar Light Color"
+    )
+
 
     #----------------------------------------------------------
     # Fields Dark Mode
@@ -57,7 +62,9 @@ class ResConfigSettings(models.TransientModel):
         string='Primary Dark Color'
     )
 
-   
+    color_navbar_dark = fields.Char(
+        string="Navbar Dark Color"
+    )
 
     #----------------------------------------------------------
     # Helper

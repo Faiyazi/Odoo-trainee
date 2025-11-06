@@ -38,7 +38,7 @@
                     <field name="theme_color_appbar_background_dark" class="d-block w-25 p-0 m-0" widget="color"/>
                 </div>
 	    	</xpath>
-	    	<xpath expr="//block[@id='branding_settings']" position="inside">
+	    	<xpath expr="//block[@id='branding_settings']" position="inside">	
     			<setting
     				string="Light Mode Background Image"
     				company_dependent="1"

@@ -18,6 +18,10 @@
                             <label for="color_primary_light" string="Primary" class="d-block w-75 py-2"/>
                             <field name="color_primary_light" class="d-block w-25 p-0 m-0" widget="color"/>
                         </div>
+                        <div class="w-50 row">
+                            <label for="color_navbar_light" string="Navbar" class="d-block w-75 py-2"/>
+                            <field name="color_navbar_light" class="d-block w-25 p-0 m-0" widget="color"/>
+                        </div>
                         <button 
                             name="action_reset_light_color_assets" 
                             icon="fa-refresh" 
@@ -34,6 +38,10 @@
                      	<div class="w-50 row">
                             <label for="color_primary_dark" string="Primary" class="d-block w-75 py-2"/>
                             <field name="color_primary_dark" class="d-block w-25 p-0 m-0" widget="color"/>
+                        </div>
+                        <div class="w-50 row">
+                            <label for="color_navbar_dark" string="Navbar" class="d-block w-75 py-2"/>
+                            <field name="color_navbar_dark" class="d-block w-25 p-0 m-0" widget="color"/>
                         </div>
                         <button 
                             name="action_reset_dark_color_assets" 

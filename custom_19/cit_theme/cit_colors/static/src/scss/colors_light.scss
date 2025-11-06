@@ -2,6 +2,8 @@
 
 $mk_color_brand: #243742;
 $mk_color_primary: #5D8DA8;
+$mk_color_navbar: #ffffff;
+
 
 
 
@@ -13,9 +15,14 @@ $o-enterprise-action-color: $mk-color-primary;
 
 $o-brand-odoo: $mk-color-brand;
 $o-brand-primary: $mk-color-primary;
+$o-navbar-background: $mk-color-navbar;
+
 
 
 $o-theme-text-colors: (
     "primary": $mk-color-brand,
-    
+    "navbar": $mk-color-navbar,
+
 );
+
+
