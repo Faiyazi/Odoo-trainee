@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="cit_auto_field_color.AutoFieldColor" owl="1">
+        <div
+            t-attf-style="background-color: {{ fieldColor }}; padding: 4px; border-radius: 4px;">
+
+            <t t-if="BaseField">
+                <t t-component="BaseField" t-props="baseFieldProps"/>
+            </t>
+
+            <t t-else="">
+                <input type="text"
+                       class="form-control"
+                       t-on-input="(ev) => props.record.update({ [props.name]: ev.target.value })"/>
+            </t>
+        </div>
+    </t>
+</templates>

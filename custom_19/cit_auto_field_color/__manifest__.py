@@ -11,27 +11,33 @@
     'category': 'web',
     'depends': ['web'],
     'description': """
-        This module introduces a dynamic color display widget for Odoo fields, allowing developers to visually highlight data values in form and list views.
+        This module introduces a dynamic color display widget for Odoo fields,
+            allowing developers to visually highlight data values in form and list views.
 
         **Key Features:**
-        - Adds a reusable `auto_field_color` widget for any numeric field.
+        - Adds a reusable `auto_field_color` widget for supported field list following.
+          'char', 'text', 'integer', 'float', 'date', 'datetime',
+          'monetary', 'boolean', 'many2one', 'selection'.
         - Supports custom background colors using the XML `options` attribute.
-        - Automatically updates colors reactively when field values change.
         - If no `options` are provided, the widget defaults to a grey background color.
 
         **Color Feature:**
-        To display a custom color in a field, use the `widget` and  `options` attribute in the XML column definition:
-        xml:-
-        <field name="credit_limit_status" widget="auto_field_color" options="{'color': 'green'}"/>
+        - To display a custom color in a field, use the `widget` and `options` attribute in the 
+        XML column definition:-
+        
+        <field name="price_unit" widget="auto_field_color" options="{'color': 'green'}"/>
+        
+        **Notes:**
+        - This widget does not support the following field types:
+        -    'one2many', 'many2many', 'image', 'binary'.
     """,
     'author': 'Caret IT Solutions Pvt. Ltd.',
     'website': 'https://www.caretit.com/',
     'data':[],
     'assets': {
         'web.assets_backend': [
-            'cit_auto_field_color/static/src/xml/auto_field_color_templates.xml',
             'cit_auto_field_color/static/src/js/auto_field_color.js',
-            'cit_auto_field_color/static/src/css/auto_field_color.css',
+            'cit_auto_field_color/static/src/xml/auto_field_color.xml',
         ],
     },
     'auto_install': False,

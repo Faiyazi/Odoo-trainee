@@ -1,52 +1,59 @@
 /** @odoo-module **/
 
-import { registry } from "@web/core/registry";
 import { Component } from "@odoo/owl";
+import { registry } from "@web/core/registry";
 import { standardFieldProps } from "@web/views/fields/standard_field_props";
 
 export class AutoFieldColor extends Component {
-        /**
+       /**
         * AutoFieldColor
         * ------------------------------------------------------------------------
-        * A reusable widget for dynamically coloring Odoo field values.
-        * Supports both value-based and XML option–based color customization.
-        */
-    static template = "auto_field_color.AutoFieldColor";
+        * A reusable widget that dynamically applies color to field values.
+
+        * Features:
+        * - Compatible with standard Odoo field types:
+        *   ('char', 'text', 'integer', 'float', 'date', 'datetime',
+        *   'monetary', 'boolean', 'many2one', 'selection'. etc.).
+        * - Applies a default grey background color if no `color` option is provided.
+        * - Supports custom colors via XML field options (`color`).*/
+
+    static template = "cit_auto_field_color.AutoFieldColor";
 
     static props = {
-        ...standardFieldProps, color: { type: String, optional: true },
+        ...standardFieldProps,
+        color: { type: String, optional: true },
     };
 
-    get fieldStyle() {
-        const value = this.props.record.data[this.props.name];
-        return value > 0 ? "grey-field" : "default-field";
+    setup() {
+        const { name, color } = this.props;
+        const fieldInfo = this.props.field || this.props.record?.fields?.[name];
+
+        const baseWidget = fieldInfo?.widget || fieldInfo?.type || null;
+        const base = baseWidget ? registry.category("fields").get(baseWidget) : null;
+        this.BaseField = base?.component || null;
     }
 
-    get inlineStyle() {
-        /**
-        * Returns inline background style based on the 'color' option
-        * passed from XML. Example: options="{'color': 'green'}".
-        */
-        const bgColor = this.props.color;
-        return `background-color: ${bgColor};`;
+    get fieldColor() {
+        return this.props.color || "grey";
     }
 
-    get formattedValue() {
-        /**
-        * Formats the field value for display.
-        * - Numeric values are shown with two decimal places.
-        * - Other values are shown as-is or as an empty string.
-        */
-        const value = this.props.record.data[this.props.name];
-        if (typeof value === "number") {
-            return value.toFixed(2);
-        }
-        return value || "";
+    get baseFieldProps() {
+        const { color, field, ...cleanProps } = this.props;
+        return {
+            ...cleanProps,
+            readonly: this.props.readonly,
+            record: this.props.record,
+            name: this.props.name,
+        };
     }
 }
 
 registry.category("fields").add("auto_field_color", {
     component: AutoFieldColor,
+    supportedTypes: [
+        "char", "text", "integer", "float", "date", "datetime",
+        "monetary", "boolean", "many2one", "selection",
+    ],
     extractProps({ options }) {
         return { color: options?.color };
     },
