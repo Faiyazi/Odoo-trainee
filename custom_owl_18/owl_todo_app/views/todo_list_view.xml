@@ -42,14 +42,21 @@
 
     <menuitem
         id="owl_todo_list_menu"
+        name="Owl Tutorial"
+        sequence="10"/>
+
+    <menuitem
+        id="owl_todo_list_menu1"
         name="Todo List"
-        sequence="10"
+        sequence="1"
+        parent="owl_todo_list_menu"
         action="action_owl_todo_list"/>
 
      <menuitem
-        id="owl_todo_list_js_menu"
+        id="owl_todo_list_js_menu2"
         name="Todo List OWl"
-        sequence="10"
+        sequence="2"
+        parent="owl_todo_list_menu"
         action="action_owl_todo_list_js"/>
 
 </odoo>
