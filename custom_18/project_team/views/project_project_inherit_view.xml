@@ -1,0 +1,46 @@
+<odoo>
+    <record id="view_project_project_form_inherit" model="ir.ui.view">
+        <field name="name">project.project.form.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project" />
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="team_id" />
+                </xpath>
+
+                <xpath expr="//sheet/notebook" position="inside">
+                    <page string="Team">
+                        <field name="team_member_id" widget="kanban">
+                            <kanban>
+                                <templates>
+                                    <t t-name="card" class="flex-row">
+                                        <div class="oe_kanban_card">
+                                            <strong>
+                                                <field name="name" />
+                                            </strong>
+                                            <br />
+                                            <field name="user_id" />
+                                            <br />
+                                            <field name="mobile" />
+                                            <br />
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </page>
+                </xpath>
+
+                <xpath expr="//sheet/notebook" position="inside">
+                    <page string="Description">
+                        <group>
+                            <field name="description_1" />
+                        </group>
+                    </page>
+                </xpath>
+
+            </data>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <!--    Search view for school student -->
+    <record id="view_school_student_search" model="ir.ui.view">
+        <field name="name">school.student.search.view</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Field to search -->
+                <field name="student_gender" string="Student Gender" />
+                <field name="class_id" string="Classes" />
+
+                <filter name="filter_by_gender" string="Male"
+                    domain="[('student_gender', '=', 'male')]" />
+
+                <filter name="filter_by_gender" string="Female"
+                    domain="[('student_gender', '=', 'female')]" />
+
+                <filter name="filter_by_class" string="Class"
+                    domain="[('class_id','=','Class 1')]" />
+
+                <filter name="filter_by_class" string="Class"
+                    domain="[('class_id','=','Class 2')]" />
+
+                <filter name="filter_by_class" string="Class"
+                    domain="[('class_id','=','Class 3')]" />
+
+                <filter name="filter_by_group" string="Gender"
+                    context="{'group_by':'student_gender'}" />
+            </search>
+        </field>
+    </record>
+
+
+    <record id="quick_create_student_form" model="ir.ui.view">
+        <field name="name">school.student.quick.create.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form string="Quick Student">
+                <group>
+                    <field name="student_name" />
+                    <field name="student_gender" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Kanban view -->
+    <record id="view_school_student_kanban" model="ir.ui.view">
+        <field name="name">view.school.student.kanban</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="status"
+                quick_create_view="school_student.quick_create_student_form"
+                on_create="quick_create">
+
+               <field name="status" />
+                <field name="student_name" />
+                <field name="student_gender" />
+                <field name="image_128" />
+                
+                 <progressbar field='status' colors='{
+                "new": "success",
+                "present": "warning",
+                "absent": "danger"
+        }' />
+
+      
+
+
+               
+                <templates>
+                <field name="status" />
+
+                
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click o_kanban_record">
+                             <aside class='o_kanban_aside_full'>
+
+                                <div class="o_kanban_image_fill position-relative w-100">
+                                <field name="image_128"  class='h-100' widget='image' />
+                            </div>
+
+                             </aside>
+                            
+                            <div class="o_kanban_details">
+                                <strong>
+                                    <field name="student_name" />
+                                </strong>
+                                <br />
+                                <span>
+                                    <field name="student_gender" />
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- Pivot view for School Student -->
+    <record id="view_school_student_pivot" model="ir.ui.view">
+        <field name="name">school.student.pivot</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <pivot string="School Students">
+                <!-- Groupable field -->
+                <field name="student_gender" type="row" />
+                <field name="class_id" type="col" />
+
+                <field name="city" />
+            </pivot>
+        </field>
+    </record>
+
+    <!--    View for Calendar in School Student-->
+
+    <record id="views_school_student_calendar" model="ir.ui.view">
+        <field name="name">school.student.calendar</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <calendar string="Student Calendar" date_start="dob" color="student_gender">
+                <field name="student_name" />
+            </calendar>
+        </field>
+    </record>
+
+    <!--   Graph View for School Student Bar-->
+
+
+    <record id="view_school_student_graph_line" model="ir.ui.view">
+        <field name="name">view.school.student.graph</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+
+
+            <graph type="pie">
+                <field name="class_id" type="row" />
+                <field name="subject_ids" type="col" />
+            </graph>
+
+        </field>
+    </record>
+
+
+    <record id="view_school_student_graph_bar" model="ir.ui.view">
+        <field name="name">view.school.student.graph</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+
+            <graph type="bar">
+                <field name="student_gender" type="row" />
+                <!--                <field name="student_marks" type="measure"/>-->
+            </graph>
+
+        </field>
+    </record>
+
+    <!--    &lt;!&ndash;   Gantt View for School Student Line&ndash;&gt;-->
+    <!--    <record id="view_school_student_gantt" model="ir.ui.view">-->
+    <!--        <field name="name">school.student.gantt</field>-->
+    <!--        <field name="model">school.student</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <gantt-->
+    <!--                    string="Student Timeline"-->
+    <!--                    date_start="student_starting"-->
+    <!--                    date_stop="student_ending"-->
+
+    <!--            >-->
+    <!--                <field name="student_name"/>-->
+    <!--            </gantt>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+
+    <!--  list view for school student  -->
+    <record id="view_school_student_list" model="ir.ui.view">
+        <field name="name">school.student.list.view</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="student_id" />
+                <field name="student_name" />
+                <field name="student_gender" widget="badge" />
+                <field name="class_id" />
+            </list>
+        </field>
+    </record>
+
+    <!--  form view for school student  -->
+    <record id="view_school_student_form" model="ir.ui.view">
+        <field name="name">school.student.form.view</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" string="Click" class="oe_highlight" name="click_button" />
+                    <button type="object" string="Show" class="oe_highlight" name="show_rainbow" />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="image_128" widget="image" class="oe_avatar" />
+                        <group>
+                            <field name="student_id" />
+                            <field name="student_name" />
+                            <field name="student_email" />
+                            <field name="dob" />
+                            <field name="class_id" />
+                            <field name="status" />
+
+                            <field name="subject_ids">
+                                <list editable="bottom">
+                                    <field name="name" />
+                                    <field name="subject_code" />
+                                    <field name="student_marks" />
+                                </list>
+                            </field>
+
+                        </group>
+
+                        <group>
+                            <field name="student_phone_no" />
+                            <field name="student_gender" />
+                            <field name="student_total_marks" widget='auto_field_color' options='{"color":"red"}' class="o_bold" readonly="1" />
+
+                        </group>
+
+                        <notebook>
+                            <page string="Contact">
+                                <group>
+                                    <field name="street_name" />
+                                    <field name="state" />
+                                    <field name="city" />
+                                </group>
+                            </page>
+                            <page string="parent's">
+                                <group col="2">
+                                    <field name="parent_name" />
+                                    <field name="parent_phone" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--    List view for Student Class model-->
+    <record id="student_class_view_list" model="ir.ui.view">
+        <field name="name">Student class list view</field>
+        <field name="model">student.class</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="class_name" />
+            </list>
+        </field>
+    </record>
+
+
+    <!--    Form view for Student Class model-->
+    <record id="student_class_view_form" model="ir.ui.view">
+        <field name="name">Student class form view</field>
+        <field name="model">student.class</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="class_name" />
+                        <field name="class_total" />
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--  Form view for Student Subject  -->
+    <record id="student_subject_view_form" model="ir.ui.view">
+        <field name="name">Student subject form view</field>
+        <field name="model">student.subject</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="subject_code" />
+                        <field name="student_marks" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--    List view for Student Subject model-->
+    <record id="student_subject_view_list" model="ir.ui.view">
+        <field name="name">Student Subject list view</field>
+        <field name="model">student.subject</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="subject_code" />
+            </list>
+        </field>
+    </record>
+
+
+</odoo>

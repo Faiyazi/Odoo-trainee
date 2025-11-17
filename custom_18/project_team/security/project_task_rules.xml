@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_task_user_rule" model="ir.rule">
+        <field name="name">Task - Assigned User Can Read</field>
+        <field name="model_id" ref="project.model_project_task" />
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="domain_force">[('user_ids', 'in', user.id)]</field>
+        <field name="perm_read" eval="1" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+
+</odoo>

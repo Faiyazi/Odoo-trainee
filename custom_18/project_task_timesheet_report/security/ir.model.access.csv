@@ -1,2 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+<<<<<<< HEAD
+<<<<<<< HEAD
+project_task_timesheet_report.access_export_pdf_report,access_export_pdf_report,project_task_timesheet_report.model_export_pdf_report,base.group_user,1,1,1,1
+=======
 project_task_timesheet_report.access_project_task_report,access_project_task_report,model_project_task_report,base.group_user,1,1,1,1
+>>>>>>> chirag
+=======
+project_task_timesheet_report.access_project_task_report,access_project_task_report,model_project_task_report,base.group_user,1,1,1,1
+>>>>>>> chirag

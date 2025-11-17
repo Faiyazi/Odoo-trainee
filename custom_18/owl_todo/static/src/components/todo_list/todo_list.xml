@@ -6,12 +6,21 @@
         <div class="todo-list-container">
             <div class="row mx-2 mt-3 align-items-center">
                 <div class="col-lg-3">
+<<<<<<< HEAD
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">New</button>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search Here...."/>
+                        <button class="btn btn-outline-primary">Search</button>
+=======
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" t-on-click="addTask">New</button>
                 </div>
                 <div class="col-lg-6">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search Here...." t-ref="search-input" t-on-keyup=""/>
                         <button class="btn btn-outline-primary" t-on-click="searchTasks">Search</button>
+>>>>>>> chirag
                     </div>
                 </div>
             </div>
@@ -44,8 +53,13 @@
 
                              </td>
                              <td>
+<<<<<<< HEAD
+                                 <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                                 <button class="btn btn-danger">Delete</button>
+=======
                                  <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" t-on-click="() => this.editTask(task)">Edit</button>
                                  <button class="btn btn-danger" t-on-click="() => this.deleteTask(task)">Delete</button>
+>>>>>>> chirag
 
                             </td>
                         </tr>
@@ -83,7 +97,11 @@
                          <div class="mb-3 row">
                             <label for="completed" class="col-sm-2 col-form-label">Completed</label>
                             <div class="col-sm-10">
+<<<<<<< HEAD
+                                     <input class="form-check-input" type="checkbox" id="completed" t-model="state.task.completed" t-att-checked="state.task.completed"/>
+=======
                                      <input class="form-check-input" type="checkbox" id="completed" t-model="state.task.completed" t-att-checked="state.task.completed" t-on-click="(e) => this.toggleTask(e,task)"/>
+>>>>>>> chirag
                              </div>
                         </div>
                     </div>

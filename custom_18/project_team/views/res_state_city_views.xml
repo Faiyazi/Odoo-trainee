@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_res_state_city_form" model="ir.ui.view">
+        <field name="name">res.state.city.form</field>
+        <field name="model">res.state.city</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="state_id" />
+                        <field name="country_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_res_state_city_list" model="ir.ui.view">
+        <field name="name">res.state.city.list</field>
+        <field name="model">res.state.city</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="state_id" />
+                <field name="country_id" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_project_team_member_1" model="ir.actions.act_window">
+        <field name="name">Cities</field>
+        <field name="res_model">res.state.city</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- <menuitem id="menu_project_team_member_1" 
+            name="City" 
+            parent="menu_project_team_member"
+            action="action_project_team_member_1" 
+            sequence="2" /> -->
+</odoo>

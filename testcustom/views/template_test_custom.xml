@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<odoo>
+    <template id="test_custom_website" name="Test Custom Website">
+        <t t-call="website.layout">
+            <!-- <t t-call="website.layout"> -->
+            <div class="oe_structure">
+                <div class="container">
+                    <h2>Task Custom Records</h2>
+                    <ul>
+                        <t t-foreach="details" t-as="rec">
+                            <li class='box1'>
+                                <div>
+                                    <strong>Name:</strong>
+                                    <t t-esc="rec.name" />
+                                </div>
+                                <div>
+                                    <strong>task:</strong>
+                                    <t t-esc="rec.task_id.name" />
+                                </div>
+                                <div>
+                                    <strong>tags:</strong>
+                                    <t t-foreach='rec.tag_ids' t-as='p'>
+                                        <t t-esc='p.name' />, </t>
+
+                                </div>
+
+                                <br />
+                            </li>
+                        </t>
+                    </ul>
+
+                      <button type="submit" class="btn btn-primary mb-60" t-translate="on">Submit</button>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

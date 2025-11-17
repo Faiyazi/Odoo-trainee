@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_project_team_root"
+              name="Project Team"
+              sequence="1"
+              />
+
+    <menuitem id="team_member"
+              name="Team Members"
+              parent="menu_project_team_root"
+              action="team_member_view"
+              sequence="1"
+              />
+   
+
+    <menuitem id="project_team"
+              name="Project Team"
+              parent="menu_project_team_root"
+              action="project_team_view"
+              />
+
+    <menuitem id="project_team_team"
+              name="Adding Teams"
+              parent="project.menu_project_config"
+              action="action_adding_team"
+              sequence="1"
+              />
+
+</odoo>

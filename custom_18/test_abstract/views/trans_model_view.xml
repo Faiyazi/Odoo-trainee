@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="trans_model_view_form" model="ir.ui.view">
+        <field name="name">trans.model.view.form</field>
+        <field name="model">trans.model</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name1" />
+                        <field name="phone" />
+                    </group>
+                    <footer>
+                        <button string="Wizard" type="object" class="btn-primary"
+                            name="action_open_wizard" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_open_task_wizard" model="ir.actions.act_window">
+        <field name="name">wizard</field>
+        <field name="res_model">trans.model</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="trans_model_menu"
+        name="Test"
+        action = "action_open_task_wizard"
+        parent = "menu_tests_model"
+        sequence="2"/>
+
+</odoo>

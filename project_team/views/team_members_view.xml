@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Search view -->
+    <record id="team_member_search" model="ir.ui.view">
+        <field name="name">team.member.search</field>
+        <field name="model">project.team.member</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <filter name="filter_gender_male" string="Male" domain="[('gender','=','male')]" />
+                <filter name="filter_gender_female" string="Female"
+                    domain="[('gender','=','female')]" />
+
+                <searchpanel>
+                    <field name="gender" select='multi' enable_counters='1' />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- List view -->
+    <record id="team_members_list_view" model="ir.ui.view">
+        <field name="name">team.members.list.view</field>
+        <field name="model">project.team.member</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="seq" widget='handle' />
+                <field name="image_128" widget="image" class="my_avatar"
+                    options="{'size': (48, 48)}"
+                />
+                <field name="name" />
+                <field name="mobile" />
+                <field name="email" />
+                <field name="gender" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Kanban view -->
+    <record id="team_members_kanban_view" model="ir.ui.view">
+        <field name="name">team.members.kanban.view</field>
+        <field name="model">project.team.member</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="image_128" />
+                <field name="name" />
+                <field name="dob" />
+                <field name="gender" />
+                <field name='email' />
+                <templates>
+                    <t t-name="card" class="flex-row">
+
+                        <aside class="o_kanban_aside_full">
+                            <field name="image_128" class="w-5" widget="image"
+                                options="{'img_class': 'object-fit-contain w-20 h-20'}" />
+                        </aside>
+                        <main class="p-2 p-md-0">
+                            <!-- Header: Name on left, Gender badge on right -->
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <field name="name" class="fw-bold fs-5" />
+                                
+                                <field name="gender" widget="badge" class="fw-bold"
+                                    options="{'color_field': 'color'}" />
+                            </div>
+
+                            <!-- Location: City and Country -->
+                            <div class="mx-0 mb-2">
+                                <field name="city" />
+                                <span>, </span>
+                                <field name="country_id" />
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mx-0 mb-2 text-truncate">
+                                <field name="email" class="text-truncate" />
+                            </div>
+
+                            <!-- Footer (empty for now) -->
+                            <footer>
+                                <div></div>
+                            </footer>
+                        </main>
+
+
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Form view -->
+    <record id="team_members_form_view" model="ir.ui.view">
+        <field name="name">team.members.form.view</field>
+        <field name="model">project.team.member</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div>
+                        <field name="image_128" widget="image" class="oe_avatar" />
+                    </div>
+                    <group>
+                        <group>
+
+                            <field name="user_id"
+                                domain="[('user_id','!=',False)]"
+                                context="{'search_default_employee': 1}" />
+                            <field name="name" />
+                            <field name="email" />
+                            <field name="mobile" />
+                        </group>
+                        <group>
+                            <field name="gender" widget="radio" options="{'horizontal': true}"/>
+
+                            <field name="dob" />
+                            <field name="bio_data" />
+                            <field name="is_active" />
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Address">
+                            <group>
+                                <group>
+                                    <group>
+                                        <field name="house_no" placeholder="House No" />
+                                        <field name="country_id" placeholder="Country" />
+                                        <field name="state_id" placeholder="State" />
+                                        <field name="city" placeholder="City"
+                                            domain="[('state_id','=',state_id)]" />
+                                    </group>
+                                    <group>
+
+                                        <field name="street" placeholder="Street" />
+                                        <field name="street2" placeholder="Street-2" />
+                                        <field name="zip_code" placeholder="Zip Code" />
+
+                                    </group>
+
+                                </group>
+
+                            </group>
+                        </page>
+
+                        <page string="Time Sheet">
+                            <field name="timesheet_ids">
+                                <list editable="bottom">
+                                    <field name="date" />
+                                    <field name="user_id" />
+                                </list>
+                            </field>
+
+                        </page>
+
+
+                        <page string="Description">
+                            <group>
+                                <field name="description" index="1" placeholder="Commit..." />
+                            </group>
+                        </page>
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

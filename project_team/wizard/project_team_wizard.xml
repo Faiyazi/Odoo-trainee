@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Wizard Form View -->
+    <record id="view_project_team_wizard_form" model="ir.ui.view">
+        <field name="name">project.team.wizard.form</field>
+        <field name="model">project.team.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Team Member">
+                <group>
+                    <field name="team_member"/>
+                </group>
+                <footer>
+                    <button string="Confirm" type="object" name="action_confirm" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_project_team_wizard" model="ir.actions.server">
+        <field name="name">Project Team Wizard</field>
+        <field name="model_id" ref="model_project_team"/>
+        <field name="binding_model_id" ref="model_project_team"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = {
+            'type': 'ir.actions.act_window',
+            'res_model': 'project.team.wizard',
+            'target': 'new',
+            'views': [(env.ref('project_team.view_project_team_wizard_form').id, 'form')],
+            }
+        </field>
+    </record>
+
+    <record id="view_add_team_form" model="ir.ui.view">
+        <field name="name">add.team.form</field>
+        <field name="model">add.team</field>
+        <field name="arch" type="xml">
+            <form string="Adding Team">
+                <group>
+                    <field name="team_name"/>
+                    <field name="team_leader"/>
+                </group>
+                <footer>
+                    <button string="Confirm" type="object" name="action_confirm" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_adding_team" model="ir.actions.act_window">
+        <field name="name">Adding Team </field>
+        <field name="res_model">add.team</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_add_team_form"/>
+        <field name="target">new</field>
+    </record>
+
+
+
+</odoo>

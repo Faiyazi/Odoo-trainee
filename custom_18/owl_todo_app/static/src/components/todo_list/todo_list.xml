@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template xml:space="preserve">
+
+    <t t-name="owl_todo_app.TodoList">
+        <div>
+            <h2>OWL Todo List</h2>
+            <p t-esc="state.value"/>
+        </div>
+    </t>
+</template>

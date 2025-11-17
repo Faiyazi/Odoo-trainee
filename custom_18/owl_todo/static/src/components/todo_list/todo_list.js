@@ -1,7 +1,11 @@
 /** @odoo-module **/
 
 import {registry} from '@web/core/registry';
+<<<<<<< HEAD
+const { Component , useState, onWillStart } = owl;
+=======
 const { Component , useState, onWillStart, useRef } = owl;
+>>>>>>> chirag
 import { useService } from '@web/core/utils/hooks';
 
     export class OwlTodoList extends Component {
@@ -14,7 +18,10 @@ import { useService } from '@web/core/utils/hooks';
         });
         this.orm =useService("orm")
         this.model = "owl.todolist"
+<<<<<<< HEAD
+=======
         this.searchInput = useRef("search-input")
+>>>>>>> chirag
 
         onWillStart(async ()=>{
             await this.getAllTasks()
@@ -25,6 +32,17 @@ import { useService } from '@web/core/utils/hooks';
         }
 
         addTask(){
+<<<<<<< HEAD
+
+        }
+
+        editTask(){
+
+        }
+
+        async saveTask(){
+               console.log(this.state.task)
+=======
             this.resetForm()
             this.state.activeId = false
             this.state.isEdit = false
@@ -66,6 +84,7 @@ import { useService } from '@web/core/utils/hooks';
             await this.orm.write(this.model, [task.id], {completed: e.target.checked})
             await this.getAllTasks()
 
+>>>>>>> chirag
         }
 }
 OwlTodoList.template = 'owl.TodoList'

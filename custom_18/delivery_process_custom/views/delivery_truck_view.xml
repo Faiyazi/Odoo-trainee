@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Parent Menu: Truck Details -->
+    <menuitem id="menu_delivery_truck_details" name="Truck Details"
+        parent="stock.menu_stock_config_settings" sequence="56" />
+
+    <!-- Action: Truck Open on click of Trucks Smart Button in Sub Menu 2: Truck Type -->
+    <record id="action_open_truck_detail" model="ir.actions.act_window">
+        <field name="name">Truck Details</field>
+        <field name="res_model">delivery.truck.detail</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('truck_type_id', '=', active_id)]</field>
+    </record>
+
+    <!-- Form View: Sub Menu 1: Truck -->
+    <record id="view_delivery_truck_form" model="ir.ui.view">
+        <field name="name">delivery.truck.detail.form</field>
+        <field name="model">delivery.truck.detail</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="truck_number" />
+                            <field name="truck_type_id"
+                                options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" />
+                            <label for="truck_loading_capacity" />
+                            <div name="truck_loading_capacity_div" class="d-flex">
+                                <field name="truck_loading_capacity" />
+                                <span class="oe_inline o_form_label mx-3">In</span>
+                                <field name="truck_uom_id"
+                                    options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" />
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Form View: Sub Menu 2: Truck Type -->
+    <record id="view_delivery_truck_type_form" model="ir.ui.view">
+        <field name="name">delivery.truck.type.form</field>
+        <field name="model">delivery.truck.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="%(action_open_truck_detail)d"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-cubes"
+                        >
+                            <field
+                                name="truck_count"
+                                widget="statinfo"
+                                string="Trucks"
+                                context="{'default_truck_type_id': id}"
+                            />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" string="Truck Type" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List/Tree View: Sub Menu 1: Truck -->
+    <record id="view_delivery_truck_list" model="ir.ui.view">
+        <field name="name">delivery.truck.detail.list</field>
+        <field name="model">delivery.truck.detail</field>
+        <field name="arch" type="xml">
+            <list string="delivery.truck.list">
+                <field name="truck_number" />
+                <field name="truck_type_id" />
+                <field name="truck_loading_capacity" />
+                <field name="truck_uom_id" />
+            </list>
+        </field>
+    </record>
+
+    <!-- List/Tree View: Sub Menu 2: Truck Type -->
+    <record id="view_delivery_truck_type_list" model="ir.ui.view">
+        <field name="name">delivery.truck.type.list</field>
+        <field name="model">delivery.truck.type</field>
+        <field name="arch" type="xml">
+            <list string="delivery.truck.type">
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Action: Sub Menu 1: Truck -->
+    <record id="action_delivery_truck" model="ir.actions.act_window">
+        <field name="name">Delivery Truck</field>
+        <field name="res_model">delivery.truck.detail</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Action: Sub Menu 2: Truck Type -->
+    <record id="action_delivery_truck_type" model="ir.actions.act_window">
+        <field name="name">Truck Type</field>
+        <field name="res_model">delivery.truck.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Sub Menu 1: Truck -->
+    <menuitem id="menu_delivery_truck" name="Truck" parent="menu_delivery_truck_details"
+        action="action_delivery_truck" />
+    <!-- Sub Menu 2: Truck Type -->
+    <menuitem id="menu_delivery_truck_type" name="Truck Type" parent="menu_delivery_truck_details"
+        action="action_delivery_truck_type" sequence="1" />
+
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record id="trans_class_start_form" model="ir.ui.view">
+        <field name="name">tran_class_start.form</field>
+        <field name="model">tran_class_start.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Transient Class Start">
+                <group>
+                    <field name="name"/>
+                    <field name="start_date_t"/>
+                    <field name="end_date"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="class_start_form" model="ir.ui.view">
+        <field name="name">class_start.form</field>
+        <field name="model">class_start.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Class Start">
+                <group>
+                    <field name="start_date"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_class_start" model="ir.actions.act_window">
+        <field name="name">Class Start</field>
+        <field name="res_model">class_start.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="class_start_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_class_start_trans" model="ir.actions.act_window">
+        <field name="name">Trans Class Start</field>
+        <field name="res_model">tran_class_start.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="trans_class_start_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,44 @@
+<odoo>
+    <!-- Inherit standard Sale Order report -->
+    <template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+    
+        <!-- Add new column header for product image -->
+    <xpath expr="//th[@class='text-start']" position="after">
+            <th style="width: 80px;">Image</th>
+        </xpath>
+
+        <!-- Add image in each order line -->
+        <xpath expr="//span[@t-field='line.name']" position="after">
+        <span>
+        <td>
+    <t t-if="line.product_id.image_1920">
+
+        <img t-att-src="image_data_uri(line.product_id.image_1920)"
+             style="max-height:50px; max-width:50px;"/>
+ 
+    </t>
+    <t t-else="">
+        <span style="color: grey; font-size: 10px;">No Image</span>
+    </t>
+</td>
+
+            </span>
+        </xpath>
+
+         <!-- <xpath expr="//th[@name='th_subtotal']" position="after">
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6 text-end">
+                    <p><strong>Subtotal:</strong>
+                        <span t-field="line.amount_untaxed"/>
+                    </p>
+                    <p><strong>Total:</strong>
+                        <span t-field="line.amount_total"/>
+                    </p>
+                </div>
+            </div>
+        </xpath> -->
+
+
+    </template>
+</odoo>

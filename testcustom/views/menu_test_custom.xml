@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="model_test_custom_root"
+        name="Test"
+        sequence="1" />
+
+    <menuitem
+        id='test_custom_menu'
+        name='Test'
+        parent='model_test_custom_root'
+        action='action_test_custom'
+    />
+
+
+        <record id="testcustom_website_menu" model="website.menu">
+            <field name="name">Custom</field>
+            <field name="url">/Custom</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">61</field>
+        </record>
+
+</odoo>

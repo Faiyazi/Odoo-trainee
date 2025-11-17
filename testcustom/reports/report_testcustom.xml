@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="excel_testcustom_report" model="ir.actions.report">
+        <field name="name">TestCustom Excel</field>
+        <field name='model'>task.custom</field>
+        <field name='report_type'>xlsx</field>
+        <field name='report_name'>testcustom.report_testcustom_xlsx</field>
+        <field name='report_file'>testcustom.report_testcustom_xlsx</field>
+    </record>
+
+</odoo>

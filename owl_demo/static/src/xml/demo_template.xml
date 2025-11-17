@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <templates id="DemoComponent" name="OWL Demo Component"  t-name="owl_demo.DemoComponent">
+        <t>
+            <div class="p-4 border">
+                <h3>Odoo 18 OWL Demo</h3>
+
+                <input type="text"
+                       t-on-input="updateNewItem"
+                       t-att-value="state.newItem"
+                       placeholder="Enter a new item"/>
+                <button type="button" t-on-click="addItem">Add Item</button>
+
+                <ul>
+                    <t t-foreach="state.items" t-as="item" t-key="item">
+                        <li><t t-esc="item"/></li>
+                    </t>
+                </ul>
+            </div>
+        </t>
+    </templates>
+</odoo>

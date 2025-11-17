@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <menuitem id="menu_project_team_member"
+                name="Project Team Member"
+                action="action_project_team_member"
+                sequence="1" />
+
+        <menuitem id="menu_configuration"
+                name="Configuration"
+                parent="menu_project_team_member"
+                sequence="2" />
+
+        <menuitem id="menu_res_state_city"
+                name="City"
+                parent="menu_configuration"
+                action="action_project_team_member_1"
+                sequence="4" />
+
+        <menuitem id="menu_project_team"
+                name="Project Teams"
+                parent="menu_configuration"
+                action="action_project_team"
+                sequence="3" />
+</odoo>

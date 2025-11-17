@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="team_member_view" model="ir.actions.act_window">
+        <field name="name">Team Member</field>
+        <field name="res_model">project.team.member</field>
+        <field name="view_mode">list,search,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                My first member
+            </p>
+        </field>
+    </record>
+
+
+    <record id="City_view" model="ir.actions.act_window">
+        <field name="name">City</field>
+        <field name="res_model">res.state.city</field>
+        <field name="view_mode">list,search,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                City
+            </p>
+        </field>
+    </record>
+
+    <record id="project_team_view" model="ir.actions.act_window">
+
+        <field name="name">Project team</field>
+        <field name="res_model">project.team</field>
+        <field name="view_mode">list,search,form,kanban,activity</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Project team
+            </p>
+
+        </field>
+    </record>
+
+    <record id="project_project_view" model="ir.actions.act_window">
+        <field name="name">project_project</field>
+        <field name="res_model">project.project</field>
+        <field name="view_mode">list,search,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                City
+            </p>
+        </field>
+    </record>
+</odoo>

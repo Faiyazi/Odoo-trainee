@@ -1,0 +1,13 @@
+/* 
+    background-color: aquamarine;
+} */
+.box1{
+    border: 1px solid rgb(195, 18, 18);
+    list-style: none;
+    width: 200px;
+    background-color: bisque;
+}
+
+.box1:hover{
+   font-size: 20px;
+}

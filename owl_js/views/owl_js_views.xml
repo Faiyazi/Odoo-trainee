@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <menuitem id="menu_owl_js_root"
+                  name = "Owl JS"
+        />
+
+        <menuitem id="submenu_services"
+                  name="Services"
+                  parent="menu_owl_js_root"
+        />
+
+        <record id="owl_js.action_leads_client" model="ir.actions.client">
+            <field name="name">CRM Leads</field>
+            <field name="tag">owl_js.action_leads</field>
+        </record>
+
+        <menuitem id="submenu_leads_service"
+                  name="Leads"
+                  parent="submenu_services"
+                  action="owl_js.action_leads_client"
+
+        />
+
+
+    </data>
+</odoo>

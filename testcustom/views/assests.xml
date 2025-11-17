@@ -1,0 +1,10 @@
+<odoo>
+
+    <template id="assets_backend" name="test_custom assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <div id="owl-demo"></div>
+
+            <script type="module" src="testcustom/static/src/js/test_custom_owl.js"></script>
+        </xpath>
+    </template>
+</odoo>
