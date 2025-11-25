@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <record id="view_sale_register_wizard_form" model="ir.ui.view">
+            <field name="name">sale.register.wizard.form</field>
+            <field name="model">sale.register.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Sale Register Report">
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <footer>
+                        <button string="Print Excel" type="object" name="action_download_excel"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="view_sale_register_excel_form" model="ir.ui.view">
+            <field name="name">sale.register.excel.form</field>
+            <field name="model">sale.register.excel</field>
+            <field name="arch" type="xml">
+                <form string="Sale Register Excel">
+                    <group>
+                        <field name="excel_file" filename="file_name" widget="download" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_sale_register_wizard" model="ir.actions.act_window">
+            <field name="name">Sale Register Report</field>
+            <field name="res_model">sale.register.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_sale_register_report"
+                  name="Sale Register Report"
+                  parent="sale.menu_sale_report"
+                  action="action_sale_register_wizard"/>
+    </data>
+</odoo>
