@@ -12,7 +12,7 @@ class ProjectTeam(models.Model):
     team_id = fields.Char(string='Team ID', copy=False, readonly=True, required=True, default='New')
 
     team_member = fields.Many2many('project.team.member', string='Team Member', tracking=True)
-    name = fields.Char(string='Team name', tracking=True )
+    name = fields.Char(string='Team name', required=True,tracking=True )
     team_leader = fields.Many2one('project.team.member', string='Team leader', tracking=True)
     is_active = fields.Boolean(string='Active')
     date = fields.Date.today()
