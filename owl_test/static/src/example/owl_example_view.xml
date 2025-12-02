@@ -1,0 +1,10 @@
+<templates>
+    <t t-name='owl_test.Example' owl='1'>
+        <h1>Hello Owl ...</h1>
+        <button t-on-click='increment'>Click for +1</button>
+        <button t-on-dblclick='decrement'>Click for -1</button>
+        <Child title="'Child of Example'"  list=" ['mango','banana','orange','apple']" counter='this.state.counter'>
+            <span>This is an slot</span>
+        </Child>
+    </t>
+</templates>

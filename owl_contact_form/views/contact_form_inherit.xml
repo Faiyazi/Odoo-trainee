@@ -7,10 +7,23 @@
         <field name='arch' type='xml'>
             <xpath expr="//sheet" position="before">
                 <group>
-                    <widget name="say_hello"/>
+                    <widget name="say_hello" />
                 </group>
 
             </xpath>
         </field>
     </record>
+
+    <record id="view_partner_form_inherit_rating" model="ir.ui.view">
+        <field name="name">res.partner.form.rating</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <field name="record_rating" widget="star_rating" />
+            </xpath>
+        </field>
+    </record>
+
+
 </odoo>

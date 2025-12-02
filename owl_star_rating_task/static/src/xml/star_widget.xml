@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="owl_star_rating_task.StarRating">
+        <div class="o_star_rating">
+            <t t-foreach="stars" t-as="star" t-key="star">
+                <span t-att-class="'fa fa-star ' + (star &lt;=  state.rating ? 'text-warning' : 'text-muted')"
+                      t-on-click="()=>onStarClick(star)">
+                </span>
+            </t>
+        </div>
+    </t>
+</templates>

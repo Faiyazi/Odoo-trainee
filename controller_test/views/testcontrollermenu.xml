@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="test_controller_root_menu"
+        name="TestController"
+        sequence="1" />
+
+    <menuitem
+        id="test_controller_submenu_menu"
+        name="Test"
+        action="test_controller_actions"
+        parent="test_controller_root_menu"
+        sequence="1" />
+
+    <menuitem
+        id="test_controller_submenu_menu3"
+        name="Products Buy"
+        action="product_buy_actions"
+        parent="test_controller_root_menu"
+        sequence="2" />
+
+</odoo>
