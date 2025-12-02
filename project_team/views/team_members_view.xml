@@ -66,7 +66,7 @@
                             </div>
 
                             <!-- Location: City and Country -->
-                            <div class="mx-0 mb-2">
+                            <div class="mx-0 mb-2" t-if="record.city.value or record.country_id.value">
                                 <field name="city" />
                                 <span>, </span>
                                 <field name="country_id" />

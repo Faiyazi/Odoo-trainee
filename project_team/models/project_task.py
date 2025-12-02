@@ -6,7 +6,7 @@ class ProjectTask(models.Model):
     _inherit = ['project.task']
 
 
-    assign_date = fields.Datetime(string='Assign date')
+    assign_date = fields.Date(string='Assign date')
     
     @api.model_create_multi
     def create(self, vals_list):
@@ -17,10 +17,10 @@ class ProjectTask(models.Model):
         for vals in vals_list:
             # Set assign_date if not provided
             if 'assign_date' not in vals:
-                vals['assign_date'] = fields.Datetime.now()
+                vals['assign_date'] = fields.Date.now()
 
             # Validate assign_date
-            if vals['assign_date'] < fields.Datetime.now():
+            if vals['assign_date'] < fields.Date.now():
                 raise ValidationError("Past date not allowed")
 
         # Call super with the whole list
@@ -28,7 +28,7 @@ class ProjectTask(models.Model):
 
     def write(self, vals):
         if "assign_date" in vals:
-            if vals['assign_date'] < fields.Datetime.now():
+            if vals['assign_date'] < fields.Date.now():
                 raise ValidationError('past date not allow')
 
         return super(ProjectTask, self).write(vals)
