@@ -33,24 +33,53 @@
             <t t-call="web.external_layout">
 
 
-                <t t-foreach="docs" t-as="task">
-                    <div class="page">
-                        <t t-if="task.project_id">
+                <div class="page">
+                    <!-- <t t-if="task.project_id">
                             <h1> Project Name:- <t t-esc="task.project_id.name" />
                             </h1>
                         </t>
-                        <h1>Project Task:- <t t-esc="task.name" />
+                        <h1>Project     :- <t t-esc="task.name" />
                         </h1>
 
                         <h2>Date Assign:- <t t-esc="task.date_start" />
                         </h2>
                         <h2>Date Deadline:- <t t-esc="task.date_end" />
-                        </h2>
+                        </h2> -->
+
+                    <table class="table table-sm o_main_table" style="width:100%; border:1px solid black; border-collapse: collapse;text-align: center;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center; font-weight: bold;">Project Name</th>
+                                <th style="text-align: center; font-weight: bold;">Project Task</th>
+                                <th style="text-align: center; font-weight: bold;">Assigned Date</th>
+                                <th style="text-align: center; font-weight: bold;">Deadline Date</th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="docs" t-as="task">
+
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <t t-esc="task.project_id.name" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="task.name" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="task.date_start" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="task.date_end" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </t>
+
+                    </table>
 
 
-                    </div>
+                </div>
 
-                </t>
             </t>
         </t>
     </template>
