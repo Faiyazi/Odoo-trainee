@@ -10,6 +10,7 @@
     "sequence" : 1,
     "data": [
         "security/ir.model.access.csv",
+        "report/controller_test_report.xml",
         "views/template_controller.xml",
         "views/testcontrollerviews.xml",
         "views/testcontrolleractions.xml",

@@ -5,7 +5,7 @@
     'author': 'Annoynse',
     'summary': 'eduction,sport,free learning',
     'sequence': '1',
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail','owl_js'],
     'category': 'Eduction',
     'website': 'https://www.odoo.com/app/school_student',
     'data': [

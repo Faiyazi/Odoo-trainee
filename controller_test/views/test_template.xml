@@ -2,7 +2,7 @@
     <template id="test_controller_template" name="Contact Us Page">
         <t t-call="website.layout">
             <div class="container mt-5">
-                <h1 class="mt-30">CRM Lead</h1>
+                <h1 class="mt-30">Product</h1>
 
                 <form action="/test/submit/button" method="post" class="mt-3" redirect="/lead/thankyou" >
 
@@ -18,7 +18,8 @@
                             <label>Price</label>
                             <input type="float" name="price" class="form-control" required="True" />
                         </div>
-
+                        
+                        <!--Discount-->
                         <div class="col-md-6 mb-3">
                             <label>Discount</label>
                             <input type="float" name="discount" class="form-control" required="True" />

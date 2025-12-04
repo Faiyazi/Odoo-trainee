@@ -14,11 +14,12 @@
     "website": "https://odoo.com",
     "depends": ["base", "web", "contacts"],
     "data": [
-        # "views/contact_form_inherit.xml",
+        "views/contact_form_inherit.xml",
     ],
     "assets": {
         "web.assets_backend": [
-            "owl_contact_form/static/src/**/*"
+            "owl_contact_form/static/src/*/**"
+            ""
             # "owl_contact_form/static/src/js/star_form.js",
             # "owl_contact_form/static/src/xml/star_field.xml",
         ],

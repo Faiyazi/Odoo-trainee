@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <menuitem id="owl_js_menu_root" name="Owl JS Menu" sequence="1"/>
+
+    <menuitem id="owl_js_menu_sub" name="Sub Menu" 
+    parent="owl_js_menu_root" action="action_owl_js"
+     sequence="0"/>
+
+    <menuitem 
+    id="owl_js_menu_component" name="Owl JS Component" 
+    parent="owl_js_menu_root" action="action_owl_js_component" sequence="1"/>   
+</odoo>

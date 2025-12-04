@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="testing_owl_list_view" model="ir.ui.view">
+        <field name="name">testing.owl.list.view</field>
+        <field name="model">testing.owl</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="testing_owl_form_view" model="ir.ui.view">
+        <field name="name">testing.owl.form.view</field>
+        <field name="model">testing.owl</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="image" class="oe_avatar" widget="image"/>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="price"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_owl_js" model="ir.actions.act_window">
+        <field name="name">Owl JS Action</field>
+        <field name="res_model">testing.owl</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_owl_js_component" model="ir.actions.client">
+        <field name="name">Owl JS Component Action</field>
+        <field name="tag">owl_js</field>
+    </record>
+
+</odoo>

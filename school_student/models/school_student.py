@@ -108,7 +108,7 @@ class SchoolStudent(models.Model):
             'effect': {
                 'fadeout': 'slow',
                 'message': 'this is rainbow',
-                'imag_url': '/home/hp/odoo18/addons/event/static/src/img/google-calendar.svg',
+                'imag_url': '/school_student/static/src/img/sc.png',
                 'type': 'rainbow_man'
 
             }

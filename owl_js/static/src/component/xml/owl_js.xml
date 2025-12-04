@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="owl_js.owl_js_template">
+
+
+        <style>
+            .box1:hover .Description {
+            height: 150px; /* show more on hover */
+            overflow-y: auto;
+            }
+        </style>
+        <div>
+            <h1>Hello from Owl JS Component!</h1>
+            <p>This is a sample Owl component integrated into Odoo.</p>
+        </div>
+        <div class="row mx-2 mt-2">
+            <div class='col-lg-3'>
+                <button class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" t-on-click="this.addData">New</button>
+            </div>
+            <div class='col-lg-6'>
+                <div class="input-group">
+                    <input type="text"
+                        class="form-control"
+                        placeholder="search here"
+                        t-ref="search-input"
+                        t-on-change="(ev)=>this.searchData(ev)"
+                        autocomplete="off" />
+                    <button type="dropdown" class="btn btn-outline-primary"
+                        t-on-click="this.searchData">Search</button>
+                </div>
+            </div>
+
+            <div class='col-lg-3'>
+                <button class="s_add_to_cart_btn  btn btn-secondary mb-2" t-on-click="this.btnCart" >
+                    <i class="fa fa-shopping-cart"></i>
+                </button> 
+            </div>
+        </div>
+
+        <div class="m-5 d-flex flex-wrap gap-3"
+     style="max-height: 80vh; overflow-y: auto;">
+
+
+            <style>
+                .box2 {
+                position: relative;
+                }
+
+                .Description {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 0;
+                overflow: hidden;
+                background-color: black;
+                opacity: 0.8;
+                color: white;
+                transition: height 0.3s ease;
+                z-index: 10;
+                padding: 0 10px;
+
+                }
+
+                .box2:hover .Description {
+                height: 100%;
+                overflow-y: auto;
+                }
+
+
+                /* ✅ Mobile Responsive Fix */
+                @media (max-width: 768px) {
+
+                /* Cards take full width on mobile */
+                .card {
+                width: 100% !important;
+                height: auto !important;
+                }
+
+                /* Reduce image size */
+                .box2 img {
+                width: 70px !important;
+                height: 70px !important;
+                }
+
+                /* Smaller title */
+                .box2 h2 {
+                font-size: 16px;
+                text-align: center;
+                }
+
+                /* Description overlay height smaller */
+                .box2:hover .Description {
+                height: 70%;
+                }
+
+                /* Buttons full width */
+                .card .d-flex {
+                flex-direction: column;
+                gap: 6px !important;
+                }
+
+                .card button {
+                width: 100%;
+                font-size: 14px;
+                }
+
+                /* Search bar stack */
+                .row.mx-2.mt-2 {
+                flex-direction: column;
+                }
+
+                .input-group {
+                width: 100%;
+                }
+
+                /* Reduce outer margins */
+                .m-5 {
+                margin: 10px !important;
+                }
+                }
+            </style>
+
+
+            <t t-foreach="this.state.set_message" t-as="values" t-key="values.id">
+                <div class="card p-4 d-flex flex-column justify-content-between"
+                    style="width: 18rem; height: 300px;">
+
+                    <div class="box2">
+                        <div class="d-flex justify-content-center mb-2">
+                            <img t-att-src="'data:image/png;base64,' + values.image"
+                                alt="Image"
+                                style="width: 100px; height: 100px;" />
+                        </div>
+
+                        <h2>
+                            <t t-esc="values.name" />
+                        </h2>
+                        <div class="Description">
+                            <b>Description</b> :- <p>
+                                <t t-esc="values.description" />
+                            </p>
+                        </div>
+
+                        <div>
+                            <p>
+                                <t t-esc="values.price" />
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="d-flex gap-4">
+                        <button class="btn btn-success mt-1"
+                            t-on-click="() => this.btnCartClick(values)">ADD to Cart</button>
+                        <button class="btn btn-primary mt-1"
+                            t-on-click="() => this.btnClick(values)">Buy</button>
+
+                            <button t-on-click="() => this.setToForm(values)">click</button>
+
+
+                    </div>
+
+                </div>
+
+            </t>
+        </div>
+
+        <h1 t-if="this.state.set_message.length === 0" class="text-center"> No Records Found <a
+                href="" t-on-click="this.reloadPage">Reload?</a>
+        </h1>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add items</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="mb-3 row">
+                            <label for="image" class="col-sm-2 col-form-label">Image</label>
+                            <div class="col-sm-10">
+                                <input type="file"
+                                    class="form-control"
+                                    id="image"
+                                    accept="image/*"
+                                    t-on-change="onImageChange"
+                                />
+
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="name" class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name"
+                                    t-model='state.message.name'
+                                    t-att-value='state.message.name'
+                                />
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <label for="name" class="col-sm-2 col-form-label">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name"
+                                    t-model='state.message.description'
+                                    t-att-value='state.message.description'
+                                />
+                            </div>
+                        </div>
+
+
+                        <div class="modal-body">
+                            <div class="mb-3 row">
+                                <label for="name" class="col-sm-2 col-form-label">Price</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" t-ref="autofocus" id="name"
+                                        t-model='state.message.price'
+                                        t-att-value='state.message.price'
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close</button>
+                        <button type="button" class="btn btn-primary" t-on-click='this.savetask'>Save
+                            changes</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </t>
+</templates>
