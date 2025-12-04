@@ -1,0 +1,4 @@
+<t t-name = "my_module.ParentComponent" owl="1">
+    <t t-component="ChildComponent" t-on-child-click="handleChildClick"/>
+    <p><t t-esc="state.message"/></p>
+</t>

@@ -1,0 +1,14 @@
+<odoo>
+    <data noupdate="1">#this used not change on this model install
+        <record id="demo_teacher_1" model="college.teacher">
+            <field name="name">Alice Johnson</field>
+            <field name="email">alice@example.com</field>
+            <field name="phone">9876543210</field>
+            <field name="employee_id">EMP001</field>
+            <field name="department">science</field>
+            <field name="base_salary">50000</field>
+            <field name="subject">Mathematics</field>
+            <field name="age">35</field>
+        </record>
+    </data>
+</odoo>

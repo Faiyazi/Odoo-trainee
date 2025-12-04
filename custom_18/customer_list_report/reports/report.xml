@@ -1,0 +1,11 @@
+<odoo>
+    <!-- Report Action -->
+    <record id="action_customer_pdf_report" model="ir.actions.report">
+        <field name="name">Customer PDF Report</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">customer_list_report.pdf_task_report</field>
+        <field name="report_file">customer_list_report.pdf_task_report</field>
+        <field name="print_report_name">'Customer_Report_' + (object.name or '')</field>
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+<t t-name = "my_module.ChildComponent" owl="1">
+    <button t-on-click = "notifyParent">Click Me (child)</button>
+</t>

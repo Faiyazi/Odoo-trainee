@@ -1,0 +1,62 @@
+<odoo>
+    <template id="pdf_task_report">
+        <t t-call="web.external_layout">
+            <!-- <t t-set="company" t-value="env.company" /> -->
+            <main>
+                <div class="page">
+
+                    <!-- Header with Company Logo & Details -->
+                    <!-- <div class="row mb-4" style="text-align:center;">
+                        <t t-if="company.logo">
+                            <img t-att-src="image_data_uri(company.logo)"
+                                style="max-height:80px;" />
+                        </t>
+                        <h2>
+                            <t t-esc="company.name" />
+                        </h2>
+                        <p>
+                            <t t-esc="company.street" />
+                            <br />
+                            <t t-esc="company.city" />
+                            <br />
+                            <t t-esc="company.phone" />
+                        </p>
+                    </div> -->
+
+                    <!-- Title -->
+                        
+
+                    <!-- Table -->
+                    <table class="table table-sm table-bordered"
+                        style="width:100%; margin-top:20px;">
+                        <thead>
+                            <tr style="background-color:#f0f0f0; font-weight:bold;">
+                                <th>Customer Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody class="project_tbody">
+                            <t t-set="docs"
+                                t-value="env['res.partner'].search([])" />
+
+                            <t t-foreach="sorted(docs, key=lambda d: d.name or '')" t-as="p">
+                                <tr>
+                                    <td>
+                                        <t t-esc="p.name" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="p.email or ''" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="p.phone or ''" />
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </t>
+    </template>
+</odoo>
