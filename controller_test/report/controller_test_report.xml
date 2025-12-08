@@ -7,40 +7,56 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">controller_test.test_controller_template_report</field>
         <field name="report_file">controller_test.test_controller_template_report</field>
-        <field name="binding_model_id" ref="model_test_controller"/>
+        <field name="binding_model_id" ref="model_test_controller" />
         <field name="binding_type">report</field>
 
     </record>
     <template id="test_controller_template_report">
         <t t-call="web.html_container">
-        <t t-call="web.external_layout">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="record" t-key="record.id">
 
-            <table class="table table-sm o_main_table" style="width:100%; border:1px solid black; border-collapse: collapse;text-align: center;" border="1">
-                <thead >
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Discount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <t t-foreach="docs" t-as="record" t-key="record.id">
-                        <tr>
-                            <td>
-                                <t t-esc="record.name" />
-                            </td>
-                            <td>
-                                <t t-esc="record.price" />
-                            </td>
-                            <td>
-                                <t t-esc="record.discount" />
-                            </td>
-                        
-                        </tr>
-                    </t>
-                </tbody>
-            </table>
-                        </t>
+
+                    <div style="text-align: right;">
+                        <img t-if="record.image_128"
+                            t-att-src="'/web/image/test.controller/%s/image_128' % record.id"
+                            class="mb-3"
+                            style="max-height:100px; max-width:100px; object-fit:contain; border:1px solid black; background-color:black" />
+                    </div>
+
+                    <a t-att-href="'/test'" target="_blank">
+                        Visit Odoo Website
+                    </a>
+
+
+                    <table class="table table-sm o_main_table"
+                        style="width:100%; border:1px solid black; border-collapse: collapse;text-align: center;"
+                        border="1">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Discount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <t t-esc="record.name" />
+                                </td>
+                                <td>
+                                    <t t-esc="record.price" />
+                                </td>
+                                <td>
+                                    <t t-esc="record.discount" />
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </t>
+            </t>
 
         </t>
 

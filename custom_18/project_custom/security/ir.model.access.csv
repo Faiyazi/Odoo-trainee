@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-<<<<<<< HEAD
-project_custom.access_project_task_checklist,access_project_task_checklist,project_custom.model_project_task_checklist,base.group_system,1,1,1,1
-project_custom.access_project_task_report,access_project_task_report,project_custom.model_project_task_report,base.group_user,1,1,1,1
-=======
-project_custom.access_project_task_checklist,access_project_task_checklist,project_custom.model_project_task_checklist,base.group_user,1,1,1,1
-project_custom.access_export_task_wizard,access_export_task_wizard,project_custom.model_export_task_wizard,base.group_user,1,1,1,1
->>>>>>> ronak

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<odoo>
-    <record id="action_owl_demo" model="ir.actions.client">
-        <field name="name">OWL Demo</field>
-        <field name="tag">owl_demo_action</field>
-    </record>
-
-    <menuitem id="menu_owl_demo_root" name="OWL Demo" action="action_owl_demo"/>
-</odoo>

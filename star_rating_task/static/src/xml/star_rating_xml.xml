@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="star_rating_task.StarRating">
+
+        <style>
+            .o_star_rating i { 
+                color: #ccc;
+                cursor: pointer;
+                font-size: 22px;
+            }
+            .o_star_rating i.active { 
+                color: #ffcc00; 
+            }            
+            
+
+        </style>
+
+        <div class="d-flex gap-1 o_star_rating">
+            <t t-foreach="state.stars" t-as="n" t-key="n">
+                <i class="fa fa-star"
+                   t-att-data-value="n"
+                   t-att-class="n &lt;= value ? 'active' : ''"
+                   t-on-click="setRating"/>
+            </t>
+        </div>
+
+    </t>
+</templates>

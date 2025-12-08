@@ -3,41 +3,94 @@
     <template id="shopping_controller_template" name="Shopping Page">
         <t t-call="website.layout">
             <div class="container mt-5">
-                <h2 class="text-center mb-4">🛍️ Our Shop</h2>
+                <h2 class="text-center mb-4"> Our Shop</h2>
 
                 <t t-if="message">
-                    <div class="alert alert-success" role="alert">
+                    <div id="shopAlert" t-attf-class="alert alert-{{ status }}" role="alert">
                         <t t-out="message" />
                     </div>
                 </t>
 
                 <div class="row">
                     <t t-foreach="details" t-as="shop">
+
                         <div class="col-md-3 mb-4">
-                            <div class="card text-center shadow-sm p-3">
-                                
-                                <img t-att-src="'data:image/png;base64,%s' % (shop.image_128 or '')"
-                                    class="card-img-top img-fluid mb-3"
-                                    style="max-height: 150px; object-fit: contain;" />
+                            <div class="card text-center shadow-sm p-0 d-flex flex-column"
+                                style="height:380px;">
 
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <t t-out="shop.name" />
-                                    </h5>
-                                    <p class="card-text">💰 Price: ₹<t t-out="shop.price" /></p>
-                                    <p class="card-text">🎯 Discount: <t t-out="shop.discount" />%</p>
-                                    <p class="card-text fw-bold">Total: ₹<t t-out="shop.total" /></p>
 
-                                    <!-- 🛒 Buy button -->
-                                    <a t-attf-href="/buy/{{shop.id}}" class="btn btn-primary">
-                                        Buy
-                                    </a>
+                                <div class="d-flex align-items-center justify-content-center"
+                                    style="height:160px; overflow:hidden;">
+                                    <img t-if="shop['image_128']"
+                                        t-att-src="'data:image/png;base64,%s' % shop['image_128']"
+                                        class="img-fluid w-100 h-100"
+                                        style="object-fit:contain;" />
+
+                                </div>
+
+
+                                <div class="card-body d-flex flex-column justify-content-between"
+                                    style="flex: 1;">
+                                    <div>
+                                        <h5 class="card-title">
+                                            <t t-out="shop['name']" />
+                                        </h5>
+
+                                        <table
+                                            class="table table-sm table-bordered text-center mb-2">
+                                            <tr>
+                                                <td>Price: ₹<t t-out="shop['price']" /></td>
+                                                <td>Discount: <t t-out="shop['discount']" />%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total: ₹<t t-out="shop['total']" /></td>
+                                                <td>Stock: <t t-out="shop['stock']" /></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <form t-att-action="'/buy/%s' % shop['id']" method="post">
+
+                                        <!-- ✅ CSRF Token (MANDATORY FOR POST) -->
+                                        <input type="hidden"
+                                            name="csrf_token"
+                                            t-att-value="request.csrf_token()" />
+
+                                        <input type="number"
+                                            name="qty"
+                                            class="form-control mb-2 mx-auto"
+                                            value="1"
+                                            min="1"
+                                            t-att-max="shop['stock']"
+                                            style="width:120px;" />
+
+                                        <button type="submit"
+                                            class="btn btn-primary w-100"
+                                            t-att-disabled="shop['stock'] == 0 and 'disabled' or None"
+                                            onclick="this.disabled=true; this.form.submit();">
+                                            Buy
+                                        </button>
+                                    </form>
+
+
                                 </div>
                             </div>
                         </div>
+
                     </t>
                 </div>
             </div>
         </t>
+
+        <!-- ✅ AUTO HIDE ALERT AFTER 5 SECONDS -->
+        <script type="text/javascript">
+            setTimeout(function () {
+            var alertBox = document.getElementById("shopAlert");
+            if (alertBox) {
+            alertBox.style.display = "none";
+            }
+            }, 5000);
+        </script>
+
     </template>
 </odoo>

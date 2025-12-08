@@ -1,4 +1,0 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_delivery_location","delivery_location","model_delivery_location","",1,1,1,1
-"access_delivery_truck_detail","delivery.truck_detail","model_delivery_truck_detail","",1,1,1,1
-"access_delivery_truck_type","delivery_truck_type","model_delivery_truck_type","",1,1,1,1

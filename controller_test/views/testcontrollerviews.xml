@@ -16,7 +16,9 @@
                         <field name="price" />
                         <field name="discount" />
                         <field name="total" />
-                        <field name="is_published" />
+                        <field name="is_published" widget="boolean_toggle"/>
+                        <field name="stock" />
+
                     </group>
 
                 </sheet>

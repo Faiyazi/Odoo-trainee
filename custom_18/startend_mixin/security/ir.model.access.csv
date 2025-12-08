@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_startend_mixin,startend_mixin.startend_mixin,model_startend_mixin,group_system,1,1,1,1

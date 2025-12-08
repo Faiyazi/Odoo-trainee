@@ -1,1 +1,0 @@
-from . import auto_reminder_task

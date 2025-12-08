@@ -1,1 +1,0 @@
-from.import test_inherit_partner

@@ -69,7 +69,6 @@
                 }
 
 
-                /* ✅ Mobile Responsive Fix */
                 @media (max-width: 768px) {
 
                 /* Cards take full width on mobile */
