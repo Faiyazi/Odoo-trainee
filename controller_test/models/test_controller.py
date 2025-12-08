@@ -23,6 +23,10 @@ class TestController(models.Model):
 
     @api.depends('price', 'discount')
     def _compute_total_price(self):
+        
+        if self.discount > 100:
+            self.discount = 100
+            
         for rec in self:
             rec.total = rec.price - (rec.price * rec.discount) / 100
 
