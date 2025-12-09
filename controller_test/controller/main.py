@@ -5,12 +5,12 @@ import base64
 
 class TestControllerOn(http.Controller):
 
-    @http.route('/test', type='http', auth='public', website=True)
+    @http.route('/test', type='http', auth='user', website=True)
     def practice(self, **kw):
         return request.render("controller_test.test_controller_template")
 
-    @http.route('/test/submit/button', type='http', auth='public',
-                website=True, methods=['POST'], csrf=False)
+    @http.route('/test/submit/button', type='http', auth='user',
+            website=True, methods=['POST'], csrf=False)
     def submit_button_click(self, **post):
 
         name = post.get('name')
@@ -21,8 +21,11 @@ class TestControllerOn(http.Controller):
         image_file = request.httprequest.files.get('image_128')
         image_base64 = False
 
-        image_base64 = base64.b64encode(image_file.read())
+        if image_file:
+            image_base64 = base64.b64encode(image_file.read()).decode('utf-8')
 
+
+        # ✅ FIRST: create or update product
         product = request.env['test.controller'].sudo().search(
             [('name', '=', name)], limit=1
         )
@@ -34,33 +37,49 @@ class TestControllerOn(http.Controller):
             'stock': stock,
             'image_128': image_base64,
         }
-        
-        pdf_test,_ = request.env['ir.actions.report'].sudo()._render_qweb_pdf('controller_test.test_controller_template_report',[product.id])
-        
-        attachment = request.env['ir.attachment'].sudo().create({
-            'name':f'Test Product {product.name}',
-            'type':'binary',
-            'datas':base64.b64encode(pdf_test).decode('utf-8'),
-            'res_model': 'test.controller',
-            'res_id': product.id,
-            'mimetype': 'application/pdf',
-            'public': True,
-        })
-        product.write({
-            'attachment_id':attachment,
-        })
-        
-        mail_template = self.env.ref('controller_test.mail_template_test_controller').sudo()
-        mail_template.send_mail(product.id, force_send=True, email_values={
-        'attachment_ids': [(4, attachment.id)]
-        })
+
 
         if product:
             product.write(values)
         else:
-            request.env['test.controller'].sudo().create(values)
+            product = request.env['test.controller'].sudo().create(values)
+
+        # ✅ NOW product definitely exists → generate PDF
+        pdf_test, _ = request.env['ir.actions.report'].sudo()._render_qweb_pdf(
+            'controller_test.test_controller_template_report',
+            [product.id]
+        )
+
+        # ✅ Create attachment
+        attachment = request.env['ir.attachment'].sudo().create({
+            'name': f'Test Product {product.name}',
+            'type': 'binary',
+            'datas': base64.b64encode(pdf_test).decode('utf-8'),
+            'res_model': 'test.controller',
+            'res_id': product.id,
+            'mimetype': 'application/pdf',
+        })
+
+        # ✅ Link attachment on product if you need
+        product.write({
+            'attachment_id': attachment.id,
+        })
+
+        # ✅ Send mail WITH attachment (correct way)
+        mail_template = request.env.ref(
+            'controller_test.mail_template_test_controller'
+        ).sudo()
+
+        mail_template.send_mail(
+            product.id,
+            force_send=True,
+            email_values={
+                'attachment_ids': [(6, 0, [attachment.id])]   # ✅ THIS IS THE KEY FIX
+            }
+        )
 
         return request.redirect("/lead/thankyou")
+
 
     @http.route('/lead/thankyou', type="http", website=True, auth="public")
     def lead_thank_you(self, **kw):

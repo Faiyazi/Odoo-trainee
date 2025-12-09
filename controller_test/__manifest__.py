@@ -5,13 +5,14 @@
     "license": "LGPL-3",
     "website": "https://www.example.com",
     "author": "John Doe",
-    "depends": ["base", "web", "website", "contacts", "mail"],
+    "depends": ["base", "web", "website", "contacts", "mail","sale_management", 'sign', 'auth_signup'],
     "installable": True,
     "application": True,
     "sequence": 1,
 
     "data": [
         "security/ir.model.access.csv",
+        "data/data_file_test_controller.xml",
         "data/mail_template_test.xml",
         "report/controller_test_report.xml",
         "views/template_controller.xml",

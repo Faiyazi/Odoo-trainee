@@ -100,7 +100,6 @@ class OwlJs extends Component {
         this.effectService.add({
             type: "cart",
         });
-        window.location.href = "/shop/cart";
     }
 
     btnCart() {

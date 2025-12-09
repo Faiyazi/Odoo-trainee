@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+     <template id="signup_custome" name="Sign up login" inherit_id="auth_signup.signup">
+        <xpath expr="//div//label[@for='name']" position="replace">
+            <label for="name" class="form-label">Test</label>
+        </xpath>
+    </template>
+
 
     <!-- Form view -->
     <record id="test_controller_view" model="ir.ui.view">

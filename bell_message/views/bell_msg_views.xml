@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="bell_msg_form_view" model="ir.ui.view">
+        <field name="name">Bell message form view</field>
+        <field name="model">x.alert</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="title" />
+                        <field name="message" />
+                        <field name="is_read"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- <record id="bell_msg_list_view" model="ir.ui.view">
+        <field name="name">Bell message List view</field>
+        <field name="model">x.alert</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="title" />
+                        <field name="message" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record> -->
+
+    <record id="bell_msg_actions" model="ir.actions.act_window">
+        <field name="name">Bell Message</field>
+        <field name="res_model">x.alert</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+</odoo>

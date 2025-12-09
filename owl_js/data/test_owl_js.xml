@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="test_owl_js_data_file" model="testing.owl">
+        <field name="name">cart</field>
+        <field name="price">100</field>
+        <field name="image" type="base64" file="owl_js/static/src/img/cart.png" />
+        <field name="description">This is use for the shopping,which 
+            help shopping smooth and reliable
+        </field>
+    </record>
+
+</odoo>

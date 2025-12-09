@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError,MissingError
 
 
 class TestController(models.Model):
@@ -23,12 +23,14 @@ class TestController(models.Model):
 
     @api.depends('price', 'discount')
     def _compute_total_price(self):
-        
-        if self.discount > 100:
-            self.discount = 100
-            
         for rec in self:
-            rec.total = rec.price - (rec.price * rec.discount) / 100
+            discount = rec.discount or 0.0
+
+            if discount > 100:
+                discount = 100
+                rec.discount = 100
+
+            rec.total = rec.price - (rec.price * discount) / 100        
 
 class TestPurchaseLog(models.Model):
     _name = "test.purchase.log"

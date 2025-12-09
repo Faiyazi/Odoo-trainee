@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="bell_message_root"
+        name="X-alert"
+        sequence="1"/>
+
+        <menuitem
+             id="bell_messgae_menu"
+            name="X-alert"
+            action="bell_msg_actions"
+            parent="bell_message_root"
+            sequence="10"/>
+</odoo>

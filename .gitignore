@@ -2,6 +2,7 @@ __pycache__
 test
 auto_field_color
 muk_web_
+hide_chatter
 owl_contact_form/static/src/xml/star_field.xml
 owl_contact_form/views/contact_form_inherit.xml
 owl_contact_form/static/src/js/star_form.js

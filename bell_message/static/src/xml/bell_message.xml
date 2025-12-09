@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="bell_message.BellMessage" owl="1">
+        <div class="o_systray_item dropdown">
+
+            <!-- 🔔 Bell Button -->
+            <button class="bg-transparent border-0 position-relative"
+                    data-bs-toggle="dropdown">
+                <span style="font-size:18px;">🔔</span>
+
+                <!-- 🔴 Unread Counter -->
+                <span t-if="state.unread > 0"
+                      class="badge rounded-pill position-absolute top-0 start-100 translate-middle text-white"
+                      style="background-color:red;">
+                    <t t-esc="state.unread"/>
+                </span>
+            </button>
+
+            <!-- Dropdown Panel -->
+            <div class="dropdown-menu dropdown-menu-end p-2"
+                 style="width:300px;">
+
+                <t t-if="!state.alerts.length">
+                    <div class="text-muted text-center">
+                        No notifications
+                    </div>
+                </t>
+
+                <t t-foreach="state.alerts" t-as="alert" t-key="alert.id">
+                    <div class="dropdown-item d-flex flex-column"
+                         t-att-class="alert.is_read ? '' : 'fw-bold bg-light'"
+                         t-on-click.stop="() => openAlert(alert.id)">
+
+                        <b><t t-esc="alert.title"/></b>
+
+                        <div class="text-muted">
+                            <t t-esc="alert.message"/>
+                        </div>
+                    </div>
+                </t>
+
+            </div>
+        </div>
+    </t>
+
+</templates>

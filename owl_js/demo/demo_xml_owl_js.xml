@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="demo_file_owl_js" model="testing.owl">
+            <field name="name">Soap</field>
+            <field name="price">90</field>
+
+            <field name="image"
+                type="base64"
+                file="owl_js/static/src/img/soap.jpg" />
+
+            <field name="description" type="html">
+                This is a soap which is used for bathing
+            </field>
+        </record>
+
+    </data>
+</odoo>

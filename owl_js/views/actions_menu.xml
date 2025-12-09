@@ -5,8 +5,8 @@
         <field name="model">testing.owl</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="description"/>
+                <field name="name" />
+                <field name="description" />
             </list>
         </field>
     </record>
@@ -16,12 +16,17 @@
         <field name="model">testing.owl</field>
         <field name="arch" type="xml">
             <form>
+                <button name="onclickbtn"
+                    type="object"
+                    string="Save"
+                    class="btn-primary" />
+
                 <sheet>
                     <group>
-                        <field name="image" class="oe_avatar" widget="image"/>
-                        <field name="name"/>
-                        <field name="description"/>
-                        <field name="price"/>
+                        <field name="image" class="oe_avatar" widget="image" />
+                        <field name="name" />
+                        <field name="description" />
+                        <field name="price" />
                     </group>
                 </sheet>
             </form>

@@ -155,7 +155,6 @@
                         <button class="btn btn-primary mt-1"
                             t-on-click="() => this.btnClick(values)">Buy</button>
 
-                            <button t-on-click="() => this.setToForm(values)">click</button>
 
 
                     </div>

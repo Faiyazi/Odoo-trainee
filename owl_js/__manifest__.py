@@ -12,11 +12,13 @@
     'depends': ['base','sale_management','controller_test','web'],
     'data': [
       "security/ir.model.access.csv",
+      "data/test_owl_js.xml",
       'views/actions_menu.xml',
       'views/owl_js_menu.xml',
+      'views/inherit_in_setting.xml',
     ],
     'demo': [
-      
+      'demo/demo_xml_owl_js.xml',
     ],
     'installable': True,
     'application': True,
@@ -25,7 +27,7 @@
             'owl_js/static/src/effects/js/owl_effects.js',
             'owl_js/static/src/component/js/owl_js.js',
             'owl_js/static/src/component/xml/owl_js.xml',
-            # 'custom_addons/owl_js/static/src/css/owl_js_css.css',
+            'owl_js/static/src/effects/js/changing_effects.js'
         ],
     },
     'license': 'LGPL-3',
