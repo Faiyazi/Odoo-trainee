@@ -4,12 +4,10 @@
     <t t-name="bell_message.BellMessage" owl="1">
         <div class="o_systray_item dropdown">
 
-            <!-- 🔔 Bell Button -->
             <button class="bg-transparent border-0 position-relative"
                     data-bs-toggle="dropdown">
                 <span style="font-size:18px;">🔔</span>
 
-                <!-- 🔴 Unread Counter -->
                 <span t-if="state.unread > 0"
                       class="badge rounded-pill position-absolute top-0 start-100 translate-middle text-white"
                       style="background-color:red;">
@@ -17,7 +15,6 @@
                 </span>
             </button>
 
-            <!-- Dropdown Panel -->
             <div class="dropdown-menu dropdown-menu-end p-2"
                  style="width:300px;">
 

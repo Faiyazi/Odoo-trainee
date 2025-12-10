@@ -15,22 +15,25 @@ export class BellMessage extends Component {
             unread: 0,
         });
 
-        // services
         this.action = useService("action");
 
-        // load once when systray widget is mounted
         onMounted(() => {
             this.loadAlerts();
+
+            setInterval(() => {
+                this.loadAlerts()
+            }, 500)
         });
     }
 
     async loadAlerts() {
+        
         const result = await rpc("/web/dataset/call_kw", {
             model: "x.alert",
             method: "search_read",
-            args: [[]],
+            args: [[["is_read", "=", false]]],
             kwargs: {
-                fields: ["title", "message", "is_read"],
+                fields: ["id", "title", "message", "is_read"],
                 order: "id desc",
                 limit: 5,
             },
@@ -42,10 +45,11 @@ export class BellMessage extends Component {
         console.log("Alerts:", result, "Unread:", this.state.unread);
     }
 
-    // click on one notification → mark read + open form view
+
     async openAlert(id) {
         try {
-            // mark as read in DB
+            console.log("Opening alert ID:", id);
+
             await rpc("/web/dataset/call_kw", {
                 model: "x.alert",
                 method: "write",
@@ -53,23 +57,21 @@ export class BellMessage extends Component {
                 kwargs: {},
             });
 
-            // update local state
             const alert = this.state.alerts.find(a => a.id === id);
-            if (alert) {
-                alert.is_read = true;
-            }
+            if (alert) alert.is_read = true;
+
             this.state.unread = this.state.alerts.filter(a => !a.is_read).length;
 
-            // open record form
             this.action.doAction({
                 type: "ir.actions.act_window",
                 res_model: "x.alert",
                 res_id: id,
                 views: [[false, "form"]],
-                target: "current",   // or "new" for popup
+                target: "current",
             });
 
             console.log("Opened alert:", id);
+
         } catch (e) {
             console.error("Failed to open alert:", e);
         }
