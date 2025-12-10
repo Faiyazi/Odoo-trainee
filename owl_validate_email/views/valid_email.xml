@@ -10,6 +10,10 @@
                     <attribute name="widget">valid_email</attribute>
                 </xpath>
 
+                <field name="website"  position="before" >
+                    <field name="username" widget="username" />
+                </field>
+
             </field>
         </record>
     </data>

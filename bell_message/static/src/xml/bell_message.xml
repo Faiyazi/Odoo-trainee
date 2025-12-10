@@ -9,7 +9,7 @@
                 <span style="font-size:18px;">🔔</span>
 
                 <span t-if="state.unread > 0"
-                      class="badge rounded-pill position-absolute top-0 start-100 translate-middle text-white"
+                      class="badge rounded-pill position-absolute top-0 start-70 translate-middle text-white"
                       style="background-color:red;">
                     <t t-esc="state.unread"/>
                 </span>

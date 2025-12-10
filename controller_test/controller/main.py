@@ -25,7 +25,6 @@ class TestControllerOn(http.Controller):
             image_base64 = base64.b64encode(image_file.read()).decode('utf-8')
 
 
-        # ✅ FIRST: create or update product
         product = request.env['test.controller'].sudo().search(
             [('name', '=', name)], limit=1
         )
@@ -44,13 +43,11 @@ class TestControllerOn(http.Controller):
         else:
             product = request.env['test.controller'].sudo().create(values)
 
-        # ✅ NOW product definitely exists → generate PDF
         pdf_test, _ = request.env['ir.actions.report'].sudo()._render_qweb_pdf(
             'controller_test.test_controller_template_report',
             [product.id]
         )
 
-        # ✅ Create attachment
         attachment = request.env['ir.attachment'].sudo().create({
             'name': f'Test Product {product.name}',
             'type': 'binary',
@@ -60,12 +57,10 @@ class TestControllerOn(http.Controller):
             'mimetype': 'application/pdf',
         })
 
-        # ✅ Link attachment on product if you need
         product.write({
             'attachment_id': attachment.id,
         })
 
-        # ✅ Send mail WITH attachment (correct way)
         mail_template = request.env.ref(
             'controller_test.mail_template_test_controller'
         ).sudo()
@@ -74,7 +69,7 @@ class TestControllerOn(http.Controller):
             product.id,
             force_send=True,
             email_values={
-                'attachment_ids': [(6, 0, [attachment.id])]   # ✅ THIS IS THE KEY FIX
+                'attachment_ids': [(6, 0, [attachment.id])]  
             }
         )
 

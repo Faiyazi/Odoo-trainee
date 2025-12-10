@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="inherit_toggle_button" model="ir.ui.view">
+        <field name="name">inherit.toggle.button</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="is_partner_verified"
+                       widget="toggle_res"/>
+            </xpath>
+
+        </field>
+    </record>
+     <!-- <record id="sale.action_report_saleorder" model="ir.actions.report">
+        <field name="name">PDF XYXZ</field>
+    </record> -->
+</odoo>

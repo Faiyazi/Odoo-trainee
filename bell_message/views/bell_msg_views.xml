@@ -10,7 +10,7 @@
                     <group>
                         <field name="title" />
                         <field name="message" />
-                        <field name="is_read"/>
+                        <field name="is_read" invisible="true" />
                     </group>
                 </sheet>
             </form>

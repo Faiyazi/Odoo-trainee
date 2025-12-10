@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="js_task_toggle.ToggleButtonRES">
+        <button
+            class="btn"
+            t-att-class="state.value ? 'btn-success' : 'btn-secondary'"
+            t-on-click="toggle">
+
+            <t t-esc="state.value ? 'Verified' : 'Not Verified'"/>
+
+        </button>
+    </t>
+
+</templates>
