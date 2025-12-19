@@ -5,5 +5,4 @@ class ResPartner(models.Model):
 
     is_partner_verified = fields.Boolean(
         string="Partner Verified",
-        default=False
     )

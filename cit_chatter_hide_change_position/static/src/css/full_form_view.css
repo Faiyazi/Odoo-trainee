@@ -1,0 +1,27 @@
+/* ----------------------------------
+   FULL WIDTH FORM WHEN CHATTER
+   IS HIDDEN OR AT BOTTOM
+----------------------------------- */
+
+.o-form-full-width .o_form_renderer {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+}
+
+/* Remove reserved right column */
+.o-form-full-width .o_form_view {
+    grid-template-columns: 1fr !important;
+}
+
+/* Ensure sheet stretches fully */
+.o-form-full-width .o_form_sheet_bg {
+    max-width: 100% !important;
+}
+
+.o-form-full-width .o-mail-Form-chatter {
+    border-left: 0;
+    border-top: 1px solid #dcdcdc;
+}
+
+

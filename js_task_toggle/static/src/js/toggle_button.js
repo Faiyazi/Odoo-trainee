@@ -8,6 +8,7 @@ class ToggleButtonRES extends Field {
     setup() {
         super.setup();
         console.log("Toggle Loaded");
+        console.log("Toggle Props",this.props);
 
         this.state = useState({
             value: this.props.value,

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_test_delete_form" model="ir.ui.view">
+        <field name="name">test.delete.form</field>
+        <field name="model">test.delete</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="test_one" />
+                           
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_test_delete_tree" model="ir.ui.view">
+        <field name="name">test.delete.tree</field>
+        <field name="model">test.delete</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="id" />
+            </list>
+        </field>
+    </record>
+
+</odoo>

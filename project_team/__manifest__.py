@@ -5,7 +5,7 @@
     'application': True,
     'installable': True,
     'license': 'LGPL-3',
-    'depends': ['base', 'project', 'account', 'mail', 'hr_timesheet','owl_js'],
+    'depends': ['base', 'project', 'account', 'mail', 'hr_timesheet'],
     'data': [
         # 'security/security.xml',
         'security/ir.model.access.csv',

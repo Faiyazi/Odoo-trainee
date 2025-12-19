@@ -1,0 +1,7 @@
+.hover-bg-light:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+.o_global_search_panel {
+    z-index: 2000 !important; /* Ensure it stays above other navbar items */
+}

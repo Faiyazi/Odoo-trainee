@@ -1,0 +1,12 @@
+body.o-chatter-hidden .o-mail-Form-chatter,
+body.o-chatter-hidden .o_Chatter,
+body.o-chatter-hidden .o_form_chatter,
+body.o-chatter-hidden .o-mail-Thread {
+    display: none !important;
+}
+
+.o_chatter_hidden {
+    display: none !important;
+}
+
+

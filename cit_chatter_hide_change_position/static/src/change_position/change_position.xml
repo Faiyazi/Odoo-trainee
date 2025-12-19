@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="mail.Chatter" t-inherit-mode="extension">
+
+        <xpath expr="//*[@t-name='mail.Chatter']" position="attributes">
+            <attribute name="t-ref">chatterRoot</attribute>
+        </xpath>
+
+        <xpath expr="//Dropdown" position="after">
+
+            <button
+                id="toggle_chatter_position_btn"
+                type="button"
+                class="btn border-0 text-danger m-1">
+                Bottom
+            </button>
+
+
+        </xpath>
+
+    </t>
+
+</templates>

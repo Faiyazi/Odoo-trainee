@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_test_delete" model="ir.actions.act_window">
+        <field name="name">Test Delete</field>
+        <field name="res_model">test.delete</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_test_delete_test" model="ir.actions.act_window">
+        <field name="name">Test Delete</field>
+        <field name="res_model">test.delete.test</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+    <menuitem
+        id="test_delete_root_menu"
+        name="Test Delete"
+        sequence="10" />
+
+
+    <menuitem
+        id="test_delete_sub_menu_1"
+        name="Test Delete"
+        action="action_test_delete"
+        parent="test_delete_root_menu"
+        sequence="10" />
+
+    <menuitem
+        id="test_delete_sub_menu_2"
+        name="Test Delete Test"
+        action="action_test_delete_test"
+        parent="test_delete_root_menu"
+        sequence="10" />
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t
+        t-name="cit_chatter_hide_change_position.ChatterResize"
+        t-inherit="mail.Chatter"
+        t-inherit-mode="extension"
+    >
+
+        <xpath expr="//div[contains(@class,'o-mail-Chatter')]" position="inside">
+            <div
+                class="crt_chatter_resize crt_chatter_resize_right"
+                t-on-mousedown="onStartChatterResize"
+                t-on-dblclick="onDoubleClickChatterResize"
+            />
+        </xpath>
+
+
+    </t>
+
+</templates>

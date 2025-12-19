@@ -1,0 +1,50 @@
+
+body.o-chatter-hidden .o-mail-Form-chatter,
+body.o-chatter-hidden .o_Chatter,
+body.o-chatter-hidden .o_form_chatter,
+body.o-chatter-hidden .o-mail-Thread {
+    display: none !important;
+}
+
+.o_chatter_hidden {
+    display: none !important;
+}
+
+.o_form_view:not(.o-chatter-bottom) {
+    display: flex;
+}
+
+.o_form_view:not(.o-chatter-bottom) .o-mail-Form-chatter {
+    order: 2;
+}
+
+.o_form_view.o-chatter-bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.o_form_view.o-chatter-bottom .o-mail-Form-chatter {
+    order: 99;
+    width: 100% !important;
+}
+
+
+
+.o_form_sheet_bg .o-mail-Form-chatter.o-isInFormSheetBg {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.o_form_sheet_bg .o-mail-Form-chatter.o-isInFormSheetBg.o-aside-chatter {
+    position: static !important;
+    flex: none !important;
+}
+
+.o_form_sheet_bg .o-mail-Form-chatter.o-isInFormSheetBg {
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+

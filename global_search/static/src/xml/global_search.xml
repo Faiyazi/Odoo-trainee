@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="global_search.GlobalSearch">
+        <div class="o_global_search_container position-relative d-flex align-items-center">
+            <div class="o_global_search_icon p-2 cursor-pointer" t-on-click="togglePanel" title="Global Search">
+                <i class="fa fa-search fa-lg"/>
+            </div>
+
+            <div t-if="state.open" class="o_global_search_panel position-absolute bg-white shadow border rounded p-3" 
+                 style="top: 100%; right: 0; min-width: 350px; z-index: 1050;">
+                
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" placeholder="Search across all modules..."
+                           t-ref="input"
+                           t-on-input="onInput"
+                           t-on-keydown="(ev) => ev.key === 'Enter' &amp;&amp; search()"/>
+                    <button class="btn btn-primary" t-on-click="search">
+                        <i t-if="!state.loading" class="fa fa-search"/>
+                        <i t-if="state.loading" class="fa fa-spinner fa-spin"/>
+                    </button>
+                </div>
+
+                <div class="o_search_results overflow-auto" style="max-height: 400px;">
+                    <t t-if="state.result.length > 0">
+                        <div t-foreach="state.result" t-as="res" t-key="res.model + '_' + res.id"
+                             class="o_search_result_item p-2 border-bottom cursor-pointer hover-bg-light"
+                             t-att-data-model="res.model"
+                             t-att-data-id="res.id"
+                             t-on-click="onResultClick">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong><t t-esc="res.display_name"/></strong>
+                                <span class="badge rounded-pill bg-secondary small">
+                                    <t t-esc="res.model_label"/>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-elif="!state.loading &amp;&amp; state.query">
+                        <div class="text-muted p-2 text-center">No results found.</div>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

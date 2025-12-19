@@ -1,0 +1,23 @@
+.o-mail-Chatter,
+.o-mail-Form-chatter {
+    position: relative;
+}
+
+.crt_chatter_resize {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 6px;
+    height: 100%;
+
+    cursor: col-resize;
+    z-index: 20;
+
+    background: transparent;
+}
+
+.crt_chatter_resize:hover {
+    background: rgba(0, 0, 0, 0.05);
+}

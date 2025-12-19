@@ -6,7 +6,7 @@
         <field name="name">Project Team Form View</field>
         <field name="model">project.team</field>
         <field name="arch" type="xml">
-            <form>
+            <form delete='0'>
 
                 <div class="oe_button_box" name="button_box">
                     <button name="action_open_team_member" type="object"

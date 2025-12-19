@@ -1,0 +1,12 @@
+<odoo>
+    <record id="res_users_form_chatter_override" model="ir.ui.view">
+        <field name="name">res.users.form.chatter.override</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='other_preferences']" position="inside">
+                <field name="hide_chatter" widget="boolean_toggle"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
