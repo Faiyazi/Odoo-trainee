@@ -39,6 +39,4 @@ class IrModelAccess(models.Model):
         if is_o2m_line:
             return True
         
-        if model.endswith(('.line', 'stock.move','.item','.detail','.lines')):
-            return result
         return False

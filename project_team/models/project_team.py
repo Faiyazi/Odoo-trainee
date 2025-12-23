@@ -1,4 +1,6 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
+
 
 
 class ProjectTeam(models.Model):
@@ -40,4 +42,16 @@ class ProjectTeam(models.Model):
             'domain': [('name', '=', self.team_member)],
             'target': 'current',
         }
-
+        
+    @api.constrains("team_leader")
+    def _check_team_leader_unique(self):
+        for rec in self:
+            if rec.team_leader:
+                domain = [
+                    ("team_leader", "=", rec.team_leader.id),
+                    ("id", "!=", rec.id),
+                ]
+                if self.search_count(domain):
+                    raise ValidationError(
+                        "This member is already assigned as Team Leader in another team."
+                    )

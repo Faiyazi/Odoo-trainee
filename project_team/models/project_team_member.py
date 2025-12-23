@@ -19,7 +19,7 @@ class TeamMember(models.Model):
     email = fields.Char(
         string="Email", related="user_id.email", readonly=False, store=True
     )
-    mobile = fields.Char(string="Mobile No")
+    mobile = fields.Char(string="Mobile No",size=10)
     member_ids = fields.Many2many("project.team", "team_id", string="Team")
     gender = fields.Selection(
         [("male", "Male"), ("female", "Female"), ("others", "Others")], default=""
@@ -78,11 +78,20 @@ class TeamMember(models.Model):
     def copy(self):
         raise ValidationError("This model can't be copied")
 
-    @api.constrains("mobile")
+    @api.constrains("mobile","name")
     def contact(self):
         for rec in self:
             # if len(rec.mobile) != 10  :
             #     raise ValidationError('Its length should be 10')
 
-            if not rec.mobile.isdigit():
-                raise ValidationError("Its should be Number ")
+            # if not rec.mobile.isdigit():
+            #     raise ValidationError("Its should be Number ")
+            
+            
+            if rec.name.lower():
+                domain = [
+                    ("name", "=", rec.name),
+                    ("id", "!=", rec.id),
+                ]
+                if self.search_count(domain):
+                    raise ValidationError("Name already exists")
