@@ -36,7 +36,7 @@
     "sequence": 1,
 
     "data": [
-        'views/chatter_button_inherit.xml',
+        # 'views/chatter_button_inherit.xml',   
     ],
 
     "assets": {

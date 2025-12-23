@@ -17,6 +17,7 @@
       'views/owl_js_menu.xml',
       'views/inherit_in_setting.xml',
     ],
+    'author':'Mr Destroyer',
     'demo': [
       'demo/demo_xml_owl_js.xml',
     ],

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -- coding: utf-8 --
 ##############################################################################
 #                                                                            #
 # Part of Caret IT Solutions Pvt. Ltd. (Website: www.caretit.com).           #
@@ -6,33 +6,39 @@
 #                                                                            #
 ##############################################################################
 
-from odoo import models, api
-from lxml import etree
+from odoo import api, models, tools
 
-class Base(models.AbstractModel):
-    _inherit = 'base'
+class IrModelAccess(models.Model):
+    _inherit = 'ir.model.access'
 
     @api.model
-    def get_views(self, views, options=None):
-        """
-        This method is called whenever Odoo loads a view.
-        We will inject 'delete="0"' into the arch dynamically.
-        """
-        res = super(Base, self).get_views(views, options=options)
+    @tools.ormcache('self._uid', 'model', 'mode', 'raise_exception', 'self.env.context.get("lang")')
+    def check(self, model, mode='read', raise_exception=True):
+        """ Checks if the user has permission to perform the specified operation on a model, 
+        restricting deletions based on certain conditions and user group access. """
+        result = super().check(model, mode, raise_exception)
+        if mode != 'unlink':
+            return result
+        if self.env.user.has_group('cit_delete_option_config.delete_option_access'):
+            return result
+        active_model = self.env.context.get('active_model')        
+        if model == active_model:
+            return False
+        if active_model and model != active_model:
+            return result   
         
-        for view_type in ['form', 'list']:
-            if view_type in res['views']:
-                view_data = res['views'][view_type]
-                arch = etree.fromstring(view_data['arch'])
-                
-                arch.set('delete', '0')
-                
-                view_data['arch'] = etree.tostring(arch, encoding='unicode')
-                
-                if 'toolbar' in view_data and 'action' in view_data['toolbar']:
-                    view_data['toolbar']['action'] = [
-                        act for act in view_data['toolbar']['action'] 
-                        if act.get('name') != 'Delete'
-                    ]
-                    
-        return res
+        ModelClass = self.env.get(model)
+        if ModelClass is None:
+            return result
+
+        is_o2m_line = any(
+            f.type == 'many2one' and f.ondelete == 'cascade'
+            for f in ModelClass._fields.values()
+        )
+
+        if is_o2m_line:
+            return True
+        
+        if model.endswith(('.line', 'stock.move','.item','.detail','.lines')):
+            return result
+        return False

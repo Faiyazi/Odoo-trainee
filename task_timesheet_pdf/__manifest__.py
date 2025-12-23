@@ -2,6 +2,7 @@
     'name':'task_timesheet_pdf',
     'description':'Task  TimeSheet',
     'sequence':2,
+    'author':'unknown',
     'license': 'LGPL-3',
     'application': True,
     'depends':['project_custom','project'],

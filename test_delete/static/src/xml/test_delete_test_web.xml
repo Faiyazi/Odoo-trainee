@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="web.ControlPanel" t-inherit-mode="extension">
+        <xpath expr="//div[contains(@class, 'o_cp_pager')]" position="before">
+            <field name="test_one" />
+        </xpath>
+    </t>
+
+</templates>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+test_delete.access_test_delete,access_test_delete,test_delete.model_test_delete,base.group_user,1,1,1,1
+test_delete.access_test_delete_test,access_test_delete_test,test_delete.model_test_delete_test,base.group_user,1,1,1,1

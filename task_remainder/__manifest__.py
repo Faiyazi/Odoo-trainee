@@ -1,6 +1,7 @@
 {
     'name': 'task_remainder',
     'description': 'Task Remainder',
+    'author':'unknown',
     'sequence': 2,
     'license': 'LGPL-3',
     'application': True,

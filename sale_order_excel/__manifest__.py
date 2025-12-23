@@ -1,6 +1,7 @@
 {
     'name': 'sale_order_excel',
     'description': 'Sale Order Excel',
+    'author':'unknown',
     'sequence': 1,
     'license': 'LGPL-3',
     'application': True,

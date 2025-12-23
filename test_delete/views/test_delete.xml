@@ -8,7 +8,7 @@
                 <sheet>
                     <group>
                         <field name="test_one" />
-                           
+
                     </group>
                 </sheet>
             </form>
@@ -22,6 +22,8 @@
         <field name="arch" type="xml">
             <list>
                 <field name="id" />
+                <field name="test_one" />
+
             </list>
         </field>
     </record>

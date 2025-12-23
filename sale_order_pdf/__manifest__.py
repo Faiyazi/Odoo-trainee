@@ -1,6 +1,7 @@
 {
     'name': 'sale_order_pdf',
     'description': 'Sale Order PDF',
+    'author':'unknown',
     'sequence': 1,
     'license': 'LGPL-3',
     'application': True,

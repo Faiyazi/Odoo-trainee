@@ -9,4 +9,7 @@
             # "global_detele/static/src/js/force_x2many_delete.js",
         ],
     },
+    'author':'Mr Destroyer',
+    'license':'LGPL-3',
+    
 }

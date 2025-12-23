@@ -21,6 +21,8 @@
         <field name="arch" type="xml">
             <list>
                 <field name="id" />
+                <field name="parent_id" />
+
             </list>
         </field>
     </record>

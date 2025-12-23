@@ -3,6 +3,7 @@
     'description': 'CRM Lead Management',
     'sequence': 2,
     'license': 'LGPL-3',
+    'author':'Mr Destroyer',
     'application': True,
     'depends': [
         # 'project',

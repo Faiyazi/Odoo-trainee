@@ -4,8 +4,6 @@ import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { rpc } from "@web/core/network/rpc";
 
-const systrayRegistry = registry.category("systray");
-
 export class GlobalSearch extends Component {
     setup() {
         this.action = useService("action");
@@ -18,26 +16,25 @@ export class GlobalSearch extends Component {
         this.inputRef = useRef("input");
     }
 
-    openPanel() {
-        this.state.open = true;
-        this.state.query = "";
-        this.state.result = [];
-        setTimeout(() => this.inputRef.el?.focus(), 50);
-    }
+    togglePanel = () => {
+        if (this.state.open) {
+            this.state.open = false;
+        } else {
+            this.state.open = true;
+            this.state.query = "";
+            this.state.result = [];
+            setTimeout(() => this.inputRef.el?.focus(), 50);
+        }
+    };
 
-    togglePanel() {
-        this.state.open ? (this.state.open = false) : this.openPanel();
-    }
-
-    onInput(ev) {
+    onInput = (ev) => {
         this.state.query = ev.target.value;
-    }
+    };
 
-    async search() {
-        if (!this.state.query.trim()) return;
+    search = async () => {
+        if (!this.state.query || !this.state.query.trim()) return;
         this.state.loading = true;
         try {
-            // Updated to use the correct RPC call for Odoo 17+
             const res = await rpc("/global_search/search", { query: this.state.query });
             this.state.result = res.result || [];
         } catch (e) {
@@ -45,9 +42,9 @@ export class GlobalSearch extends Component {
         } finally {
             this.state.loading = false;
         }
-    }
+    };
 
-    async onResultClick(ev) {
+    onResultClick = async (ev) => {
         const { model, id } = ev.currentTarget.dataset;
         this.state.open = false;
         await this.action.doAction({
@@ -57,8 +54,8 @@ export class GlobalSearch extends Component {
             views: [[false, "form"]],
             target: "current",
         });
-    }
+    };
 }
 
 GlobalSearch.template = "global_search.GlobalSearch";
-systrayRegistry.add("global_search.GlobalSearch", { Component: GlobalSearch, sequence: 10 });
+registry.category("systray").add("global_search.GlobalSearch", { Component: GlobalSearch, sequence: 10 });

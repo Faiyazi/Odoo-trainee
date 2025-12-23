@@ -14,6 +14,7 @@
 
                 <searchpanel>
                     <field name="gender" select='multi' enable_counters='1' />
+                    <field name="country_id" enable_counters='1'/> 
                 </searchpanel>
             </search>
         </field>
