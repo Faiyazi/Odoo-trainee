@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--    Form view for Student Class model-->
+    <record id="student_class_view_form" model="ir.ui.view">
+        <field name="name">Student class form view</field>
+        <field name="model">student.class</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="class_name" />
+                            <field name="class_teacher" domain="[('class_ids', '=', False)]" />
+                            <field name="class_rep_b" domain="[('student_gender', '=', 'male')]" />
+                            <field name="class_total" />
+                        </group>
+                        <group>
+                            <field name="section" />
+                            <field name="class_rep_g" domain="[('student_gender', '=', 'female')]" />
+                        </group>
+
+                        <notebook>
+                            <page string="Student">
+                                <field name="student_id">
+                                    <list editable="bottom">
+                                        <field name="student_name" />
+                                        <field name="student_gender" />
+                                        <field name="status"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

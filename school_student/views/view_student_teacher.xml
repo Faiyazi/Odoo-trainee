@@ -1,5 +1,44 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+    <!--    Kanban view for Teacher start-->
+
+    <record id="view_school_teacher_kanban" model="ir.ui.view">
+        <field name="name">school_teacher_kanban_view</field>
+        <field name="model">school.teachers</field>
+        <field name="arch" type="xml">
+            <kanban sample='1'>
+                <field name="teacher_id" />
+                <field name="teacher_name" />
+                <field name="teacher_email" />
+
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <aside class='o_kanban_aside_full'>
+                            <div class="position-relative w-100 h-auto m-0">
+                                <field name="teacher_image" class='h-100' widget='image'
+                                    options="{'img_class': 'object-fit-contain'}"
+                                />
+                            </div>
+                        </aside>
+
+                        <main class="ps-2">
+                            <div class="mb-1">
+                                <field name="teacher_name" class="mb-0 fw-bold fs-5" />
+                            </div>
+                            <div class="text-truncate">
+                                <i class="fa fa-fw me-1 fa-envelope text-primary" title="Email" />
+                                <field name="teacher_email" />
+                            </div>
+
+                        </main>
+
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
 
     <!--    List view for Teacher start-->
 
@@ -8,13 +47,9 @@
         <field name="model">school.teachers</field>
         <field name="arch" type="xml">
             <list>
-
-
-                <field name="teacher_id"/>
-                <field name="teacher_name"/>
-                <field name="teacher_email"/>
-
-
+                <field name="teacher_id" />
+                <field name="teacher_name" />
+                <field name="teacher_email" />
             </list>
         </field>
     </record>
@@ -25,25 +60,34 @@
         <field name="model">school.teachers</field>
         <field name="arch" type="xml">
             <form>
+                <chatter />
                 <sheet>
-                    <div class="oe_title" >
+                    <field name="teacher_image" widget="image" class="oe_avatar"
+                        options='{"zoom": true, "preview_image": "teacher_image"}'
+                        style="float: right;" />
+
+                    <div class="oe_title">
                         <h1>
-                        <field name="reference" />
+                            <field name="teacher_id" />
+
                         </h1>
                     </div>
+
                     <group>
-                        <field name="teacher_image"/>
 
                         <group>
-                            <field name="teacher_id"/>
-                            <field name="teacher_name"/>
-                            <field name="teacher_email"/>
-                            <field name="teacher_contact"/>
+                            <field name="teacher_name" />
+                            <field name="teacher_email" />
+                            <field name="teacher_contact" />
                         </group>
 
                         <group>
-                            <field name="teacher_age"/>
-                            <field name="teacher_department"/>
+                            <field name="class_ids" />
+                            <field name="teacher_age" />
+                            <field name="teacher_department" widget="many2many_tags" />
+                            <field name="teacher_subject"
+                                widget="many2many_tags"
+                                domain="[('department_ids', 'in', teacher_department)]" />
                         </group>
 
                     </group>

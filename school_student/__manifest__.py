@@ -10,11 +10,13 @@
     'website': 'https://www.odoo.com/app/school_student',
     'data': [
         'security/ir.model.access.csv',
+        'data/sequence_teacher.xml',
         'data/sequence_student.xml',
         # 'data/eamil_template.csv',
         # 'data/templat_school_student.xml',
         # 'data/data_school_student.xml',
         'wizard/class_start_wizard.xml',
+        'views/views_class.xml',
         'views/views_school_student_views.xml',
         'views/views_school_student_menu.xml',
         'views/view_student_teacher.xml',

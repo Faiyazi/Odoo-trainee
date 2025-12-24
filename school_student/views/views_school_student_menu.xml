@@ -5,7 +5,7 @@
 
     <!-- General Student Action -->
     <record id="action_school_student" model="ir.actions.act_window">
-        <field name="name">School Students</field>
+        <field name="name">Students</field>
         <field name="res_model">school.student</field>
         <field name="view_mode">list,form,pivot,calendar,graph,search,kanban</field>
         <field name="help" type="html">
@@ -13,15 +13,7 @@
         </field>
     </record>
 
-    <!--    &lt;!&ndash; Section A Action &ndash;&gt;-->
-    <record id="action_school_student_section1" model="ir.actions.act_window">
-        <field name="name">Section A</field>
-        <field name="res_model">school.student</field>
-        <field name="view_mode">list,form</field>
-        <field name="help" type="html">
-            <p class="o_nocontent_smiling">Create your first student profile</p>
-        </field>
-    </record>
+   
 
     <!--    Action for student class start-->
     <record id="action_school_class" model="ir.actions.act_window">
@@ -50,7 +42,7 @@
     <!-- Now the menu items -->
 
     <!-- Main Menu -->
-    <menuitem id="menu_school_student_root" name="School Student" sequence="1"/>
+    <menuitem id="menu_school_student_root" name="School" sequence="1"/>
 
     <!-- Student Submenu -->
 
@@ -63,14 +55,6 @@
 
      />
 
-
-    <!-- Section A Submenu -->
-    <menuitem id="menu_school_student_section1"
-              name="Section A"
-              parent="menu_school_student_student_student"
-              action="action_school_student_section1"
-              sequence="2"
-    />
 
     <!-- Classes Submenu -->
     <menuitem id="menu_school_student_class"

@@ -9,8 +9,22 @@ class StudentSubject(models.Model):
 
     name = fields.Char(string="Subject Name")
     subject_code = fields.Char(string="Subject Code")
-    student_marks = fields.Float(string="Student Marks")
-    student_id = fields.Many2one('school.student', string="Student name")
+    subject_credit = fields.Float(string="Subject Credit")
+    department_ids = fields.Many2many('school.department',string='Department')
+    student_id = fields.Many2one('school.student', string="Student name",ondelete="cascade")
+    
+    
+    def write(self, vals):
+        if 'subject_credit' in vals and vals['subject_credit'] > 10:
+            vals['subject_credit'] = 10
+            
+        return super(StudentSubject, self).write(vals)
+
+    @api.model
+    def create(self, vals):
+        if 'subject_credit' in vals and vals['subject_credit'] > 10:
+            vals['subject_credit'] = 10
+        return super(StudentSubject, self).create(vals)
 
 
 
@@ -18,9 +32,11 @@ class SchoolStudent(models.Model):
     _name = 'school.student'
     _description = 'School Student'
     _rec_name ='student_name'
+    _inherit = ['mail.thread','mail.activity.mixin']
+    
 
     teacher_id = fields.Many2one('school.teachers', string="Teacher")
-    student_id = fields.Char(string='Student ID:')
+    student_id = fields.Char(string='Student ID',default='New')
     
     status = fields.Selection([('new','New'),('present','Present'),('absent','Absent')],default='new'
                               , group_expand='_read_group_stage_ids')
@@ -29,7 +45,7 @@ class SchoolStudent(models.Model):
     student_email = fields.Char(string='Student Email:')
     dob = fields.Date(string="Birth Date")
     student_phone_no = fields.Char(string='Student Contact no:')
-    student_gender = fields.Selection([('male', 'male'), ('female', 'female'), ('other', 'other')], default='male',
+    student_gender = fields.Selection([('male', 'male'), ('female', 'female')], default='male',
                                       required=True)
 
     parent_name = fields.Char(string="Father or Mother Name")
@@ -37,10 +53,9 @@ class SchoolStudent(models.Model):
     street_name = fields.Char(string="Street")
     city = fields.Char(string="City")
     state = fields.Char(string="State")
-    student_total_marks = fields.Float(compute='_compute_marks',string='Total marks' ,store=True)
     student_grade = fields.Char(string="Grades")
-    class_id = fields.Many2one('student.class', string='Class')
-    subject_ids = fields.One2many('student.subject', 'student_id', string='Subjects')
+    class_id = fields.Many2one('student.class',string='Class',ondelete="cascade")
+    subject_ids = fields.Many2many('student.subject', 'student_id', string='Subjects')
 
     # For Gantt Chart
 
@@ -136,11 +151,7 @@ class SchoolStudent(models.Model):
     
     #     return super().write(vals)
 
-    @api.depends('subject_ids.student_marks')
-    def _compute_marks(self):
-        for rec in self:
-            rec.student_total_marks = sum(sub.student_marks for sub in rec.subject_ids)
-
+   
 
     @api.onchange('student_name')
     def _onchange_partner_id(self):
@@ -151,3 +162,16 @@ class SchoolStudent(models.Model):
         else:
             self.student_phone_no = False
             print('hello')
+            
+            
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('student_id', 'New') == 'New':
+                vals['student_id'] = self.env['ir.sequence'].next_by_code('school.student.id') or 'New'
+            
+            existing = self.search([('student_id', '=', vals.get('student_id'))], limit=1)
+            if existing:
+                raise ValidationError('Teacher ID already exists!')
+
+        return super(SchoolStudent, self).create(vals_list)
