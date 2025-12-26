@@ -259,6 +259,24 @@
                                     <field name="parent_dob" />
                                 </group>
                             </page>
+
+                            <page string="Result" name="result_tab">
+                                <field name="student_result" mode="list">
+                                    <list string="Student Marks" create="0" delete="0">
+                                        <field name="result_line_ids" nolabel="1">
+                                            <list editable="bottom" create="0">
+                                                <field name="student_subject" readonly="1" />
+                                                <field name="mid_marks" />
+                                                <field name="mid_grade" />
+                                                <field name="sem_marks" />
+                                                <field name="sem_grade" />
+                                                <field name="marks" string="Total" />
+                                                <field name="grade" readonly="1" />
+                                            </list>
+                                        </field>
+                                    </list>
+                                </field>
+                            </page>
                         </notebook>
                     </group>
 

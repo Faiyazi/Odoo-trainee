@@ -40,6 +40,7 @@ class SchoolStudent(models.Model):
     student_grade = fields.Char(string="Grades")
     class_id = fields.Many2one('student.class', string='Class',ondelete='set null')
     subject_ids = fields.Many2many('student.subject', 'student_id', string='Subjects')
+    student_result = fields.One2many('student.result', 'student_name', string='Exam Results')
 
     # For Gantt Chart
 
@@ -148,7 +149,27 @@ class SchoolStudent(models.Model):
             print('hello')
             
         if self.class_id:
-            self.subject_ids = self.class_id.class_subject    
+            # 1. Update the subjects Many2many
+            self.subject_ids = self.class_id.class_subject
+            
+            # 2. Prepare the Student Result record automatically
+            # We use (5, 0, 0) to clear previous results and (0, 0, {vals}) to create a new one
+            result_lines = []
+            
+            # Get subjects from the class to populate the result sub-table
+            for subject in self.class_id.class_subject:
+                result_lines.append((0, 0, {
+                    'student_subject': subject.id,
+                    'mid_marks': 0.0,
+                    'sem_marks': 0.0,
+                }))
+            
+            # Create a single result record for this student/class session
+            self.student_result = [(5, 0, 0), (0, 0, {
+                'student_name': self._origin.id if self._origin else self.id,
+                'student_class': self.class_id.id,
+                'result_line_ids': result_lines,
+            })]
             
             
     @api.model_create_multi

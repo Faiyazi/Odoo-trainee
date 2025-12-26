@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="student_result_list_view" model="ir.ui.view">
+        <field name="name">student.result.list</field>
+        <field name="model">student.result</field>
+        <field name="arch" type="xml">
+            <list string="Student Results">
+                <field name="student_name" />
+                <field name="student_class" />
+            </list>
+        </field>
+    </record>
+
+    <record id="student_result_form_view" model="ir.ui.view">
+        <field name="name">student.result.form</field>
+        <field name="model">student.result</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="student_name" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="student_class" readonly="1" force_save="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Subject Marks" name="result_page">
+                            <field name="result_line_ids">
+                                <list editable="bottom">
+                                    <field name="student_subject" />
+                                    <field name="mid_marks" />
+                                    <field name="mid_grade" />
+                                    <field name="sem_marks" />
+                                    <field name="sem_grade" />
+                                    <field name="marks" />
+                                    <field name="grade" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_student_result" model="ir.actions.act_window">
+        <field name="name">Student Results</field>
+        <field name="res_model">student.result</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="student_result_menu" name="Results" action="action_student_result"
+              parent="menu_school_student_root" sequence="20" />
+</odoo>

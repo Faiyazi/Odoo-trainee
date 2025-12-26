@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="school_student.report_action_for_student" model="ir.actions.report">
+        <field name="name">report_student_details</field>
+        <field name="model">school.student</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">school_student.report_template_student_details</field>
+        <field name="report_file">school_student.report_template_student_details</field>
+        <field name="binding_model_id" ref="model_school_student" />
+        <field name="binding_type">report</field>
+    </record>
+    <template id="report_template_student_details">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" style="margin-top: 20px; font-size: 16px;">
+                        <div class="d-flex" style="font-size: 23px; margin-bottom: 20px;">
+                            <div style="width: 100px;">
+                                <strong>STD ID</strong>
+                            </div>
+                            <div style="margin-right: 10px;">:-</div>
+                            <div>
+                                <span t-out="o.student_id" />
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-7">
+
+
+                                <div class="d-flex mb-1">
+                                    <div style="width: 100px;">
+                                        <strong>Name</strong>
+                                    </div>
+                                    <div style="margin-right: 10px;">:-</div>
+                                    <div>
+                                        <span t-out="o.student_name.name" />
+                                    </div>
+                                </div>
+
+                                <div class="d-flex mb-1">
+                                    <div style="width: 100px;">
+                                        <strong>Email</strong>
+                                    </div>
+                                    <div style="margin-right: 10px;">:-</div>
+                                    <div>
+                                        <span t-out="o.student_email" />
+                                    </div>
+                                </div>
+
+                                <div class="d-flex mb-1">
+                                    <div style="width: 100px;">
+                                        <strong>Phone</strong>
+                                    </div>
+                                    <div style="margin-right: 10px;">:-</div>
+                                    <div>
+                                        <span t-out="o.student_phone_no" />
+                                    </div>
+                                </div>
+
+                                <div class="d-flex mb-1">
+                                    <div style="width: 100px;">
+                                        <strong>Class Teacher</strong>
+                                    </div>
+                                    <div style="margin-right: 10px;">:-</div>
+                                    <div>
+                                        <span t-out="o.class_id.class_teacher.teacher_name" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="d-flex mb-1">
+                                    <div style="width: 100px;">
+                                        <strong>Birth Date</strong>
+                                    </div>
+                                    <div style="margin-right: 10px;">:-</div>
+                                    <div>
+                                        <span t-out="o.dob" />
+                                    </div>
+                                </div>
+
+                                <div class="d-flex mb-1">
+                                    <div style="width: 100px;">
+                                        <strong>Gender</strong>
+                                    </div>
+                                    <div style="margin-right: 10px;">:-</div>
+                                    <div>
+                                        <span t-out="o.student_gender" />
+                                    </div>
+                                </div>
+
+                                <div class="d-flex mb-1">
+                                    <div style="width: 100px;">
+                                        <strong>Class</strong>
+                                    </div>
+                                    <div style="margin-right: 10px;">:-</div>
+                                    <div>
+                                        <span t-out="o.class_id.class_name" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <table style="width:100%; border-collapse: collapse; margin-top:10px;">
+                            <thead>
+                                <tr>
+                                    <th class="px-1" style="border:0 !important; text-align:left;">Subject
+                                        Name</th>
+                                    <th style="border:0 !important; text-align:left;">Subject Code</th>
+                                    <th style="border:0 !important; text-align:left;">Marks</th>
+                                    <th style="border:0 !important; text-align:left;">Grade</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <t t-foreach="o.subject_ids" t-as="sub">
+                                    <tr>
+                                        <td class="px-1" style="border:0 !important;">
+                                            <span t-out="sub.name" />
+                                        </td>
+                                        <td style="border:0 !important;">
+                                            <span t-out="sub.subject_code" />
+                                        </td>
+                                        <td style="border:0 !important;">
+                                        </td>
+                                        <td style="border:0 !important;">
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
