@@ -60,29 +60,43 @@
         <field name="model">school.teachers</field>
         <field name="arch" type="xml">
             <form>
-                <chatter />
+
                 <sheet>
-                    <field name="teacher_image" widget="image" class="oe_avatar"
-                        options='{"zoom": true, "preview_image": "teacher_image"}'
-                        style="float: right;" />
+                    <widget name="web_ribbon" title="Present" bg_color="bg-success"
+                        invisible="teacher_status != 'present'" />
+                    <widget name="web_ribbon" title="Absent" bg_color="bg-danger"
+                        invisible="teacher_status != 'absent'" />
 
                     <div class="oe_title">
-                        <h1>
-                            <field name="teacher_id" />
+                        <div style="display: flex; align-items: center;">
 
-                        </h1>
+                            <field name="teacher_image" widget="image" class="oe_avatar"
+                                options='{"zoom": true, "preview_image": "teacher_image"}'
+                                style="margin-right: 30px;" />
+
+                            <div>
+                                <label for="teacher_id" string="Teacher ID" />
+                                <h1>
+                                    <field name="teacher_id" readonly="1" />
+                                </h1>
+                            </div>
+                        </div>
                     </div>
 
                     <group>
 
                         <group>
                             <field name="teacher_name" />
+                            <field name="role" />
                             <field name="teacher_email" />
                             <field name="teacher_contact" />
+                            <field name="teacher_gender" />
+                            <field name="teacher_status" />
                         </group>
 
                         <group>
-                            <field name="class_ids" />
+                            <field name="class_ids" domain="[('class_teacher', '=', False)]"
+                                options="{'no_create': True}" />
                             <field name="teacher_age" />
                             <field name="teacher_department" widget="many2many_tags" />
                             <field name="teacher_subject"
@@ -92,15 +106,31 @@
 
                     </group>
                 </sheet>
+                <chatter />
+
             </form>
         </field>
     </record>
     <!--   Form view for Teacher end-->
 
+    <record id="view_school_teacher_calendar" model="ir.ui.view">
+        <field name="name">school.teachers.calendar</field>
+        <field name="model">school.teachers</field>
+        <field name="arch" type="xml">
+            <calendar string="Teachers"
+                date_start="create_date"
+                color="teacher_status"
+                mode="month">
+                <field name="teacher_name" />
+                <field name="teacher_status" filters="1" />
+            </calendar>
+        </field>
+    </record>
+
     <record id="action_school_teacher" model="ir.actions.act_window">
         <field name="name">School Teacher</field>
         <field name="res_model">school.teachers</field>
-        <field name="view_mode">list,form,kanban</field>
+        <field name="view_mode">list,form,kanban,calendar</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create your Teacher profile</p>
         </field>

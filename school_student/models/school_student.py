@@ -2,32 +2,6 @@ from odoo import models, fields, api,_
 from odoo.http import request
 from odoo.exceptions import ValidationError
 
-
-class StudentSubject(models.Model):
-    _name = 'student.subject'
-    _description = 'Student Subject'
-
-    name = fields.Char(string="Subject Name")
-    subject_code = fields.Char(string="Subject Code")
-    subject_credit = fields.Float(string="Subject Credit")
-    department_ids = fields.Many2many('school.department',string='Department')
-    student_id = fields.Many2one('school.student', string="Student name",ondelete="cascade")
-    
-    
-    def write(self, vals):
-        if 'subject_credit' in vals and vals['subject_credit'] > 10:
-            vals['subject_credit'] = 10
-            
-        return super(StudentSubject, self).write(vals)
-
-    @api.model
-    def create(self, vals):
-        if 'subject_credit' in vals and vals['subject_credit'] > 10:
-            vals['subject_credit'] = 10
-        return super(StudentSubject, self).create(vals)
-
-
-
 class SchoolStudent(models.Model):
     _name = 'school.student'
     _description = 'School Student'
@@ -35,26 +9,36 @@ class SchoolStudent(models.Model):
     _inherit = ['mail.thread','mail.activity.mixin']
     
 
-    teacher_id = fields.Many2one('school.teachers', string="Teacher")
-    student_id = fields.Char(string='Student ID',default='New')
+    teacher_id = fields.Many2one('school.teachers', string="Teacher",tracking=True)
+    student_id = fields.Char(string='Student ID',default='New',tracking=True)
     
-    status = fields.Selection([('new','New'),('present','Present'),('absent','Absent')],default='new'
-                              , group_expand='_read_group_stage_ids')
-    student_name = fields.Many2one('res.partner',string='Student Name:' , required=True)
+    status = fields.Selection([('present','Present'),('absent','Absent')],default=''
+                              , group_expand='_read_group_stage_ids',tracking=True)
+    student_name = fields.Many2one('res.partner',string='Student Name:' , required=True,tracking=True)
     image_128 = fields.Image(string="Student Image")
-    student_email = fields.Char(string='Student Email:')
+    student_email = fields.Char(string='Student Email:',tracking=True)
     dob = fields.Date(string="Birth Date")
-    student_phone_no = fields.Char(string='Student Contact no:')
-    student_gender = fields.Selection([('male', 'male'), ('female', 'female')], default='male',
-                                      required=True)
-
-    parent_name = fields.Char(string="Father or Mother Name")
+    student_phone_no = fields.Char(string='Student Contact no:',tracking=True)
+    student_gender = fields.Selection([('male', 'Male'), ('female', 'Female')], default='',
+                                      required=True,tracking=True)
+    
+    # Parents Details
+    parent_name = fields.Char(string="Parent Name",tracking=True)
     parent_phone = fields.Char(string="Contact No")
+    parent_email = fields.Char(string="Email")
+    parent_dob = fields.Date(string="Birth Day")
+    
+    
+    # Address
     street_name = fields.Char(string="Street")
     city = fields.Char(string="City")
-    state = fields.Char(string="State")
+    country = fields.Many2one("res.country", string="Country")
+    state = fields.Many2one("res.country.state", string="State")
+    
+    
+    
     student_grade = fields.Char(string="Grades")
-    class_id = fields.Many2one('student.class',string='Class',ondelete="cascade")
+    class_id = fields.Many2one('student.class', string='Class',ondelete='set null')
     subject_ids = fields.Many2many('student.subject', 'student_id', string='Subjects')
 
     # For Gantt Chart
@@ -153,7 +137,7 @@ class SchoolStudent(models.Model):
 
    
 
-    @api.onchange('student_name')
+    @api.onchange('student_name','class_id')
     def _onchange_partner_id(self):
         if self.student_name: 
             self.student_phone_no = self.student_name.phone
@@ -163,15 +147,73 @@ class SchoolStudent(models.Model):
             self.student_phone_no = False
             print('hello')
             
+        if self.class_id:
+            self.subject_ids = self.class_id.class_subject    
+            
             
     @api.model_create_multi
     def create(self, vals_list):
+        # 1. Prepare vals (Sequence & Validation) BEFORE creating records
         for vals in vals_list:
             if vals.get('student_id', 'New') == 'New':
                 vals['student_id'] = self.env['ir.sequence'].next_by_code('school.student.id') or 'New'
             
+            # Check if ID exists in DB
             existing = self.search([('student_id', '=', vals.get('student_id'))], limit=1)
             if existing:
-                raise ValidationError('Teacher ID already exists!')
+                raise ValidationError('Student ID %s already exists!' % vals.get('student_id'))
 
-        return super(SchoolStudent, self).create(vals_list)
+        # 2. Create the records in the database
+        records = super(SchoolStudent, self).create(vals_list)
+
+        # 3. Trigger email logic AFTER records exist in the database
+        for record in records:
+            if record.status == 'absent':
+                record._send_absence_email()
+
+        # 4. Return the created records
+        return records
+    
+    
+    def write(self, vals):
+        res = super().write(vals)
+
+        if 'class_id' in vals:
+            for rec in self:
+                cls = rec.class_id
+                reps = cls and [cls.class_rep_b.id, cls.class_rep_g.id]
+                if rec.id in reps:
+                    if rec.id == cls.class_rep_b.id:
+                        cls.class_rep_b = False
+                    if rec.id == cls.class_rep_g.id:
+                        cls.class_rep_g = False
+                        
+        if 'status' in vals and vals.get('status') == 'absent':
+            self._send_absence_email()
+                            
+        return res
+    
+    
+    
+    def _send_absence_email(self):
+        # Find your actual template ID (e.g., 'school_student.mail_template_student_absence')
+        template = self.env.ref('school_student.template_school_student', raise_if_not_found=False)
+        
+        if not template:
+            return
+            
+        for record in self:
+            # Check if an email exists either on the student record or the linked partner
+            email_exists = record.student_email or record.student_name.email
+            
+            if email_exists:
+                # send_mail() uses the template design
+                # email_layout_xmlid adds the standard Odoo email wrapper/footer
+                template.send_mail(
+                    record.id, 
+                    force_send=True, 
+                    email_values={'email_to': record.student_email or record.student_name.email}
+                )
+                
+                # Optional: Log a simple note in the chatter that the mail was sent
+                record.message_post(body=_("Absence notification email sent to %s") % record.student_name.name)

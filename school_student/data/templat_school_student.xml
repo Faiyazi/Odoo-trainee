@@ -1,14 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="template_school_student" model="mail.template">
-    <field name="name">School Student Template</field>
-    <field name="model_id" ref="school_student.model_school_teachers"/>
-        <field name="email_from">ibjifaiyaz@gmail.com</field>
-        <field name="email_to">Payalp@xyz.com</field>
-    <field name="subject">Welcome, ${object.name}!</field>
-    <field name="body_html"><![CDATA[
-        <p>Hello ${object.name},</p>
-        <p>Welcome to our school!</p>
-    ]]></field>
-</record>
+    <record id="template_school_student" model="mail.template" forcecreate="False">
+        <field name="name">School Student Template</field>
+        <field name="model_id" ref="school_student.model_school_student" />
+        <field name="email_from">ibjifaiyazz@gmail.com</field>
+        <field name="email_to">{{ object.student_email }}</field>
+        <field name="subject">Attendance Update: {{ object.student_name.name }}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p>Hello, this is a test notification.</p>
+
+                <t t-if="object.status == 'absent'">
+                    <p> 
+                        Dear <t t-out="object.parent_name or 'Parent'" />, <p> we are letting you
+                        know that today, <strong t-out="object.student_name.name" /> is marked as
+                        absent. </p>
+                    </p>
+                </t>
+            </div>
+        </field>
+    </record>
 </odoo>

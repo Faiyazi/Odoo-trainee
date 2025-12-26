@@ -1,8 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="data_school_student" model="school.teachers">
         <field name="teacher_name">Faiyaz</field>
         <field name="teacher_contact">9537653896</field>
         <field name="teacher_email">ibjifaiyazz@gmail.com</field>
+    </record>
+
+    <record id="data_school_student_1" model="school.teachers">
+        <field name="teacher_name">Suresh</field>
+        <field name="teacher_contact">9537655556</field>
+        <field name="teacher_email">suresh@gmail.com</field>
+    </record>
+
+
+    <record id="data_subject_1" model="student.subject">
+        <field name="name">Maths</field>
+        <field name="subject_code">30001</field>
+    </record>
+
+    <record id="data_subject_2" model="student.subject">
+        <field name="name">English</field>
+        <field name="subject_code">30002</field>
+    </record>
+
+     <record id="data_class_1" model="student.class">
+        <field name="class_name">Class 1</field>
     </record>
 </odoo>
